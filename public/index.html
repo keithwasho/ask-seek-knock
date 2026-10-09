@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Share what is on your mind and get counsel from the teachings of Jesus, the Church, and its beloved saints: Scripture, the Catechism, encyclicals, and a prayer for your situation.">
+<meta name="theme-color" content="#23408e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ask, Seek, and Knock">
+<meta property="og:description" content="Curious what Jesus would do? Share what is on your mind and get counsel from Scripture, the Catechism, encyclicals, and the saints. Your first session is free.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2323408e'/%3E%3Cpath d='M28 12h8v14h12v8H36v18h-8V34H16v-8h12z' fill='%23d8b65e'/%3E%3C/svg%3E">
+<title>Ask, Seek, and Knock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Uncial+Antiqua&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/* Layout: one narrow column like a missal page; rubric-red references in the margin of each section, lapis for actions. */
+:root{
+  --bg:#eef0f3;
+  --page:#fbfbfc;
+  --ink:#1d2433;
+  --muted:#5b6476;
+  --rule:#d5d9e1;
+  --lapis:#23408e;
+  --lapis-soft:#e3e8f5;
+  --rubric:#a3262a;
+  --gilt:#a7832a;
+  --display:"Uncial Antiqua", "EB Garamond", Georgia, serif;
+  --body:"EB Garamond", Georgia, "Times New Roman", serif;
+  --ui:"Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1320;--page:#161b2b;--ink:#e6e8ef;--muted:#9aa3b8;--rule:#2b3349;
+  --lapis:#8ea8ff;--lapis-soft:#1f2945;--rubric:#ef7b72;--gilt:#d8b65e;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1320;--page:#161b2b;--ink:#e6e8ef;--muted:#9aa3b8;--rule:#2b3349;
+  --lapis:#8ea8ff;--lapis-soft:#1f2945;--rubric:#ef7b72;--gilt:#d8b65e;color-scheme:dark}
+
+*,*::before,*::after{box-sizing:border-box}
+img{max-width:100%}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.15rem;line-height:1.6;padding-inline:16px;padding-block:32px 64px}
+.wrap{max-width:44rem;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+header{display:flex;flex-direction:column;gap:6px;text-align:left}
+.eyebrow{font-family:var(--ui);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gilt);font-weight:600}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,6vw,2.9rem);line-height:1.1;margin:0;color:var(--ink);text-wrap:balance}
+h1 .chi{color:var(--rubric)}
+.lede{color:var(--ink);margin:0;max-width:38rem;font-size:1.22rem;line-height:1.55}
+.sources{font-family:var(--ui);font-size:.9rem;color:var(--muted);margin:0;max-width:38rem}
+
+form{display:flex;flex-direction:column;gap:12px;background:var(--page);border:1px solid var(--rule);border-radius:6px;padding:20px}
+label{font-family:var(--ui);font-size:.85rem;font-weight:600;color:var(--muted)}
+textarea{font:inherit;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--rule);resize:vertical;min-height:8.5rem;padding:4px 0;line-height:1.55}
+textarea:focus{outline:none;border-bottom-color:var(--lapis)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.hint{font-family:var(--ui);font-size:.8rem;color:var(--muted)}
+.btns{display:flex;gap:8px;margin-left:auto}
+button{font-family:var(--ui);font-size:.95rem;font-weight:600;border-radius:4px;padding:10px 18px;cursor:pointer;border:1px solid var(--lapis)}
+button.primary{background:var(--lapis);color:var(--page)}
+button.ghost{background:transparent;color:var(--lapis)}
+button:disabled{opacity:.5;cursor:default}
+button:focus-visible,textarea:focus-visible{outline:2px solid var(--gilt);outline-offset:2px}
+
+.status{font-family:var(--ui);font-size:.9rem;color:var(--muted);display:flex;gap:10px;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gilt);animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+.error{font-family:var(--ui);font-size:.95rem;color:var(--rubric)}
+
+article{background:var(--page);border:1px solid var(--rule);border-radius:6px;padding:28px 24px;display:flex;flex-direction:column;gap:26px}
+.tag{align-self:flex-start;font-family:var(--ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lapis);background:var(--lapis-soft);padding:3px 8px;border-radius:3px}
+.answer-q{font-style:italic;color:var(--muted);margin:0;border-left:2px solid var(--rule);padding-left:14px}
+.crisis{border:1px solid var(--rubric);border-radius:4px;padding:14px 16px;font-family:var(--ui);font-size:.95rem}
+.crisis strong{color:var(--rubric)}
+section{display:flex;flex-direction:column;gap:10px}
+h2{font-family:var(--ui);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rubric);margin:0;font-weight:600}
+.lead{font-size:1.3rem;line-height:1.5;margin:0}
+.lead::first-letter{font-family:var(--display);font-size:3.1em;float:left;line-height:.85;padding:6px 8px 0 0;color:var(--rubric)}
+p{margin:0}
+ul.cites{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+ul.cites li{display:grid;grid-template-columns:7.5rem 1fr;gap:14px;min-width:0}
+.ref{font-family:var(--ui);font-size:.85rem;font-weight:600;color:var(--rubric);padding-top:4px;font-variant-numeric:tabular-nums}
+.cite-body{min-width:0}
+.quote{font-style:italic}
+.why{color:var(--muted);font-size:1rem;margin-top:2px}
+ol.steps{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:8px}
+.prayer{font-style:italic;text-align:center;padding:18px 8px 0;border-top:1px solid var(--rule);color:var(--ink)}
+.prayer::before{content:"✠";display:block;color:var(--gilt);font-style:normal;margin-bottom:8px}
+.saint-quote{margin:0;padding:4px 0 4px 18px;border-left:3px solid var(--gilt);font-size:1.3rem;line-height:1.5;font-style:italic}
+.attrib{font-family:var(--ui);font-size:.88rem;color:var(--muted)}
+.attrib strong{color:var(--rubric);font-weight:600}
+.closing{font-size:1.15rem}
+.para{font-family:var(--ui);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid var(--rule);border-radius:3px;padding:1px 5px;margin-left:6px;font-style:normal;vertical-align:2px}
+.account{font-family:var(--ui);font-size:.9rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;min-height:1.6rem}
+.account strong{color:var(--ink);font-weight:600}
+.linkish{background:none;border:0;padding:0;color:var(--lapis);font:inherit;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.panel{background:var(--page);border:1px solid var(--lapis);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:12px;font-family:var(--ui)}
+.panel h2{color:var(--lapis)}
+.panel p{font-size:.98rem;color:var(--ink)}
+.panel .fine{font-size:.82rem;color:var(--muted)}
+.price{font-family:var(--body);font-size:2rem;color:var(--ink);line-height:1}
+.price small{font-family:var(--ui);font-size:.9rem;color:var(--muted)}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:12px}
+.plan-option{border:1px solid var(--rule);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:12px;align-items:flex-start;min-width:0}
+.plan-option.best{border-color:var(--gilt)}
+.save{font-family:var(--ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--gilt)}
+.panel form,.panel .row{background:none;border:0;padding:0}
+.panel input[type=email]{font:inherit;font-size:1rem;color:var(--ink);background:transparent;border:1px solid var(--rule);border-radius:4px;padding:10px 12px;flex:1 1 14rem;min-width:0}
+.panel input[type=email]:focus{outline:2px solid var(--gilt);outline-offset:1px}
+.notice{font-family:var(--ui);font-size:.95rem;color:var(--ink);background:var(--lapis-soft);border-radius:4px;padding:10px 14px}
+footer{font-family:var(--ui);font-size:.82rem;color:var(--muted);line-height:1.5;display:flex;flex-direction:column;gap:8px}
+footer a{color:var(--lapis);font-weight:600}
+footer .links span{user-select:all}
+@media (max-width:520px){
+  ul.cites li{grid-template-columns:1fr;gap:2px}
+  article{padding:22px 16px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Scripture · Catechism · Encyclicals · Saints</span>
+    <h1><span class="chi">A</span>sk, Seek, and Knock</h1>
+    <p class="lede">Curious what Jesus would do and what the Church would advise so you can best understand the heart and mind of God to help you with your situation? Just share your thoughts and get counsel straight from the teachings of Jesus, the Church, and its beloved saints over the last 2000+ years.</p>
+    <p class="sources">Answers draw on the New American Bible, Revised Edition, the Catechism of the Catholic Church, papal encyclicals, and the writings of the saints, with every source cited so you can read it yourself. Your first session is free.</p>
+  </header>
+
+  <div class="account" id="account" aria-live="polite"></div>
+  <p class="notice" id="notice" hidden></p>
+
+  <form id="ask">
+    <label for="q">What are you going through?</label>
+    <textarea id="q" placeholder="Write as much or as little as you like…" maxlength="6000"></textarea>
+    <div class="row">
+      <div class="btns">
+        <button type="submit" class="primary" id="go">Seek counsel</button>
+      </div>
+    </div>
+  </form>
+
+  <section class="panel" id="signin" hidden>
+    <h2>Sign in for your free trial session</h2>
+    <p>Enter your email and we will send you a sign-in link. No password needed. What you wrote above is kept on this device while you sign in.</p>
+    <form id="signinForm" class="row">
+      <input type="email" id="email" aria-label="Email address" required autocomplete="email" placeholder="you@example.com">
+      <button type="submit" class="primary" id="sendLink">Email me a link</button>
+    </form>
+    <p class="fine" id="signinMsg" hidden></p>
+  </section>
+
+  <section class="panel" id="plan" hidden>
+    <h2 id="planTitle">Your free trial session is used</h2>
+    <p id="planText">Subscribe to keep seeking counsel whenever you need it. <span id="planSummary">$4.99/month or $54/year (save 10%).</span></p>
+    <div class="plans">
+      <div class="plan-option">
+        <div class="price"><span id="priceMonthly">$4.99</span> <small>per month</small></div>
+        <button type="button" class="ghost" id="subscribeMonthly">Choose monthly</button>
+      </div>
+      <div class="plan-option best">
+        <span class="save" id="yearlySavings">Save 10%</span>
+        <div class="price"><span id="priceYearly">$54</span> <small>per year</small></div>
+        <button type="button" class="primary" id="subscribeYearly">Choose yearly</button>
+      </div>
+    </div>
+    <p class="fine">Billed through Stripe. Cancel anytime.</p>
+  </section>
+
+  <div class="status" id="status" hidden><span class="dot"></span><span id="statusText">Reading Scripture and the Catechism…</span></div>
+  <p class="error" id="err" hidden></p>
+
+  <article id="out" aria-live="polite"></article>
+
+  <footer>
+    <p>This is a study aid, not a substitute for a priest, spiritual director, or the sacraments. Scripture is given in the New American Bible, Revised Edition; passages marked “paraphrase” are not word-for-word. Catechism paragraphs and encyclicals are summarized. Read every passage in full at bible.usccb.org and vatican.va. If you are in danger, call or text 988 (US) or your local emergency number.</p>
+    <p>Scripture texts in this work are taken from the New American Bible, revised edition © 2010, 1991, 1986, 1970 Confraternity of Christian Doctrine, Washington, D.C. and are used by permission of the copyright owner. All Rights Reserved. No part of the New American Bible may be reproduced in any form without permission in writing from the copyright owner.</p>
+    <p class="links"><a href="/terms.html">Terms &amp; refunds</a> · <a href="/privacy.html">Privacy</a> · Questions: <span>KeithWasho@gmail.com</span></p>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+const EXAMPLE = {
+  question: "I was passed over for a promotion and I am angry at my boss. I keep replaying it and I can't let it go.",
+  crisis: false,
+  summary: "Jesus would not pretend the hurt is small, but he would not let it rule you. He would name the anger honestly, bring it to the Father, refuse to repay injury with injury, and keep doing good work as an offering rather than as a bid for recognition.",
+  gospel_scene: "When the disciples argued over who was greatest (Mark 9:33-37), Jesus did not scold their desire to matter. He redirected it: the first must be the servant of all. He then placed a child in their midst, someone with no rank at all, and said that whoever receives such a one receives him.",
+  scripture: [
+    {ref:"Ephesians 4:26", exact:false, text:"You may be angry, but do not sin, and do not let the day end with your anger still burning.", why:"Anger itself is not the sin; nursing it is."},
+    {ref:"Matthew 6:3-4", exact:false, text:"Do good quietly, without seeking notice, and your Father who sees what is hidden will reward you.", why:"Your work is seen even when it is not rewarded."},
+    {ref:"Luke 14:11", exact:false, text:"Those who raise themselves up will be brought low, and those who lower themselves will be lifted up.", why:"Jesus' teaching on taking the lower place at the feast."}
+  ],
+  catechism: [
+    {ref:"CCC 2302", summary:"Anger as a desire for revenge becomes sinful when it wishes harm on another; it is right only as a desire to correct real injustice by proper means."},
+    {ref:"CCC 2427", summary:"Human work is a share in God's creative work and can be offered in union with Christ, which gives it worth beyond its earthly reward."},
+    {ref:"CCC 2843", summary:"Forgiveness is not a feeling we produce but a gift we ask for; the heart that offers itself to the Holy Spirit turns injury into intercession."}
+  ],
+  church: [
+    {ref:"Laborem Exercens 24-27 (St. John Paul II, 1981)", summary:"Work has a spirituality: through daily toil a person shares in the Cross and the Resurrection."},
+    {ref:"Gaudete et Exsultate 112-121 (Pope Francis, 2018)", summary:"Holiness grows through patience and meekness when we are humiliated, without needing to prove ourselves."}
+  ],
+  saint: {name:"St. Francis de Sales", source:"Introduction to the Devout Life, Part III, ch. 8", exact:false, quote:"Do not let anger in at all, however just it seems. It is far easier to keep it out than to drive it out once it has settled in.", why:"A gentle doctor of the Church on guarding the heart before resentment takes root."},
+  closing: "Your hurt is real, and God sees it. Scripture asks you not to let the anger settle, the Church calls you to seek justice by proper means and to forgive as a grace you ask for, and St. Francis de Sales reminds you to close the door on resentment early. Offer your work to God, and let him be the one who raises you up.",
+  steps: [
+    "Tonight, tell God exactly what you feel, in plain words. Do not edit it.",
+    "If there was a real injustice, raise it once, calmly, through the proper channel. Then let it rest.",
+    "Pray by name for your boss each day this week. You do not have to feel warm to do it.",
+    "Bring the resentment to Confession if it has turned into wishing harm."
+  ],
+  prayer: "Lord Jesus, meek and humble of heart, you were overlooked, misjudged, and set aside. Take this anger and make it clean. Let my work be for you, and give me the grace to forgive. Amen."
+};
+
+const $ = id => document.getElementById(id);
+const out = $("out");
+
+function el(tag, cls, text){ const n=document.createElement(tag); if(cls) n.className=cls; if(text!=null) n.textContent=text; return n; }
+function list(arr){ return Array.isArray(arr) ? arr.filter(Boolean) : []; }
+
+function render(a, isExample){
+  out.replaceChildren();
+  if(isExample) out.append(el("span","tag","Example answer"));
+  if(a.question) out.append(el("p","answer-q", "“" + a.question + "”"));
+  if(a.crisis){
+    const c=el("div","crisis");
+    const s=el("strong",null,"Please reach out now. ");
+    c.append(s, document.createTextNode(String(a.crisis_note || "You do not have to carry this alone. Call or text 988 (US) or your local emergency number, and tell someone you trust.")));
+    out.append(c);
+  }
+  const sec=(title)=>{ const s=el("section"); s.append(el("h2",null,title)); out.append(s); return s; };
+
+  if(a.summary){ const s=sec("What Jesus would do"); s.append(el("p","lead",String(a.summary))); }
+  if(a.gospel_scene){ const s=sec("From the Gospels"); s.append(el("p",null,String(a.gospel_scene))); }
+
+  const cites=(title, items, render)=>{
+    items=list(items); if(!items.length) return;
+    const s=sec(title); const ul=el("ul","cites");
+    for(const it of items){ const li=el("li"); li.append(el("span","ref",String(it.ref||""))); const b=el("div","cite-body"); render(b,it); li.append(b); ul.append(li); }
+    s.append(ul);
+  };
+  cites("Holy Scripture · NABRE", a.scripture, (b,it)=>{ const p=el("p","quote", "“"+String(it.text||"")+"”"); if(it.exact===false) p.append(el("span","para","paraphrase")); b.append(p); if(it.why) b.append(el("p","why",String(it.why))); });
+  cites("Catechism of the Catholic Church", a.catechism, (b,it)=>b.append(el("p",null,String(it.summary||""))));
+  cites("Encyclicals & Church documents", a.church, (b,it)=>b.append(el("p",null,String(it.summary||""))));
+
+  if(a.saint && a.saint.quote){
+    const s=sec("From the saints");
+    const q=el("blockquote","saint-quote","“"+String(a.saint.quote)+"”");
+    if(a.saint.exact===false) q.append(el("span","para","paraphrase"));
+    const at=el("p","attrib"); at.append(el("strong",null,String(a.saint.name||"")));
+    if(a.saint.source) at.append(document.createTextNode(" · "+String(a.saint.source)));
+    s.append(q, at);
+    if(a.saint.why) s.append(el("p","why",String(a.saint.why)));
+  }
+
+  const steps=list(a.steps);
+  if(steps.length){ const s=sec("This week"); const ol=el("ol","steps"); steps.forEach(t=>ol.append(el("li",null,String(t)))); s.append(ol); }
+  if(a.closing){ const s=sec("In summary"); s.append(el("p","closing",String(a.closing))); }
+  if(a.prayer) out.append(el("p","prayer",String(a.prayer)));
+  out.hidden=false;
+}
+
+render(EXAMPLE, true);
+try{ const d=localStorage.getItem("wwjd-draft"); if(d) $("q").value=d; }catch(e){}
+$("q").addEventListener("input",()=>{ try{ localStorage.setItem("wwjd-draft",$("q").value); }catch(e){} });
+
+/* ---------- Account: sign-in, sessions left, subscription ---------- */
+let sb = null, session = null, me = null;
+
+function showError(msg){ $("err").textContent = msg; $("err").hidden = false; }
+function showNotice(msg){ $("notice").textContent = msg; $("notice").hidden = !msg; }
+function dayName(iso){ return new Date(iso).toLocaleDateString(undefined, { weekday:"long", month:"long", day:"numeric" }); }
+
+async function api(path, body){
+  const headers = { "Content-Type":"application/json" };
+  if(session) headers.Authorization = "Bearer " + session.access_token;
+  const r = await fetch(path, body === undefined ? { headers } : { method:"POST", headers, body: JSON.stringify(body) });
+  const data = await r.json().catch(()=>null);
+  return { ok: r.ok, status: r.status, data: data || {} };
+}
+
+function renderAccount(){
+  const box = $("account"); box.replaceChildren();
+  const btn = (label, fn)=>{ const b=el("button","linkish",label); b.type="button"; b.onclick=fn; return b; };
+  if(!session){
+    box.append(el("span",null,"Your first session is free."), btn("Sign in", ()=>openSignin()));
+    return;
+  }
+  if(me){
+    const status = el("span");
+    if(me.subscribed){
+      status.append(el("strong",null,"Subscriber"), document.createTextNode(` · ${me.plan==="yearly" ? "yearly" : "monthly"} plan · renews ${dayName(me.renewsAt)}`));
+    } else if(me.remaining > 0){
+      status.append(el("strong",null,"Free trial session available"));
+    } else {
+      status.append(el("strong",null,"Free trial used"), document.createTextNode(" · subscribe to continue"));
+    }
+    box.append(status);
+    box.append(me.subscribed ? btn("Manage subscription", openPortal) : btn("Subscribe", showPlans));
+  }
+  box.append(el("span",null,session.user?.email || ""), btn("Sign out", async ()=>{ await sb.auth.signOut(); }));
+}
+
+async function refreshAccount(){
+  me = null;
+  if(session){
+    const r = await api("/api/me");
+    if(r.ok) me = r.data;
+  }
+  renderAccount();
+  $("plan").hidden = !(me && !me.subscribed && me.remaining <= 0);
+  if(session) $("signin").hidden = true;
+}
+
+function openSignin(){
+  $("signin").hidden = false; $("signinMsg").hidden = true;
+  $("signin").scrollIntoView({ block:"nearest" }); $("email").focus();
+}
+
+$("signinForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  if(!sb) return;
+  const email = $("email").value.trim();
+  $("sendLink").disabled = true;
+  const { error } = await sb.auth.signInWithOtp({ email, options:{ emailRedirectTo: location.origin } });
+  $("sendLink").disabled = false;
+  $("signinMsg").hidden = false;
+  $("signinMsg").textContent = error
+    ? "That link could not be sent. Check the address and try again in a minute."
+    : `Check ${email} for your sign-in link. Open it on this device and you will come right back here.`;
+});
+
+function showPlans(){
+  $("plan").hidden = false;
+  if(me && me.remaining > 0){ $("planTitle").textContent = "Choose a plan"; }
+  $("plan").scrollIntoView({ block:"nearest" });
+}
+
+async function startCheckout(plan){
+  if(!session) return openSignin();
+  const buttons = [$("subscribeMonthly"), $("subscribeYearly")];
+  buttons.forEach(b=>b.disabled = true);
+  const r = await api("/api/checkout", { plan });
+  buttons.forEach(b=>b.disabled = false);
+  if(r.ok && r.data.url) location.href = r.data.url;
+  else showError(r.data.error || "Could not start checkout. Please try again.");
+}
+async function openPortal(){
+  const r = await api("/api/portal", {});
+  if(r.ok && r.data.url) location.href = r.data.url;
+  else showError(r.data.error || "Could not open subscription settings.");
+}
+$("subscribeMonthly").onclick = ()=>startCheckout("monthly");
+$("subscribeYearly").onclick = ()=>startCheckout("yearly");
+
+async function initAccount(){
+  const params = new URLSearchParams(location.search);
+  if(params.get("subscribed")){
+    showNotice("Thank you. Your subscription is active.");
+    history.replaceState(null, "", location.pathname);
+  }
+  try{
+    const cfg = await fetch("/api/config").then(r=>r.json());
+    $("priceMonthly").textContent = cfg.priceMonthly;
+    $("priceYearly").textContent = cfg.priceYearly;
+    $("yearlySavings").textContent = cfg.yearlySavings;
+    $("planSummary").textContent = `${cfg.priceMonthly}/month or ${cfg.priceYearly}/year (${cfg.yearlySavings}).`;
+    sb = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
+    session = (await sb.auth.getSession()).data.session;
+    sb.auth.onAuthStateChange((_event, s)=>{ const changed = (s?.access_token) !== (session?.access_token); session = s; if(changed) refreshAccount(); });
+  }catch(e){
+    showError("Sign-in is not available right now. Please reload the page.");
+  }
+  refreshAccount();
+}
+initAccount();
+
+/* ---------- Asking ---------- */
+$("ask").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const q = $("q").value.trim();
+  $("err").hidden = true; showNotice("");
+  if(!q){ showError("Write a few words about what you are going through first."); $("q").focus(); return; }
+  if(!session){ openSignin(); return; }
+  if(me && me.remaining <= 0 && !me.subscribed){ $("plan").hidden = false; $("plan").scrollIntoView({ block:"nearest" }); return; }
+
+  $("go").disabled = true; $("status").hidden = false;
+  const msgs=["Reading Scripture and the Catechism…","Looking to the Gospels…","Gathering the Church's teaching…","Listening to the saints…"];
+  let i=0; const tick=setInterval(()=>{ i=(i+1)%msgs.length; $("statusText").textContent=msgs[i]; },6000);
+  try{
+    const r = await api("/api/ask", { question:q });
+    if(r.status === 401){ openSignin(); return; }
+    if(r.status === 402){ await refreshAccount(); $("plan").hidden = false; $("plan").scrollIntoView({ block:"nearest" }); return; }
+    if(!r.ok){ showError(r.data.error || "Something went wrong. Please try again."); return; }
+    const a = r.data;
+    a.question = q.length>280 ? q.slice(0,277)+"…" : q;
+    render(a,false);
+    try{ localStorage.removeItem("wwjd-draft"); }catch(err){}
+    out.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto":"smooth", block:"start"});
+    refreshAccount();
+  }catch(err){
+    showError("Could not reach the server. Check your connection and try again.");
+  }finally{
+    clearInterval(tick);
+    $("go").disabled=false; $("status").hidden=true; $("statusText").textContent=msgs[0];
+  }
+});
+</script>
+</body>
+</html>
