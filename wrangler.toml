@@ -1,0 +1,12 @@
+# Cloudflare Pages settings. Secrets (API keys) are added in the Cloudflare dashboard, never here.
+name = "ask-seek-knock"   # must match the Cloudflare Pages project name
+pages_build_output_dir = "public"
+compatibility_date = "2025-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+FREE_TRIAL_LIMIT = "1"            # free sessions per new user, ever
+MONTHLY_COST_CAP_USD = "4.50"     # hidden: most a subscriber may cost in Claude usage per 30-day window before "Please try again later"
+PRICE_MONTHLY_LABEL = "$4.99"     # display only; the real prices are set in Stripe
+PRICE_YEARLY_LABEL = "$54"
+YEARLY_SAVINGS_LABEL = "save 10%"
