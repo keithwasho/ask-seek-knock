@@ -105,8 +105,8 @@ ol.steps{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:8px
 .plan-option.best{border-color:var(--gilt)}
 .save{font-family:var(--ui);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--gilt)}
 .panel form,.panel .row{background:none;border:0;padding:0}
-.panel input[type=email]{font:inherit;font-size:1rem;color:var(--ink);background:transparent;border:1px solid var(--rule);border-radius:4px;padding:10px 12px;flex:1 1 14rem;min-width:0}
-.panel input[type=email]:focus{outline:2px solid var(--gilt);outline-offset:1px}
+.panel input[type=email],.panel input#code{font:inherit;font-size:1rem;color:var(--ink);background:transparent;border:1px solid var(--rule);border-radius:4px;padding:10px 12px;flex:1 1 14rem;min-width:0}
+.panel input[type=email]:focus,.panel input#code:focus{outline:2px solid var(--gilt);outline-offset:1px}
 .notice{font-family:var(--ui);font-size:.95rem;color:var(--ink);background:var(--lapis-soft);border-radius:4px;padding:10px 14px}
 footer{font-family:var(--ui);font-size:.82rem;color:var(--muted);line-height:1.5;display:flex;flex-direction:column;gap:8px}
 footer a{color:var(--lapis);font-weight:600}
@@ -142,10 +142,14 @@ footer .links span{user-select:all}
 
   <section class="panel" id="signin" hidden>
     <h2>Sign in for your free trial session</h2>
-    <p>Enter your email and we will send you a sign-in link. No password needed. What you wrote above is kept on this device while you sign in.</p>
+    <p>Enter your email and we will send you a sign-in code. No password needed, and what you wrote above stays right here.</p>
     <form id="signinForm" class="row">
       <input type="email" id="email" aria-label="Email address" required autocomplete="email" placeholder="you@example.com">
-      <button type="submit" class="primary" id="sendLink">Email me a link</button>
+      <button type="submit" class="primary" id="sendLink">Email me a code</button>
+    </form>
+    <form id="codeForm" class="row" hidden>
+      <input type="text" id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" aria-label="Sign-in code" placeholder="Code from the email">
+      <button type="submit" class="primary" id="verifyCode">Sign in</button>
     </form>
     <p class="fine" id="signinMsg" hidden></p>
   </section>
@@ -316,6 +320,7 @@ function openSignin(){
   $("signin").scrollIntoView({ block:"nearest" }); $("email").focus();
 }
 
+let pendingEmail = "";
 $("signinForm").addEventListener("submit", async (e)=>{
   e.preventDefault();
   if(!sb) return;
@@ -324,9 +329,22 @@ $("signinForm").addEventListener("submit", async (e)=>{
   const { error } = await sb.auth.signInWithOtp({ email, options:{ emailRedirectTo: location.origin } });
   $("sendLink").disabled = false;
   $("signinMsg").hidden = false;
+  if(error){ $("signinMsg").textContent = "The email could not be sent. Check the address and try again in a minute."; return; }
+  pendingEmail = email;
+  $("codeForm").hidden = false; $("code").value = ""; $("code").focus();
+  $("signinMsg").textContent = `We sent an email to ${email}. Type the code from it in the box above and click Sign in. (You can also use the link in the email, but the code keeps you in this browser with your question.)`;
+});
+
+$("codeForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const token = $("code").value.replace(/\D/g, "");
+  if(!sb || !pendingEmail || token.length < 6){ $("signinMsg").textContent = "Enter the code from the email."; return; }
+  $("verifyCode").disabled = true;
+  const { error } = await sb.auth.verifyOtp({ email: pendingEmail, token, type: "email" });
+  $("verifyCode").disabled = false;
   $("signinMsg").textContent = error
-    ? "That link could not be sent. Check the address and try again in a minute."
-    : `Check ${email} for your sign-in link. Open it on this device and you will come right back here.`;
+    ? "That code did not work. Check it, or click Email me a code to get a new one."
+    : "You are signed in. Click Seek counsel to continue.";
 });
 
 function showPlans(){
@@ -342,12 +360,12 @@ async function startCheckout(plan){
   const r = await api("/api/checkout", { plan });
   buttons.forEach(b=>b.disabled = false);
   if(r.ok && r.data.url) location.href = r.data.url;
-  else showError(r.data.error || "Could not start checkout. Please try again.");
+  else showError((r.data.error || "Could not start checkout. Please try again.") + (r.data.detail ? " [Test mode detail: " + r.data.detail + "]" : ""));
 }
 async function openPortal(){
   const r = await api("/api/portal", {});
   if(r.ok && r.data.url) location.href = r.data.url;
-  else showError(r.data.error || "Could not open subscription settings.");
+  else showError((r.data.error || "Could not open subscription settings.") + (r.data.detail ? " [Test mode detail: " + r.data.detail + "]" : ""));
 }
 $("subscribeMonthly").onclick = ()=>startCheckout("monthly");
 $("subscribeYearly").onclick = ()=>startCheckout("yearly");

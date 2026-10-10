@@ -1,4 +1,4 @@
-import { json, services, getUser, siteUrl } from "../../lib/server.js";
+import { json, services, getUser, siteUrl, testDetail } from "../../lib/server.js";
 
 // Opens Stripe's page where subscribers update their card or cancel.
 export async function onRequestPost({ request, env }) {
@@ -13,6 +13,6 @@ export async function onRequestPost({ request, env }) {
     return json({ url: portal.url });
   } catch (err) {
     console.error(err);
-    return json({ error: "Could not open subscription settings. Please try again." }, 500);
+    return json({ error: "Could not open subscription settings. Please try again.", detail: testDetail(env, err) }, 500);
   }
 }

@@ -1,4 +1,4 @@
-import { json, services, getUser, isSubscribed, getOrCreateCustomer, siteUrl } from "../../lib/server.js";
+import { json, services, getUser, isSubscribed, getOrCreateCustomer, siteUrl, testDetail } from "../../lib/server.js";
 
 // Starts Stripe Checkout for the monthly ($4.99) or yearly ($54) plan,
 // or sends existing subscribers to manage their plan.
@@ -30,6 +30,6 @@ export async function onRequestPost({ request, env }) {
     return json({ url: session.url });
   } catch (err) {
     console.error(err);
-    return json({ error: "Could not start checkout. Please try again." }, 500);
+    return json({ error: "Could not start checkout. Please try again.", detail: testDetail(env, err) }, 500);
   }
 }
