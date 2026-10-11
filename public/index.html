@@ -329,7 +329,13 @@ $("signinForm").addEventListener("submit", async (e)=>{
   const { error } = await sb.auth.signInWithOtp({ email, options:{ emailRedirectTo: location.origin } });
   $("sendLink").disabled = false;
   $("signinMsg").hidden = false;
-  if(error){ $("signinMsg").textContent = "The email could not be sent. Check the address and try again in a minute."; return; }
+  if(error){
+    const why = String(error.message || "");
+    $("signinMsg").textContent = /rate limit|too many|security purposes/i.test(why)
+      ? "Too many sign-in emails were sent recently. Please wait a few minutes and try again."
+      : "The email could not be sent. Check the address and try again in a minute." + (why ? " (" + why + ")" : "");
+    return;
+  }
   pendingEmail = email;
   $("codeForm").hidden = false; $("code").value = ""; $("code").focus();
   $("signinMsg").textContent = `We sent an email to ${email}. Type the code from it in the box above and click Sign in. (You can also use the link in the email, but the code keeps you in this browser with your question.)`;

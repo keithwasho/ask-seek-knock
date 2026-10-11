@@ -10,3 +10,4 @@ MONTHLY_COST_CAP_USD = "4.50"     # hidden: most a subscriber may cost in Claude
 PRICE_MONTHLY_LABEL = "$4.99"     # display only; the real prices are set in Stripe
 PRICE_YEARLY_LABEL = "$54"
 YEARLY_SAVINGS_LABEL = "save 10%"
+PORTAL_HEADLINE = "SeekandKnock.com partners with Stripe to simplify your billing"   # shown on Stripe's Manage subscription page

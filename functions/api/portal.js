@@ -1,4 +1,4 @@
-import { json, services, getUser, siteUrl, testDetail, customerIdOf } from "../../lib/server.js";
+import { json, services, getUser, siteUrl, testDetail, customerIdOf, portalConfiguration } from "../../lib/server.js";
 
 // Opens Stripe's page where subscribers update their card, switch plans, or cancel.
 export async function onRequestPost({ request, env }) {
@@ -9,7 +9,12 @@ export async function onRequestPost({ request, env }) {
   if (!customer) return json({ error: "You do not have a subscription yet." }, 400);
 
   try {
-    const portal = await s.stripe.billingPortal.sessions.create({ customer, return_url: siteUrl(request, s.env) });
+    const site = siteUrl(request, s.env);
+    const portal = await s.stripe.billingPortal.sessions.create({
+      customer,
+      return_url: site,
+      configuration: await portalConfiguration(s, site),
+    });
     return json({ url: portal.url });
   } catch (err) {
     console.error(err);
