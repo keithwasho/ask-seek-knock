@@ -64,6 +64,9 @@ h1 .chi{color:inherit}
 
 form{display:flex;flex-direction:column;gap:14px;background:var(--page);border:1px solid var(--rule);border-radius:16px;padding:26px;box-shadow:0 10px 30px rgba(28,42,74,.08)}
 label{font-family:var(--ui);font-size:.95rem;font-weight:700;color:var(--navy)}
+label[for="q"]{display:flex;flex-direction:column;gap:2px}
+.q-title{font-family:var(--display);font-weight:600;font-size:1.6rem;line-height:1.2;color:var(--navy)}
+.q-sub{font-family:var(--ui);font-weight:400;font-size:1rem;color:var(--muted)}
 textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:12px;resize:vertical;min-height:9rem;padding:14px 16px;line-height:1.55}
 textarea:focus{outline:none;border-color:var(--gilt);background:var(--page)}
 .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
@@ -196,7 +199,7 @@ footer.site .links{display:flex;flex-wrap:wrap;gap:6px 18px;padding-top:6px}
   <p class="notice" id="notice" hidden></p>
 
   <form id="ask">
-    <label for="q">What are you going through?</label>
+    <label for="q"><span class="q-title">What&rsquo;s on your mind?</span> <span class="q-sub">Find Godly wisdom for whatever you&rsquo;re facing.</span></label>
     <textarea id="q" placeholder="Write as much or as little as you like…" maxlength="6000"></textarea>
     <div class="row">
       <div class="btns">

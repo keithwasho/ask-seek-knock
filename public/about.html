@@ -84,11 +84,14 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
 .approach figure img{width:100%;height:auto;border-radius:14px;box-shadow:0 12px 28px rgba(28,42,74,.14)}
 .approach figcaption{font-size:.85rem;color:var(--muted);margin-top:10px;font-style:italic}
 
-/* Story: sunset scene with church and bridge on the right, fading softly behind the text (like the hero) */
-.story{position:relative;background:linear-gradient(100deg,#fdf1dc 0%,#f9e2bb 45%,#f3cd94 100%);border-radius:18px;overflow:hidden;min-height:380px}
-.story .scene{position:absolute;inset:0 0 0 auto;width:64%;height:100%;object-fit:cover;object-position:center;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 38%);mask-image:linear-gradient(90deg,transparent 0,#000 38%)}
-.story .text{position:relative;padding:44px;max-width:640px}
+/* Story: the founding family's photo on the right, its edges dissolving softly into the warm band behind the text */
+.story{position:relative;background:linear-gradient(100deg,#fdf1dc 0%,#f9e2bb 45%,#f3cd94 100%);border-radius:18px;overflow:hidden;min-height:440px}
+.story .scene{position:absolute;inset:0 0 0 auto;width:58%;height:100%;object-fit:cover;object-position:center 22%;
+  filter:saturate(.92) sepia(.08) brightness(1.02);
+  -webkit-mask-image:radial-gradient(ellipse 62% 70% at 60% 46%,#000 55%,transparent 98%);
+          mask-image:radial-gradient(ellipse 62% 70% at 60% 46%,#000 55%,transparent 98%)}
+.story .family-note{margin-top:18px;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--navy)}
+.story .text{position:relative;padding:44px;max-width:560px}
 .story h2{font-size:clamp(1.9rem,3.4vw,2.5rem);margin:8px 0 14px}
 .story p{color:#2d3340}
 .story p+p{margin-top:12px}
@@ -129,7 +132,9 @@ footer a{color:var(--navy);font-weight:600}
   .mission{padding-block:36px}
   .cards{grid-template-columns:1fr}
   .story{min-height:0;display:flex;flex-direction:column}
-  .story .scene{position:static;order:2;width:100%;height:210px;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 35%);mask-image:linear-gradient(180deg,transparent 0,#000 35%)}
+  .story .scene{position:static;order:2;width:100%;height:300px;object-position:center 25%;
+    -webkit-mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 55%,transparent 100%);
+            mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 55%,transparent 100%)}
   .story .text{padding:30px 22px 8px}
   .btn{width:100%}
   .top .btn{width:auto;padding-inline:16px}
@@ -222,7 +227,7 @@ footer a{color:var(--navy);font-weight:600}
     </section>
 
     <section class="story" aria-labelledby="story-title">
-      <img class="scene" src="/img/about-story-church.svg" alt="A church steeple and stone arch bridge at sunset in the Virginia hills" width="800" height="380" loading="lazy">
+      <img class="scene" src="/img/about-family.jpg" alt="The family behind Seek & Knock: a mother, father, and their four children standing together in a summer flower field" width="1200" height="973" loading="lazy">
       <div class="text">
         <p class="eyebrow">Our story</p>
         <h2 id="story-title">Founded on Faith in 2026</h2>
@@ -232,6 +237,7 @@ footer a{color:var(--navy);font-weight:600}
           <div><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg></span><p><b>Founded in 2026</b><span>Virginia, USA</span></p></div>
           <div><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3.6 2.7-6 6-6s6 2.4 6 6Zm10 0c0-3.6 2.2-6 5-6s5 2.4 5 6Z"/></svg></span><p><b>A Catholic Christian Family</b><span>Dedicated to Serving You</span></p></div>
         </div>
+        <p class="family-note">Pictured: our family, the heart behind Seek &amp; Knock.</p>
       </div>
     </section>
 
