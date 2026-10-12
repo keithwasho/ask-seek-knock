@@ -4,130 +4,134 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="About Seek & Knock: founded in Virginia in 2026 by a Catholic Christian family to help people seek God's wisdom for everyday life through Scripture, Church teaching, and the saints.">
-<meta name="theme-color" content="#23408e">
+<meta name="theme-color" content="#1c2a4a">
 <meta property="og:title" content="About Seek & Knock">
 <meta property="og:description" content="Seeking God's wisdom for everyday life. Founded on faith in 2026 in Virginia, USA.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2323408e'/%3E%3Cpath d='M28 12h8v14h12v8H36v18h-8V34H16v-8h12z' fill='%23d8b65e'/%3E%3C/svg%3E">
+<meta property="og:image" content="/img/about-sunrise.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231c2a4a'/%3E%3Cpath d='M28 12h8v14h12v8H36v18h-8V34H16v-8h12z' fill='%23c8913f'/%3E%3C/svg%3E">
 <title>About Seek &amp; Knock</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Uncial+Antiqua&family=Source+Sans+3:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Source+Sans+3:wght@400;600;700&display=swap">
 <style>
-/* Layout: same missal-page palette as the counsel page; warm sunrise art beside each section, one clear way back to "Seek counsel". */
+/* Layout: warm sunrise photo band, then cream sections with navy serif headings and gold accents (one light visual world, matching the brand mockup). */
 :root{
-  --bg:#f6f4ee; --page:#fffdf8; --ink:#1d2433; --muted:#5b6476; --rule:#e2ddd0;
-  --lapis:#23408e; --lapis-soft:#e3e8f5; --gilt:#a7832a; --gilt-soft:#f3ead3; --rubric:#a3262a;
-  --display:"Uncial Antiqua","EB Garamond",Georgia,serif;
+  color-scheme: light;
+  --cream:#faf7f1; --sand:#f4eee2; --white:#ffffff; --navy:#1c2a4a; --ink:#2b3445; --muted:#5d6676;
+  --gold:#c08a3e; --gold-deep:#a8742c; --gold-soft:#f5ead6; --line:#e8e1d3;
   --serif:"EB Garamond",Georgia,"Times New Roman",serif;
-  --ui:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --sans:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0f1320;--page:#161b2b;--ink:#e6e8ef;--muted:#9aa3b8;--rule:#2b3349;
-  --lapis:#8ea8ff;--lapis-soft:#1f2945;--gilt:#d8b65e;--gilt-soft:#2a2614;--rubric:#ef7b72;color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0f1320;--page:#161b2b;--ink:#e6e8ef;--muted:#9aa3b8;--rule:#2b3349;
-  --lapis:#8ea8ff;--lapis-soft:#1f2945;--gilt:#d8b65e;--gilt-soft:#2a2614;--rubric:#ef7b72;color-scheme:dark}
-
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:1.15rem;line-height:1.65}
-img,svg{max-width:100%;height:auto;display:block}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:1.06rem;line-height:1.65}
+img,svg{max-width:100%;display:block}
 h1,h2,h3,p{margin:0}
-h1,h2,h3{font-weight:500;line-height:1.12;text-wrap:balance}
-a{color:var(--lapis)}
-a:focus-visible{outline:3px solid var(--gilt);outline-offset:4px}
-.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
-.eyebrow{font-family:var(--ui);font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--gilt)}
-.button{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:10px 22px;border-radius:999px;background:var(--lapis);color:var(--page);font-family:var(--ui);font-weight:600;font-size:1rem;text-decoration:none}
-.button:hover{filter:brightness(1.08)}
-.button.gold{background:var(--gilt);color:#fff}
+h1,h2{font-family:var(--serif);font-weight:600;color:var(--navy);line-height:1.1;text-wrap:balance}
+a:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.eyebrow{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:10px 24px;border-radius:999px;background:var(--gold);color:#fff;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 6px 16px rgba(168,116,44,.25)}
+.btn:hover{background:var(--gold-deep)}
 
-/* Top bar */
-.top{background:var(--page);border-bottom:1px solid var(--rule)}
-.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:12px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
-.brand svg{width:34px;height:34px;color:var(--gilt)}
-.brand b{font-family:var(--serif);font-weight:600;font-size:1.4rem;line-height:1}
-.brand small{display:block;font-family:var(--ui);font-size:.75rem;color:var(--muted)}
+/* Header */
+.top{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:10px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand svg{width:46px;height:46px;flex:none}
+.brand b{display:block;font-family:var(--serif);font-weight:600;font-size:1.6rem;color:var(--navy);line-height:1}
+.brand small{display:block;font-size:.78rem;color:var(--ink);margin-top:3px}
+.nav{display:flex;align-items:center;gap:28px}
+.nav a.link{color:var(--ink);text-decoration:none;font-size:.95rem;padding-block:6px;border-bottom:2px solid transparent}
+.nav a.link[aria-current]{border-color:var(--gold);font-weight:600}
 
-/* Hero */
-.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:56px 48px}
-.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(2.2rem,5.5vw,3.6rem);margin:12px 0 8px}
-.hero h1 .amp{color:var(--rubric)}
-.tagline{font-size:1.35rem;color:var(--ink)}
-.rule{width:56px;height:3px;background:var(--gilt);border-radius:2px;margin:20px 0}
-.hero p.lead{color:var(--muted);max-width:36rem}
-.hero .button{margin-top:24px}
-.art{border-radius:180px 180px 14px 14px;overflow:hidden;box-shadow:0 18px 45px rgba(20,30,60,.12);max-width:440px;justify-self:center;width:100%}
-
-/* Facts strip */
-.facts{display:flex;flex-wrap:wrap;gap:10px 28px;padding-block:18px;border-block:1px solid var(--rule);font-family:var(--ui);font-size:.9rem;color:var(--muted)}
-.facts span{display:flex;align-items:center;gap:8px}
-.facts i{width:6px;height:6px;border-radius:50%;background:var(--gilt)}
+/* Hero: photo on the right, warm sky colours carry the text on the left */
+.hero{position:relative;background:linear-gradient(100deg,#fbe6c4 0%,#f6d3a0 38%,#efbd80 70%,#e9ad6c 100%);overflow:hidden}
+.hero img{position:absolute;inset:0 0 0 auto;height:100%;width:62%;object-fit:cover;object-position:right center;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+.hero .wrap{position:relative;padding-block:64px 70px}
+.hero .copy{max-width:36rem}
+.hero h1{font-size:clamp(2.6rem,6vw,4rem);letter-spacing:-.01em}
+.hero .tag{font-size:1.4rem;color:var(--navy);margin-top:10px}
+.hero .bar{width:52px;height:3px;background:var(--gold);border-radius:2px;margin:22px 0}
+.hero p.lead{font-size:1.12rem;color:#2d3340}
 
 /* Mission */
-.mission{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-block:56px}
-.mission .pic{border-radius:14px;overflow:hidden;box-shadow:0 14px 36px rgba(20,30,60,.12)}
-.mission h2,.foundation h2,.approach h2{font-size:clamp(1.8rem,3.6vw,2.5rem);margin:10px 0 16px;color:var(--ink)}
-.mission p{color:var(--muted);max-width:60ch}
-.mission p+p{margin-top:14px}
+.mission{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding-block:48px}
+.mission img{width:100%;aspect-ratio:594/244;object-fit:cover;border-radius:14px;box-shadow:0 14px 34px rgba(28,42,74,.14)}
+.mission h2{font-size:clamp(1.9rem,3.4vw,2.5rem);margin:10px 0 16px}
+.mission p{color:var(--ink)}
+.mission p+p{margin-top:12px}
 
 /* Foundation */
-.foundation{background:var(--gilt-soft);border-block:1px solid var(--rule);padding-block:56px;text-align:center}
-.foundation .intro{color:var(--muted);max-width:52rem;margin:0 auto 32px}
+.foundation{background:var(--sand);padding-block:52px;text-align:center}
+.foundation h2{font-size:clamp(2rem,3.6vw,2.6rem);margin:8px 0 12px}
+.foundation .intro{max-width:50rem;margin:0 auto 30px;color:var(--ink)}
 .cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;text-align:left}
-.card{background:var(--page);border:1px solid var(--rule);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
-.icon{width:56px;height:56px;border-radius:50%;background:var(--gilt-soft);display:grid;place-items:center;color:var(--gilt)}
+.card{background:var(--white);border-radius:12px;padding:22px 20px;display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:start;box-shadow:0 4px 14px rgba(28,42,74,.06);min-width:0}
+.icon{width:56px;height:56px;border-radius:50%;background:var(--gold-soft);display:grid;place-items:center;color:var(--gold)}
 .icon svg{width:30px;height:30px}
-.card h3{font-family:var(--ui);font-size:1.05rem;font-weight:600}
-.card p{font-size:1rem;color:var(--muted);line-height:1.55}
+.card h3{font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:6px;line-height:1.3}
+.card p{font-size:.96rem;color:var(--muted);line-height:1.5}
 
 /* Approach */
-.approach{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;padding-block:56px;align-items:start}
-.note{border-left:3px solid var(--gilt);padding-left:22px;color:var(--muted)}
-.note p+p{margin-top:14px}
+.approach{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;padding-block:52px;align-items:start}
+.approach h2{font-size:clamp(1.9rem,3.4vw,2.5rem);margin-top:10px}
+.approach .note{border-left:3px solid var(--gold);padding-left:22px;color:var(--ink)}
+.approach .note p+p{margin-top:12px}
 
-/* Story */
-.story{background:#1c2f5e;color:#eef0f6;border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1.2fr .8fr}
-.story .text{padding:40px}
-.story .eyebrow{color:#e5c98a}
-.story h2{font-size:clamp(1.8rem,3.6vw,2.5rem);margin:10px 0 16px;color:#fff}
-.story p{color:#d9deea}
-.story p+p{margin-top:14px}
-.story .meta{display:flex;flex-wrap:wrap;gap:18px 32px;margin-top:24px;font-family:var(--ui)}
-.story .meta div{display:flex;gap:10px;align-items:flex-start}
-.story .meta svg{width:26px;height:26px;color:#e5c98a;flex:none;margin-top:2px}
-.story .meta b{display:block;color:#fff;font-weight:600}
-.story .meta span{font-size:.9rem;color:#c5cbe0}
-.story .scene{min-height:260px}
-.story .scene svg{width:100%;height:100%;object-fit:cover}
+/* Approach: the open-doorway illustration under the heading */
+.approach figure{margin:24px 0 0;max-width:280px}
+.approach figure img{width:100%;height:auto;border-radius:14px;box-shadow:0 12px 28px rgba(28,42,74,.14)}
+.approach figcaption{font-size:.85rem;color:var(--muted);margin-top:10px;font-style:italic}
 
-/* Invitation + closing */
-.invite{text-align:center;padding-block:56px 24px}
-.invite h3{font-size:1.8rem;margin-bottom:12px}
-.invite p{color:var(--muted);max-width:44rem;margin:0 auto}
-.invite .contact{font-family:var(--ui);margin-top:12px;font-size:1rem}
-.closing{margin-block:24px 56px;background:var(--page);border:1px solid var(--rule);border-radius:16px;padding:40px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
-.closing p{font-size:1.5rem;line-height:1.4}
-.closing small{font-family:var(--ui);font-size:.8rem;letter-spacing:.14em;color:var(--gilt)}
+/* Story: sunset scene with church and bridge on the right, fading softly behind the text (like the hero) */
+.story{position:relative;background:linear-gradient(100deg,#fdf1dc 0%,#f9e2bb 45%,#f3cd94 100%);border-radius:18px;overflow:hidden;min-height:380px}
+.story .scene{position:absolute;inset:0 0 0 auto;width:64%;height:100%;object-fit:cover;object-position:center;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 38%);mask-image:linear-gradient(90deg,transparent 0,#000 38%)}
+.story .text{position:relative;padding:44px;max-width:640px}
+.story h2{font-size:clamp(1.9rem,3.4vw,2.5rem);margin:8px 0 14px}
+.story p{color:#2d3340}
+.story p+p{margin-top:12px}
+.meta{display:flex;flex-wrap:wrap;gap:16px 40px;margin-top:26px}
+.meta div{display:flex;gap:12px;align-items:center}
+.meta .dot{width:42px;height:42px;border-radius:50%;background:var(--gold);display:grid;place-items:center;color:#fff;flex:none}
+.meta .dot svg{width:22px;height:22px}
+.meta b{display:block;font-family:var(--serif);font-size:1.15rem;color:var(--navy);line-height:1.2}
+.meta span{font-size:.92rem;color:var(--ink)}
 
-footer{border-top:1px solid var(--rule);background:var(--page);font-family:var(--ui);font-size:.88rem;color:var(--muted)}
-footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;padding-block:20px}
-footer nav{display:flex;flex-wrap:wrap;gap:6px 18px}
-footer a{font-weight:600}
+/* Invitation + closing call to action */
+.invite{text-align:center;padding-block:52px 12px}
+.invite h3{font-family:var(--serif);font-size:1.8rem;font-weight:600;color:var(--navy);margin-bottom:10px}
+.invite p{max-width:44rem;margin:0 auto;color:var(--ink)}
+.invite .contact{margin-top:10px;font-size:.98rem}
+.invite .contact span{font-weight:600;color:var(--navy);user-select:all}
+.closing{margin-block:28px 56px;background:var(--navy);border-radius:18px;padding:44px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+.closing p{font-family:var(--serif);font-size:1.6rem;color:#fff;line-height:1.35}
+.closing small{font-size:.78rem;letter-spacing:.18em;color:#e2c48d}
 
-@media (max-width:900px){
+footer{background:var(--white);border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:center;padding-block:20px}
+footer nav{display:flex;flex-wrap:wrap;gap:6px 20px}
+footer a{color:var(--navy);font-weight:600}
+
+@media (max-width:980px){
   .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .story{grid-template-columns:1fr}
-  .story .scene{min-height:200px;order:-1}
 }
 @media (max-width:760px){
-  .hero,.mission,.approach{grid-template-columns:1fr;gap:28px;padding-block:36px}
-  .art{max-width:360px}
+  .nav a.link{display:none}
+  .brand b{font-size:1.35rem}
+  .brand small{display:none}
+  .hero img{position:static;width:100%;height:220px;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 30%);mask-image:linear-gradient(180deg,transparent 0,#000 30%)}
+  .hero .wrap{padding-block:36px 8px}
+  .mission,.approach{grid-template-columns:1fr;gap:26px}
+  .mission{padding-block:36px}
   .cards{grid-template-columns:1fr}
-  .foundation{padding-block:40px}
-  .story .text{padding:28px 22px}
-  .button{width:100%;justify-content:center}
-  .top .button{width:auto}
+  .approach figure{max-width:220px}
+  .story{min-height:0;display:flex;flex-direction:column}
+  .story .scene{position:static;order:2;width:100%;height:210px;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 35%);mask-image:linear-gradient(180deg,transparent 0,#000 35%)}
+  .story .text{padding:30px 22px 8px}
+  .btn{width:100%}
+  .top .btn{width:auto;padding-inline:16px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
@@ -137,100 +141,36 @@ footer a{font-weight:600}
 <header class="top">
   <div class="wrap">
     <a class="brand" href="/" aria-label="Seek and Knock home">
-      <svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M20 4v32M12 13h16"/><path d="M20 2v-0M6 8l3 3M34 8l-3 3M3 20h4M33 20h4M7 31l3-2M33 31l-3-2" opacity=".7"/></g></svg>
-      <span><b>Seek &amp; Knock</b><small>Seek wisdom. Find clarity. Walk in faith.</small></span>
+      <svg viewBox="0 0 48 48" aria-hidden="true"><g stroke="#c08a3e" stroke-linecap="round" fill="none"><path d="M24 8v34M15 18h18" stroke-width="3"/><g stroke-width="1.6" opacity=".85"><path d="M24 2v3M10 6l2.5 3M38 6l-2.5 3M4 16h4M40 16h4M7 28l3-1.5M41 28l-3-1.5"/></g></g></svg>
+      <span><b>Seek &amp; Knock</b><small>Seek Wisdom. Find Clarity. Walk in Faith.</small></span>
     </a>
-    <a class="button gold" href="/">Seek counsel <span aria-hidden="true">→</span></a>
+    <nav class="nav" aria-label="Main">
+      <a class="link" href="/">Home</a>
+      <a class="link" href="/about" aria-current="page">About</a>
+      <a class="btn" href="/">Get Started <span aria-hidden="true">→</span></a>
+    </nav>
   </div>
 </header>
 
 <main>
-  <div class="wrap">
-    <section class="hero" aria-labelledby="title">
-      <div>
-        <p class="eyebrow">About us</p>
-        <h1 id="title">About Seek <span class="amp">&amp;</span> Knock</h1>
-        <p class="tagline">Seeking God’s wisdom for everyday life.</p>
-        <div class="rule" aria-hidden="true"></div>
+  <section class="hero" aria-labelledby="title">
+    <img src="/img/about-sunrise.jpg" alt="A woman sits on a hilltop watching the sun rise over mountains and a river valley" width="816" height="262">
+    <div class="wrap">
+      <div class="copy">
+        <h1 id="title">About Seek &amp; Knock</h1>
+        <p class="tag">Seeking God’s wisdom for everyday life.</p>
+        <div class="bar" aria-hidden="true"></div>
         <p class="lead">We’re a Christian-founded company dedicated to helping people discover God’s purpose, navigate life’s questions, and make decisions with clarity, confidence, and faith.</p>
-        <a class="button" href="/">Ask your question now <span aria-hidden="true">→</span></a>
       </div>
-      <figure class="art" style="margin:0">
-        <svg viewBox="0 0 460 470" role="img" aria-labelledby="a1t" xmlns="http://www.w3.org/2000/svg">
-          <title id="a1t">A sunrise over peaceful hills, seen through a stone archway, with a person resting and looking toward the light</title>
-          <defs>
-            <linearGradient id="sky" x2="0" y2="1"><stop offset="0" stop-color="#f3b860"/><stop offset=".55" stop-color="#fbd998"/><stop offset="1" stop-color="#fff2d6"/></linearGradient>
-            <linearGradient id="stone" x2="1" y2="1"><stop stop-color="#cdbb9a"/><stop offset="1" stop-color="#eadfc9"/></linearGradient>
-            <radialGradient id="sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fffbea"/><stop offset=".45" stop-color="#ffe9b0"/><stop offset="1" stop-color="#ffe9b0" stop-opacity="0"/></radialGradient>
-            <clipPath id="arch"><path d="M80 470V209a150 150 0 0 1 300 0v261Z"/></clipPath>
-          </defs>
-          <rect width="460" height="470" fill="url(#stone)"/>
-          <g clip-path="url(#arch)">
-            <rect x="70" y="45" width="320" height="425" fill="url(#sky)"/>
-            <circle cx="250" cy="250" r="110" fill="url(#sun)"/>
-            <circle cx="250" cy="250" r="34" fill="#fff8e1"/>
-            <path d="M60 300Q130 240 220 278T405 262V470H60Z" fill="#c9a36d" opacity=".75"/>
-            <path d="M50 330Q125 282 230 318T415 300V470H50Z" fill="#8f7a55"/>
-            <path d="M45 372Q140 320 240 352T420 338V470H45Z" fill="#5a5a3d"/>
-            <path d="M200 470Q310 420 252 386Q222 370 262 352Q236 372 270 382Q350 410 288 470Z" fill="#efdcae" opacity=".85"/>
-            <g fill="#3a3326">
-              <circle cx="318" cy="356" r="9"/>
-              <path d="M306 400c0-22 4-34 12-34s14 10 15 34Z"/>
-              <path d="M300 404h44l-4 8h-36Z"/>
-            </g>
-            <path d="M120 330h6v-14h4v14h6M130 316v-8" stroke="#3f3a2a" stroke-width="2" fill="none" opacity=".7"/>
-          </g>
-          <path d="M80 470V209a150 150 0 0 1 300 0v261" fill="none" stroke="#bda885" stroke-width="8"/>
-          <path d="M58 470V209a172 172 0 0 1 344 0v261" fill="none" stroke="#f2e9d8" stroke-width="2"/>
-          <path d="M222 30h16m-8-8v23" stroke="#806134" stroke-width="2.5"/>
-        </svg>
-      </figure>
-    </section>
-
-    <div class="facts" aria-label="Our roots">
-      <span><i aria-hidden="true"></i> Founded in 2026</span>
-      <span><i aria-hidden="true"></i> Virginia, USA</span>
-      <span><i aria-hidden="true"></i> A Catholic Christian family</span>
     </div>
+  </section>
 
+  <div class="wrap">
     <section class="mission" aria-labelledby="mission-title">
-      <div class="pic">
-        <svg viewBox="0 0 600 380" role="img" aria-labelledby="a2t" xmlns="http://www.w3.org/2000/svg">
-          <title id="a2t">An open Bible on a wooden table beside a wooden cross and a lit candle, in warm morning light from a window</title>
-          <defs>
-            <linearGradient id="room" x2="1" y2="1"><stop stop-color="#f6d9a2"/><stop offset=".6" stop-color="#e9c48a"/><stop offset="1" stop-color="#b98a52"/></linearGradient>
-            <linearGradient id="table" x2="0" y2="1"><stop stop-color="#8a5a32"/><stop offset="1" stop-color="#5e3a1e"/></linearGradient>
-            <radialGradient id="glow" cx=".75" cy=".2" r=".7"><stop stop-color="#fff6dc" stop-opacity=".95"/><stop offset="1" stop-color="#fff6dc" stop-opacity="0"/></radialGradient>
-            <radialGradient id="flame" cx=".5" cy=".6" r=".5"><stop stop-color="#fffbe6"/><stop offset=".5" stop-color="#ffd36b"/><stop offset="1" stop-color="#ff9a3c" stop-opacity="0"/></radialGradient>
-          </defs>
-          <rect width="600" height="380" fill="url(#room)"/>
-          <g fill="#fff3d6" opacity=".55"><rect x="380" y="20" width="70" height="170" rx="4"/><rect x="465" y="20" width="70" height="170" rx="4"/></g>
-          <rect width="600" height="380" fill="url(#glow)"/>
-          <path d="M0 270h600v110H0z" fill="url(#table)"/>
-          <path d="M0 270h600" stroke="#a5754a" stroke-width="3"/>
-          <g fill="#6b4423"><rect x="150" y="70" width="22" height="200" rx="3"/><rect x="112" y="118" width="98" height="20" rx="3"/></g>
-          <g>
-            <path d="M190 300Q300 262 300 276Q300 262 410 300L410 312Q300 280 300 292Q300 280 190 312Z" fill="#7a2e22"/>
-            <path d="M196 296Q250 248 298 268V288Q250 266 196 306Z" fill="#fbf3df"/>
-            <path d="M404 296Q350 248 302 268V288Q350 266 404 306Z" fill="#f5ead0"/>
-            <g stroke="#c9b48a" stroke-width="1.4" opacity=".8">
-              <path d="M214 286q38-24 74-14M218 292q36-22 70-12M222 298q32-18 66-10"/>
-              <path d="M312 272q36-8 74 14M312 278q34-8 70 12M312 284q32-6 66 10"/>
-            </g>
-          </g>
-          <g>
-            <rect x="470" y="226" width="40" height="46" rx="6" fill="#f3e6c7" opacity=".85"/>
-            <rect x="482" y="214" width="16" height="16" rx="2" fill="#fbf4e2"/>
-            <path d="M490 214v-8" stroke="#3a2a14" stroke-width="2"/>
-            <ellipse cx="490" cy="196" rx="14" ry="22" fill="url(#flame)"/>
-            <ellipse cx="490" cy="200" rx="4" ry="8" fill="#fff7d6"/>
-          </g>
-          <g fill="#6f8a55" opacity=".85"><path d="M548 270c-10-40 8-70 30-84-4 30-8 58-20 84Z"/><path d="M560 270c4-30 20-48 40-54-10 22-20 40-34 54Z"/></g>
-        </svg>
-      </div>
+      <img src="/img/about-bible.jpg" alt="An open Bible on a wooden table beside a wooden cross and a lit candle in warm window light" width="594" height="244" loading="lazy">
       <div>
         <p class="eyebrow">Our mission</p>
-        <h2 id="mission-title">Helping you seek, discern, and walk in God’s will.</h2>
+        <h2 id="mission-title">Helping You Seek, Discern, and Walk in God’s Will</h2>
         <p>Our mission is to help people bring life’s questions, challenges, and important decisions into the light of Christian faith. Whether you’re navigating relationships, family, work, personal struggles, or life’s bigger questions, Seek &amp; Knock helps you explore your circumstances through the wisdom of Sacred Scripture, Christian teaching, and the insights of saints and spiritual leaders throughout history.</p>
         <p>We welcome those who are firmly rooted in faith, those returning to it, and those who are simply curious.</p>
       </div>
@@ -244,24 +184,20 @@ footer a{font-weight:600}
       <p class="intro">Trust matters, especially when seeking spiritual guidance. That’s why Seek &amp; Knock is built around the foundational teachings of Jesus Christ and the enduring wisdom of the Christian faith. Our approach draws upon:</p>
       <div class="cards">
         <article class="card">
-          <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 7c4-1.5 8-1.5 12 1v18c-4-2.5-8-2.5-12-1Z"/><path d="M28 7c-4-1.5-8-1.5-12 1v18c4-2.5 8-2.5 12-1Z"/></svg></div>
-          <h3>The Holy Bible</h3>
-          <p>Sacred Scripture, and above all the teachings of Jesus Christ, as the foundation of Christian wisdom and spiritual guidance.</p>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 7c4-1.5 8-1.5 12 1v18c-4-2.5-8-2.5-12-1Z"/><path d="M28 7c-4-1.5-8-1.5-12 1v18c4-2.5 8-2.5 12-1Z"/></svg></div>
+          <div><h3>The Holy Bible</h3><p>Sacred Scripture as the foundation of Christian wisdom and spiritual guidance.</p></div>
         </article>
         <article class="card">
-          <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M16 2v6M13 4.5h6"/><path d="M8 28V15l8-6 8 6v13Z"/><path d="M13 28v-6a3 3 0 0 1 6 0v6"/><path d="M4 28h24"/></svg></div>
-          <h3>Historic Christian Teaching</h3>
-          <p>The established teachings and writings of the Church that have guided believers for centuries.</p>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M16 2v6M13 4.5h6"/><path d="M8 28V15l8-6 8 6v13Z"/><path d="M13 28v-6a3 3 0 0 1 6 0v6"/><path d="M4 28h24"/></svg></div>
+          <div><h3>Historic Christian Teaching</h3><p>Established teachings and writings of the Church that have helped guide believers for centuries.</p></div>
         </article>
         <article class="card">
-          <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><circle cx="16" cy="11" r="8" opacity=".55"/><circle cx="16" cy="12" r="4"/><path d="M7 29c0-6 4-11 9-11s9 5 9 11"/></svg></div>
-          <h3>The Wisdom of the Saints</h3>
-          <p>Spiritual insights from saints, theologians, and Christian thinkers whose lives exemplify faith, virtue, and service.</p>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><circle cx="16" cy="11" r="8" opacity=".55"/><circle cx="16" cy="12" r="4"/><path d="M7 29c0-6 4-11 9-11s9 5 9 11"/></svg></div>
+          <div><h3>The Wisdom of the Saints</h3><p>Spiritual insights from respected saints, theologians, and Christian thinkers whose lives exemplify faith, virtue, and service.</p></div>
         </article>
         <article class="card">
-          <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 12c5 0 8 2 10 6 1-6 5-10 12-12-1 6-3 10-8 12l-3 7c-1-3-4-5-7-5 2-2 2-5-4-8Z"/></svg></div>
-          <h3>Faithful Discernment</h3>
-          <p>Helping you reflect on life’s circumstances through a Christian perspective while respecting your conscience, free will, and personal relationship with God.</p>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 12c5 0 8 2 10 6 1-6 5-10 12-12-1 6-3 10-8 12l-3 7c-1-3-4-5-7-5 2-2 2-5-4-8Z"/></svg></div>
+          <div><h3>Faithful Discernment</h3><p>Helping you reflect on life’s circumstances through a Christian perspective while respecting your conscience, free will, and personal relationship with God.</p></div>
         </article>
       </div>
     </div>
@@ -272,6 +208,10 @@ footer a{font-weight:600}
       <div>
         <p class="eyebrow">Our approach</p>
         <h2 id="approach-title">Encouragement. Reflection. Discernment.</h2>
+        <figure>
+          <img src="/img/seek-and-knock-doorway.svg" alt="An open stone doorway looking out on a gold sunrise, peaceful hills, and a winding path" width="460" height="470" loading="lazy">
+          <figcaption>A space to seek wisdom, hope, and a faithful next step.</figcaption>
+        </figure>
       </div>
       <div class="note">
         <p>We believe guidance should encourage thoughtful discernment, respect your conscience, and support your personal relationship with God.</p>
@@ -280,33 +220,16 @@ footer a{font-weight:600}
     </section>
 
     <section class="story" aria-labelledby="story-title">
+      <img class="scene" src="/img/about-story-church.svg" alt="A church steeple and stone arch bridge at sunset in the Virginia hills" width="800" height="380" loading="lazy">
       <div class="text">
         <p class="eyebrow">Our story</p>
         <h2 id="story-title">Founded on Faith in 2026</h2>
         <p>Seek &amp; Knock was founded in 2026 in Virginia, USA, by a Catholic Christian family passionate about helping others grow in faith and find encouragement through life’s journey.</p>
-        <p>We believe technology, when developed thoughtfully and responsibly, can become a powerful tool for sharing the timeless wisdom of Christianity. At the heart of our work is a commitment to serve with care, humility, and love.</p>
+        <p>We believe technology, when developed thoughtfully and responsibly, can become a powerful tool for sharing the timeless wisdom of Christianity.</p>
         <div class="meta">
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s7-7.4 7-12.5A7 7 0 0 0 5 9.5C5 14.6 12 22 12 22Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><p><b>Founded in 2026</b><span>Virginia, USA</span></p></div>
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3.5 2.7-6 6-6s6 2.5 6 6M12 20c0-3.5 2.2-6 5-6s5 2.5 5 6"/></svg><p><b>A Catholic Christian Family</b><span>Dedicated to serving you</span></p></div>
+          <div><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg></span><p><b>Founded in 2026</b><span>Virginia, USA</span></p></div>
+          <div><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3.6 2.7-6 6-6s6 2.4 6 6Zm10 0c0-3.6 2.2-6 5-6s5 2.4 5 6Z"/></svg></span><p><b>A Catholic Christian Family</b><span>Dedicated to Serving You</span></p></div>
         </div>
-      </div>
-      <div class="scene">
-        <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="a3t" xmlns="http://www.w3.org/2000/svg">
-          <title id="a3t">A church steeple rising over Virginia hills at sunset</title>
-          <defs><linearGradient id="dusk" x2="0" y2="1"><stop stop-color="#f1a55a"/><stop offset=".6" stop-color="#f7d29a"/><stop offset="1" stop-color="#fbe7c4"/></linearGradient></defs>
-          <rect width="400" height="320" fill="url(#dusk)"/>
-          <circle cx="120" cy="190" r="40" fill="#fff4d6" opacity=".9"/>
-          <path d="M0 220Q90 180 190 205T400 190V320H0Z" fill="#b98d5c" opacity=".8"/>
-          <g fill="#3b2f3a">
-            <path d="M246 70l14 40h-28Z"/><rect x="238" y="110" width="16" height="90"/>
-            <path d="M246 52v18M240 58h12" stroke="#3b2f3a" stroke-width="3"/>
-            <path d="M190 200v-40l30-20 30 20v40Z"/><path d="M254 200v-56l44 0 0 56Z"/>
-            <path d="M266 160h10v18h-10zM284 160h8v18h-8z" fill="#f7d29a" opacity=".7"/>
-          </g>
-          <path d="M0 250Q120 220 230 245T400 235V320H0Z" fill="#6c5a45"/>
-          <path d="M0 285Q150 260 260 280T400 275V320H0Z" fill="#3f352c"/>
-          <g fill="#3f352c"><circle cx="40" cy="250" r="20"/><circle cx="70" cy="258" r="16"/><circle cx="360" cy="245" r="22"/></g>
-        </svg>
       </div>
     </section>
 
@@ -318,7 +241,7 @@ footer a{font-weight:600}
 
     <section class="closing" aria-label="Ask your question">
       <p>Seek with hope. Knock with faith.<br>Take your next step with love.</p>
-      <a class="button gold" href="/">Ask, Seek, and Knock: share what’s on your mind <span aria-hidden="true">→</span></a>
+      <a class="btn" href="/">Share what’s on your mind <span aria-hidden="true">→</span></a>
       <small>SEEK &amp; KNOCK</small>
     </section>
   </div>

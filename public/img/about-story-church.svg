@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t d">
+  <title id="t">A church steeple and stone bridge at sunset in the Virginia hills</title>
+  <desc id="d">Warm gold sunset sky over rolling hills, a gothic church with a tall spire, a stone arch bridge over a calm river, and trees in the foreground.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9a65c"/>
+      <stop offset=".35" stop-color="#f4c47f"/>
+      <stop offset=".7" stop-color="#fbdfac"/>
+      <stop offset="1" stop-color="#fdeccc"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="300" cy="250" r="230" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fffbea"/>
+      <stop offset=".18" stop-color="#fff0c4" stop-opacity=".95"/>
+      <stop offset=".55" stop-color="#ffd896" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#ffd896" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="river" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbe3b4"/>
+      <stop offset="1" stop-color="#e7b77a"/>
+    </linearGradient>
+    <linearGradient id="far" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9a774"/>
+      <stop offset="1" stop-color="#c99566"/>
+    </linearGradient>
+    <linearGradient id="mid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a77a50"/>
+      <stop offset="1" stop-color="#8d643f"/>
+    </linearGradient>
+    <linearGradient id="near" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5e4a30"/>
+      <stop offset="1" stop-color="#3e3122"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky, sun and clouds -->
+  <rect width="800" height="380" fill="url(#sky)"/>
+  <rect width="800" height="380" fill="url(#sun)"/>
+  <g fill="#fff3da" opacity=".55">
+    <ellipse cx="140" cy="70" rx="120" ry="16"/>
+    <ellipse cx="230" cy="92" rx="90" ry="10"/>
+    <ellipse cx="560" cy="58" rx="150" ry="18"/>
+    <ellipse cx="680" cy="96" rx="110" ry="12"/>
+    <ellipse cx="420" cy="130" rx="80" ry="8"/>
+  </g>
+  <g fill="#d98f4e" opacity=".35">
+    <ellipse cx="600" cy="74" rx="120" ry="9"/>
+    <ellipse cx="160" cy="84" rx="90" ry="7"/>
+  </g>
+
+  <!-- Distant hills -->
+  <path d="M0 250 Q90 205 190 228 T380 222 T570 210 T800 226 V380 H0Z" fill="url(#far)" opacity=".85"/>
+  <path d="M0 278 Q120 245 240 262 T470 255 T680 248 T800 262 V380 H0Z" fill="url(#mid)" opacity=".9"/>
+
+  <!-- River -->
+  <path d="M0 318 Q200 300 420 310 T800 304 V350 H0Z" fill="url(#river)"/>
+  <g stroke="#fff6dc" stroke-width="2" opacity=".7" stroke-linecap="round">
+    <path d="M250 318h60M330 324h40M420 316h70M520 322h50"/>
+  </g>
+
+  <!-- Church -->
+  <g fill="#4f3b28">
+    <path d="M430 300 V246 L476 220 L522 246 V300Z"/>
+    <rect x="410" y="236" width="24" height="64"/>
+    <path d="M410 236 L422 206 L434 236Z"/>
+    <rect x="518" y="236" width="24" height="64"/>
+    <path d="M518 236 L530 206 L542 236Z"/>
+    <rect x="462" y="168" width="28" height="78"/>
+    <path d="M460 170 L476 92 L492 170Z"/>
+    <rect x="474.5" y="74" width="3" height="20"/>
+    <rect x="469" y="80" width="14" height="3"/>
+    <rect x="388" y="262" width="26" height="38"/>
+    <path d="M386 262 L401 246 L416 262Z"/>
+  </g>
+  <g fill="#f6d39a" opacity=".85">
+    <path d="M470 200 a6 6 0 0 1 12 0 v16 h-12Z"/>
+    <path d="M444 262 a5 5 0 0 1 10 0 v18 h-10Z"/>
+    <path d="M498 262 a5 5 0 0 1 10 0 v18 h-10Z"/>
+    <circle cx="476" cy="250" r="7"/>
+  </g>
+
+  <!-- Stone arch bridge -->
+  <path d="M560 300 H800 V312 H560Z" fill="#5a4530"/>
+  <path fill="#6b5238" fill-rule="evenodd" d="M560 308 H800 V346 H560Z
+    M574 346 V336 a22 22 0 0 1 44 0 V346Z
+    M630 346 V336 a22 22 0 0 1 44 0 V346Z
+    M686 346 V336 a22 22 0 0 1 44 0 V346Z
+    M742 346 V336 a22 22 0 0 1 44 0 V346Z"/>
+  <path d="M560 300 H800" stroke="#4a3826" stroke-width="3"/>
+
+  <!-- Trees and foreground -->
+  <g fill="#4d4a2c">
+    
+    <circle cx="350" cy="296" r="16"/><circle cx="372" cy="290" r="14"/>
+    <circle cx="560" cy="294" r="14"/><circle cx="545" cy="300" r="12"/>
+  </g>
+  <path d="M0 350 Q140 330 300 346 T560 342 T800 340 V380 H0Z" fill="url(#near)"/>
+  <g fill="#3a3020">
+    <circle cx="760" cy="340" r="24"/><circle cx="790" cy="348" r="18"/>
+  </g>
+</svg>
