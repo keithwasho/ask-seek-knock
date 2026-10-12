@@ -80,7 +80,7 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
 .approach .note p+p{margin-top:12px}
 
 /* Approach: the open-doorway illustration under the heading */
-.approach figure{margin:24px 0 0;max-width:280px}
+.approach figure{margin:24px 0 0;max-width:100%}
 .approach figure img{width:100%;height:auto;border-radius:14px;box-shadow:0 12px 28px rgba(28,42,74,.14)}
 .approach figcaption{font-size:.85rem;color:var(--muted);margin-top:10px;font-style:italic}
 
@@ -103,8 +103,10 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
 .invite{text-align:center;padding-block:52px 12px}
 .invite h3{font-family:var(--serif);font-size:1.8rem;font-weight:600;color:var(--navy);margin-bottom:10px}
 .invite p{max-width:44rem;margin:0 auto;color:var(--ink)}
-.invite .contact{margin-top:10px;font-size:.98rem}
-.invite .contact span{font-weight:600;color:var(--navy);user-select:all}
+.invite .contact{margin-top:22px}
+.btn.outline{background:var(--white);color:var(--navy);border:1.5px solid var(--gold);box-shadow:0 6px 16px rgba(168,116,44,.12)}
+.btn.outline:hover{background:var(--gold);color:#fff}
+.invite .contact-hint{margin-top:10px;font-size:.92rem;color:var(--muted)}
 .closing{margin-block:28px 56px;background:var(--navy);border-radius:18px;padding:44px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
 .closing p{font-family:var(--serif);font-size:1.6rem;color:#fff;line-height:1.35}
 .closing small{font-size:.78rem;letter-spacing:.18em;color:#e2c48d}
@@ -126,7 +128,6 @@ footer a{color:var(--navy);font-weight:600}
   .mission,.approach{grid-template-columns:1fr;gap:26px}
   .mission{padding-block:36px}
   .cards{grid-template-columns:1fr}
-  .approach figure{max-width:220px}
   .story{min-height:0;display:flex;flex-direction:column}
   .story .scene{position:static;order:2;width:100%;height:210px;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 35%);mask-image:linear-gradient(180deg,transparent 0,#000 35%)}
   .story .text{padding:30px 22px 8px}
@@ -147,6 +148,7 @@ footer a{color:var(--navy);font-weight:600}
     <nav class="nav" aria-label="Main">
       <a class="link" href="/">Home</a>
       <a class="link" href="/about" aria-current="page">About</a>
+      <a class="link" href="/contact">Contact</a>
       <a class="btn" href="/">Get Started <span aria-hidden="true">→</span></a>
     </nav>
   </div>
@@ -209,7 +211,7 @@ footer a{color:var(--navy);font-weight:600}
         <p class="eyebrow">Our approach</p>
         <h2 id="approach-title">Encouragement. Reflection. Discernment.</h2>
         <figure>
-          <img src="/img/seek-and-knock-doorway.svg" alt="An open stone doorway looking out on a gold sunrise, peaceful hills, and a winding path" width="460" height="470" loading="lazy">
+          <img src="/img/about-approach.jpg" alt="An open Bible on a stone ledge overlooking green hills, a winding path, a lake, and a cross on a distant hill at sunrise" width="1200" height="800" loading="lazy">
           <figcaption>A space to seek wisdom, hope, and a faithful next step.</figcaption>
         </figure>
       </div>
@@ -236,7 +238,8 @@ footer a{color:var(--navy);font-weight:600}
     <section class="invite" aria-labelledby="invite-title">
       <h3 id="invite-title">Help us carry the mission forward.</h3>
       <p>Interested in working with Seek &amp; Knock or contributing to our mission? We’d love to hear from people who share our desire to serve others through faith and thoughtful technology.</p>
-      <p class="contact">Get in touch: <span>KeithWasho@gmail.com</span></p>
+      <p class="contact"><a class="btn outline" href="/contact">Contact us <span aria-hidden="true">→</span></a></p>
+      <p class="contact-hint">Questions, needs, or ideas? Send us a message and we will reply by email.</p>
     </section>
 
     <section class="closing" aria-label="Ask your question">
@@ -253,6 +256,7 @@ footer a{color:var(--navy);font-weight:600}
     <nav aria-label="Footer">
       <a href="/">Seek counsel</a>
       <a href="/about" aria-current="page">About</a>
+      <a href="/contact">Contact</a>
       <a href="/terms">Terms &amp; refunds</a>
       <a href="/privacy">Privacy</a>
     </nav>

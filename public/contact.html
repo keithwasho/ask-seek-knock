@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Contact Seek & Knock with any questions or needs.">
+<meta name="theme-color" content="#1c2a4a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231c2a4a'/%3E%3Cpath d='M28 12h8v14h12v8H36v18h-8V34H16v-8h12z' fill='%23c8913f'/%3E%3C/svg%3E">
+<title>Contact Seek &amp; Knock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: same light brand world as the About page: cream ground, navy serif heading, one white form card with gold actions. */
+:root{
+  color-scheme: light;
+  --cream:#faf7f1; --white:#ffffff; --navy:#1c2a4a; --ink:#2b3445; --muted:#5d6676;
+  --gold:#c08a3e; --gold-deep:#a8742c; --gold-soft:#f5ead6; --line:#e8e1d3; --error:#a3262a; --ok:#2f6b4f;
+  --serif:"EB Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:1.06rem;line-height:1.6}
+h1,h2,p{margin:0}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+[hidden]{display:none!important}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:10px 26px;border-radius:999px;border:0;background:var(--gold);color:#fff;font:700 1rem var(--sans);text-decoration:none;cursor:pointer;box-shadow:0 6px 16px rgba(168,116,44,.25)}
+.btn:hover{background:var(--gold-deep)}
+.btn:disabled{opacity:.6;cursor:default}
+
+.top{background:var(--white);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:10px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand svg{width:46px;height:46px;flex:none}
+.brand b{display:block;font-family:var(--serif);font-weight:600;font-size:1.6rem;color:var(--navy);line-height:1}
+.brand small{display:block;font-size:.78rem;color:var(--ink);margin-top:3px}
+.nav{display:flex;align-items:center;gap:28px}
+.nav a.link{color:var(--ink);text-decoration:none;font-size:.95rem;padding-block:6px;border-bottom:2px solid transparent}
+.nav a.link[aria-current]{border-color:var(--gold);font-weight:600}
+
+main{padding-block:52px 64px}
+.intro{max-width:40rem;margin:0 auto 28px;text-align:center}
+.eyebrow{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+h1{font-family:var(--serif);font-weight:600;color:var(--navy);font-size:clamp(2.2rem,5vw,3rem);line-height:1.1;margin:10px 0 12px}
+.intro p{color:var(--muted)}
+
+.card{max-width:40rem;margin:0 auto;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:32px;box-shadow:0 10px 30px rgba(28,42,74,.08)}
+form{display:flex;flex-direction:column;gap:18px}
+.field{display:flex;flex-direction:column;gap:6px}
+label{font-weight:600;color:var(--navy);font-size:.95rem}
+input,textarea{font:inherit;color:var(--ink);background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%}
+input:focus,textarea:focus{border-color:var(--gold);background:var(--white)}
+textarea{min-height:10rem;resize:vertical}
+.hint{font-size:.85rem;color:var(--muted)}
+.trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.status{font-weight:600}
+.status.error{color:var(--error)}
+.thanks{text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;padding-block:12px}
+.thanks .mark{width:56px;height:56px;border-radius:50%;background:var(--gold-soft);display:grid;place-items:center;color:var(--gold)}
+.thanks h2{font-family:var(--serif);font-weight:600;color:var(--navy);font-size:1.8rem}
+.thanks p{color:var(--muted);max-width:30rem}
+.note{max-width:40rem;margin:20px auto 0;text-align:center;font-size:.9rem;color:var(--muted)}
+.note a{color:var(--navy);font-weight:600}
+
+footer{background:var(--white);border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:center;padding-block:20px}
+footer nav{display:flex;flex-wrap:wrap;gap:6px 20px}
+footer a{color:var(--navy);font-weight:600}
+
+@media (max-width:760px){
+  .nav a.link{display:none}
+  .brand b{font-size:1.35rem}
+  .brand small{display:none}
+  main{padding-block:36px 48px}
+  .card{padding:22px 18px}
+  .actions .btn{width:100%}
+  .top .btn{width:auto;padding-inline:16px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Seek and Knock home">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><g stroke="#c08a3e" stroke-linecap="round" fill="none"><path d="M24 8v34M15 18h18" stroke-width="3"/><g stroke-width="1.6" opacity=".85"><path d="M24 2v3M10 6l2.5 3M38 6l-2.5 3M4 16h4M40 16h4M7 28l3-1.5M41 28l-3-1.5"/></g></g></svg>
+      <span><b>Seek &amp; Knock</b><small>Seek Wisdom. Find Clarity. Walk in Faith.</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a class="link" href="/">Home</a>
+      <a class="link" href="/about">About</a>
+      <a class="link" href="/contact" aria-current="page">Contact</a>
+      <a class="btn" href="/">Get Started <span aria-hidden="true">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <p class="eyebrow">Contact us</p>
+    <h1>How can we help?</h1>
+    <p>Send us your questions, needs, or ideas. We read every message and will reply to the email address you give us.</p>
+  </div>
+
+  <div class="card">
+    <form id="contactForm" novalidate>
+      <div class="field">
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" autocomplete="name" maxlength="100" required>
+      </div>
+      <div class="field">
+        <label for="email">Your email</label>
+        <input id="email" name="email" type="email" autocomplete="email" maxlength="200" required>
+        <span class="hint">We only use this to reply to you.</span>
+      </div>
+      <div class="field">
+        <label for="message">Your question or need</label>
+        <textarea id="message" name="message" maxlength="4000" required></textarea>
+      </div>
+      <div class="trap" aria-hidden="true">
+        <label for="website">Leave this empty</label>
+        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="actions">
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+        <button class="btn" type="submit" id="send">Send message <span aria-hidden="true">→</span></button>
+      </div>
+    </form>
+
+    <div class="thanks" id="thanks" hidden>
+      <div class="mark" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h2>Thank you</h2>
+      <p>Your message has been received. We will reply by email as soon as we can.</p>
+      <a class="btn" href="/">Back to Seek counsel <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <p class="note">If you are in danger or thinking about harming yourself, please call or text 988 (US) or your local emergency number now. This form is not monitored around the clock.</p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Seek &amp; Knock. All rights reserved.</span>
+    <nav aria-label="Footer">
+      <a href="/">Seek counsel</a>
+      <a href="/about">About</a>
+      <a href="/contact" aria-current="page">Contact</a>
+      <a href="/terms">Terms &amp; refunds</a>
+      <a href="/privacy">Privacy</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+const form = document.getElementById("contactForm");
+const statusEl = document.getElementById("status");
+const sendBtn = document.getElementById("send");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  statusEl.textContent = ""; statusEl.className = "status";
+  const data = Object.fromEntries(new FormData(form));
+  const email = String(data.email || "").trim();
+  if (!String(data.name || "").trim() || !String(data.message || "").trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    statusEl.textContent = "Please enter your name, a valid email address, and your message.";
+    statusEl.className = "status error";
+    return;
+  }
+  sendBtn.disabled = true; statusEl.textContent = "Sending…";
+  try {
+    const r = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+    const out = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(out.error || "Your message could not be sent right now. Please try again in a few minutes.");
+    form.hidden = true;
+    document.getElementById("thanks").hidden = false;
+  } catch (err) {
+    statusEl.textContent = err instanceof TypeError ? "Could not reach the server. Check your connection and try again." : err.message;
+    statusEl.className = "status error";
+  } finally {
+    sendBtn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
