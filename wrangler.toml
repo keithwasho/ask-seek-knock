@@ -12,7 +12,7 @@ PRICE_YEARLY_LABEL = "$54"
 YEARLY_SAVINGS_LABEL = "save 10%"
 PORTAL_HEADLINE = "SeekandKnock.com partners with Stripe for simple billing"   # shown on Stripe's Manage subscription page
 
-# Google Ads conversion tracking. Paste each conversion's label (the part after "AW-11059685572/") between the quotes.
+# Google Ads conversion tracking. Paste each conversion's event name (e.g. ads_conversion_Sign_up_1) or label between the quotes.
 GOOGLE_ADS_ID = "AW-11059685572"
 GOOGLE_ADS_SIGNUP_LABEL = ""      # conversion: "Free sign-up"
 GOOGLE_ADS_SUBSCRIBE_LABEL = ""   # conversion: "Subscription" (sends $4.99 or $54 as the value)

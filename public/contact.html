@@ -184,7 +184,9 @@ form.addEventListener("submit", async (e) => {
     document.getElementById("thanks").hidden = false;
     fetch("/api/config").then((r) => r.json()).then((c) => {
       const a = c.ads || {};
-      if (a.id && a.contact && typeof gtag === "function") gtag("event", "conversion", { send_to: a.id + "/" + a.contact });
+      if (!a.contact || typeof gtag !== "function") return;
+      if (/^ads_conversion_/.test(a.contact)) gtag("event", a.contact);
+      else if (a.id) gtag("event", "conversion", { send_to: a.id + "/" + a.contact });
     }).catch(() => {});
   } catch (err) {
     statusEl.textContent = err instanceof TypeError ? "Could not reach the server. Check your connection and try again." : err.message;

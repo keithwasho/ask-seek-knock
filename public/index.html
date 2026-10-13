@@ -464,7 +464,10 @@ let adsCfg = null;
 function adsConversion(kind, extra){
   try{
     if(!adsCfg || !adsCfg.id || !adsCfg[kind] || typeof gtag !== "function") return;
-    gtag("event", "conversion", Object.assign({ send_to: adsCfg.id + "/" + adsCfg[kind] }, extra || {}));
+    const v = String(adsCfg[kind]);
+    // Newer Google Ads setups give an event name (ads_conversion_...); older ones give a label sent to AW-ID/label.
+    if(/^ads_conversion_/.test(v)) gtag("event", v, extra || {});
+    else gtag("event", "conversion", Object.assign({ send_to: adsCfg.id + "/" + v }, extra || {}));
   }catch(e){}
 }
 function firstTime(key){ try{ if(localStorage.getItem(key)) return false; localStorage.setItem(key, "1"); }catch(e){} return true; }
