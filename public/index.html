@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11059685572"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-11059685572');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Share what is on your mind and get counsel from the teachings of Jesus, the Church, and its beloved saints: Scripture, the Catechism, encyclicals, and a prayer for your situation.">
 <meta name="theme-color" content="#1c2a4a">
@@ -451,25 +459,48 @@ async function openPortal(){
 $("subscribeMonthly").onclick = ()=>startCheckout("monthly");
 $("subscribeYearly").onclick = ()=>startCheckout("yearly");
 
+/* Google Ads conversions. Labels come from wrangler.toml through /api/config; nothing is sent until they are set. */
+let adsCfg = null;
+function adsConversion(kind, extra){
+  try{
+    if(!adsCfg || !adsCfg.id || !adsCfg[kind] || typeof gtag !== "function") return;
+    gtag("event", "conversion", Object.assign({ send_to: adsCfg.id + "/" + adsCfg[kind] }, extra || {}));
+  }catch(e){}
+}
+function firstTime(key){ try{ if(localStorage.getItem(key)) return false; localStorage.setItem(key, "1"); }catch(e){} return true; }
+// Counts a sign-up only for accounts created in the last 30 minutes, once per account on this device.
+function maybeCountSignup(s){
+  const u = s && s.user;
+  if(u && u.created_at && Date.now() - new Date(u.created_at).getTime() < 30*60*1000 && firstTime("ads-signup-" + u.id)) adsConversion("signup");
+}
+
 async function initAccount(){
   const params = new URLSearchParams(location.search);
-  if(params.get("subscribed")){
+  const returnedFromCheckout = !!params.get("subscribed");
+  if(returnedFromCheckout){
     showNotice("Thank you. Your subscription is active.");
     history.replaceState(null, "", location.pathname);
   }
   try{
     const cfg = await fetch("/api/config").then(r=>r.json());
+    adsCfg = cfg.ads || null;
     $("priceMonthly").textContent = cfg.priceMonthly;
     $("priceYearly").textContent = cfg.priceYearly;
     $("yearlySavings").textContent = cfg.yearlySavings;
     $("planSummary").textContent = `${cfg.priceMonthly}/month or ${cfg.priceYearly}/year (${cfg.yearlySavings}).`;
     sb = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
     session = (await sb.auth.getSession()).data.session;
-    sb.auth.onAuthStateChange((_event, s)=>{ const changed = (s?.access_token) !== (session?.access_token); session = s; if(changed) refreshAccount(); });
+    maybeCountSignup(session);
+    sb.auth.onAuthStateChange((event, s)=>{ const changed = (s?.access_token) !== (session?.access_token); session = s; if(event === "SIGNED_IN") maybeCountSignup(s); if(changed) refreshAccount(); });
   }catch(e){
     showError("Sign-in is not available right now. Please reload the page.");
   }
-  refreshAccount();
+  await refreshAccount();
+  // Back from Stripe checkout: count the subscription once, with its value.
+  if(returnedFromCheckout && me && me.subscribed){
+    const id = (session?.user?.id || "") + "-" + (me.renewsAt || "");
+    if(firstTime("ads-sub-" + id)) adsConversion("subscribe", { value: me.plan === "yearly" ? 54 : 4.99, currency: "USD", transaction_id: id });
+  }
 }
 initAccount();
 

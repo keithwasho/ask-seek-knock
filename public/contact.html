@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11059685572"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-11059685572');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Contact Seek & Knock with any questions or needs.">
 <meta name="theme-color" content="#1c2a4a">
@@ -174,6 +182,10 @@ form.addEventListener("submit", async (e) => {
     if (!r.ok) throw new Error(out.error || "Your message could not be sent right now. Please try again in a few minutes.");
     form.hidden = true;
     document.getElementById("thanks").hidden = false;
+    fetch("/api/config").then((r) => r.json()).then((c) => {
+      const a = c.ads || {};
+      if (a.id && a.contact && typeof gtag === "function") gtag("event", "conversion", { send_to: a.id + "/" + a.contact });
+    }).catch(() => {});
   } catch (err) {
     statusEl.textContent = err instanceof TypeError ? "Could not reach the server. Check your connection and try again." : err.message;
     statusEl.className = "status error";
