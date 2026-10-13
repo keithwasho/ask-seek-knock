@@ -365,9 +365,27 @@ function showError(msg){ $("err").textContent = msg; $("err").hidden = false; }
 function showNotice(msg){ $("notice").textContent = msg; $("notice").hidden = !msg; }
 function dayName(iso){ return new Date(iso).toLocaleDateString(undefined, { weekday:"long", month:"long", day:"numeric" }); }
 
+/* Remember the first ad or link that brought this visitor (kept only in their browser), so a new sign-up alert can show it. */
+(function rememberSource(){
+  try{
+    if(localStorage.getItem("sk-source")) return;
+    const q = new URLSearchParams(location.search);
+    let src = null;
+    if(q.get("utm_source")) src = { source: q.get("utm_source"), medium: q.get("utm_medium") || "", campaign: q.get("utm_campaign") || "", content: q.get("utm_content") || "" };
+    else if(q.get("gclid")) src = { source: "google", medium: "paid", campaign: "Google Ads" };
+    else if(q.get("fbclid")) src = { source: "facebook", medium: "", campaign: "" };
+    else if(document.referrer){
+      const host = new URL(document.referrer).hostname;
+      if(host && !/seekandknock\.com$|ask-seek-knock\.pages\.dev$/.test(host)) src = { referrer: host };
+    }
+    if(src) localStorage.setItem("sk-source", JSON.stringify(src).slice(0, 380));
+  }catch(e){}
+})();
+
 async function api(path, body){
   const headers = { "Content-Type":"application/json" };
   if(session) headers.Authorization = "Bearer " + session.access_token;
+  try{ const src = localStorage.getItem("sk-source"); if(src) headers["X-SK-Source"] = src; }catch(e){}
   const r = await fetch(path, body === undefined ? { headers } : { method:"POST", headers, body: JSON.stringify(body) });
   const data = await r.json().catch(()=>null);
   return { ok: r.ok, status: r.status, data: data || {} };

@@ -1,0 +1,14 @@
+/* Shared look for the Terms and Privacy pages, matching the main page. */
+:root{--bg:#eef0f3;--page:#fbfbfc;--ink:#1d2433;--muted:#5b6476;--rule:#d5d9e1;--lapis:#23408e;--rubric:#a3262a;
+  --display:"Uncial Antiqua","EB Garamond",Georgia,serif;--body:"EB Garamond",Georgia,"Times New Roman",serif;
+  --ui:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif}
+@media (prefers-color-scheme: dark){:root{--bg:#0f1320;--page:#161b2b;--ink:#e6e8ef;--muted:#9aa3b8;--rule:#2b3349;--lapis:#8ea8ff;--rubric:#ef7b72;color-scheme:dark}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.12rem;line-height:1.6;padding-inline:16px;padding-block:32px 64px}
+main{max-width:42rem;margin:0 auto;background:var(--page);border:1px solid var(--rule);border-radius:6px;padding:28px 24px;display:flex;flex-direction:column;gap:14px}
+h1{font-family:var(--display);font-weight:400;font-size:2rem;margin:0}
+h2{font-family:var(--ui);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rubric);margin:12px 0 0}
+p,ul{margin:0}
+ul{padding-left:1.3rem;display:flex;flex-direction:column;gap:6px}
+a{color:var(--lapis);font-weight:600}
+.meta{font-family:var(--ui);font-size:.85rem;color:var(--muted)}
