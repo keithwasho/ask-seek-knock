@@ -37,6 +37,9 @@ Add these under **Settings → Variables and Secrets**, each as type **Secret**,
 | `STRIPE_PRICE_ID_MONTHLY` | Stripe price ID for $4.99/month (`price_…`) |
 | `STRIPE_PRICE_ID_YEARLY` | Stripe price ID for $54/year (`price_…`) |
 | `SITE_URL` | your site address, e.g. `https://ask-seek-knock.pages.dev` |
+| `RESEND_API_KEY` | Resend API key (`re_…`) for Contact us email alerts |
+| `CONTACT_NOTIFY_EMAIL` | your private inbox for Contact us alerts (never shown on the site) |
+| `CONTACT_FROM_EMAIL` | sender on your Resend-verified domain, e.g. `hello@seekandknock.com` |
 
 After adding or changing secrets, go to **Deployments** and **Retry deployment** on the latest one so they take effect.
 

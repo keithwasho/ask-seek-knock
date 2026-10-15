@@ -16,3 +16,18 @@ create index if not exists usage_user_created on public.usage (user_id, created_
 
 -- Only the server (service role key) can read or write this table.
 alter table public.usage enable row level security;
+
+-- Contact us messages from /contact. Read them in Supabase: Table Editor -> contact_messages.
+-- Tick "handled" once you have replied.
+create table if not exists public.contact_messages (
+  id bigint generated always as identity primary key,
+  created_at timestamptz not null default now(),
+  name text not null,
+  email text not null,
+  message text not null,
+  ip text,
+  handled boolean not null default false
+);
+create index if not exists contact_messages_created on public.contact_messages (created_at desc);
+create index if not exists contact_messages_ip_created on public.contact_messages (ip, created_at);
+alter table public.contact_messages enable row level security;
