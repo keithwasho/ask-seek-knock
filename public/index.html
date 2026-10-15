@@ -86,7 +86,8 @@ textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var
 textarea:focus{outline:none;border-color:var(--gilt);background:var(--page)}
 .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
 .hint{font-family:var(--ui);font-size:.8rem;color:var(--muted)}
-.btns{display:flex;gap:8px;margin-left:auto}
+.btns{display:flex;flex-direction:column;align-items:flex-end;gap:8px;margin-left:auto}
+.btn-note{font-family:var(--ui);font-size:.85rem;color:var(--muted);margin:0;text-align:right}
 button{font-family:var(--ui);font-size:1rem;font-weight:700;border-radius:999px;padding:12px 26px;cursor:pointer;border:1.5px solid var(--gilt)}
 button.primary{background:var(--gilt);color:#fff;box-shadow:0 6px 16px rgba(168,116,44,.25)}
 button.primary:hover{background:var(--gilt-deep);border-color:var(--gilt-deep)}
@@ -169,8 +170,9 @@ footer.site .links{display:flex;flex-wrap:wrap;gap:6px 18px;padding-top:6px}
   .hero img{position:static;width:100%;height:190px;display:block;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 35%);mask-image:linear-gradient(180deg,transparent 0,#000 35%)}
   .hero .inner{padding-block:28px 34px}
   form,.panel{padding:20px 18px}
-  .btns{width:100%}
+  .btns{width:100%;align-items:stretch}
   .btns button{width:100%}
+  .btn-note{text-align:center}
 }
 @media (max-width:520px){
   ul.cites li{grid-template-columns:1fr;gap:2px}
@@ -219,7 +221,8 @@ footer.site .links{display:flex;flex-wrap:wrap;gap:6px 18px;padding-top:6px}
     <textarea id="q" placeholder="Write as much or as little as you like…" maxlength="6000"></textarea>
     <div class="row">
       <div class="btns">
-        <button type="submit" class="primary" id="go">Seek counsel</button>
+        <button type="submit" class="primary" id="go">Discover sacred wisdom</button>
+        <p class="btn-note">Gain wisdom from Jesus&rsquo; teachings, the Church, and the saints.</p>
       </div>
     </div>
   </form>
@@ -459,7 +462,7 @@ $("codeForm").addEventListener("submit", async (e)=>{
   $("verifyCode").disabled = false;
   $("signinMsg").textContent = error
     ? "That code did not work. Check it, or click Email me a code to get a new one."
-    : "You are signed in. Click Seek counsel to continue.";
+    : "You are signed in. Click Discover sacred wisdom to continue.";
 });
 
 function showPlans(){
