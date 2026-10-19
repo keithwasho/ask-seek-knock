@@ -9,6 +9,10 @@ export function onRequestGet({ env }) {
     priceMonthly: env.PRICE_MONTHLY_LABEL || "$3.99",
     priceYearly: env.PRICE_YEARLY_LABEL || "$44.99",
     yearlySavings: env.YEARLY_SAVINGS_LABEL || "save 6%",
+    // Launch sale: old prices shown struck through. Set SALE_LABEL to "" to turn it off.
+    saleLabel: env.SALE_LABEL ?? "Launch sale",
+    wasMonthly: env.WAS_MONTHLY_LABEL ?? "$4.99",
+    wasYearly: env.WAS_YEARLY_LABEL ?? "$54",
     ads: {
       id: env.GOOGLE_ADS_ID || "",
       signup: env.GOOGLE_ADS_SIGNUP_LABEL || "",
