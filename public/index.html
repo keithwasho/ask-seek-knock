@@ -141,6 +141,8 @@ ol.steps li::marker{color:var(--gilt-deep);font-family:var(--ui);font-weight:700
 .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:14px}
 .plan-option{border:1px solid var(--rule);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px;align-items:flex-start;min-width:0;background:var(--bg)}
 .plan-option.best{border:1.5px solid var(--gilt);background:var(--lapis-soft)}
+.was{font-family:var(--ui);font-size:1.05rem;font-weight:400;color:var(--muted);text-decoration:line-through;text-decoration-thickness:1.5px;margin-right:6px}
+.was[hidden]{display:none}
 .save{font-family:var(--ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--gilt-deep)}
 .panel form,.panel .row{background:none;border:0;padding:0;box-shadow:none}
 .panel input[type=email],.panel input#code{font:inherit;font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:10px;padding:12px 14px;flex:1 1 14rem;min-width:0}
@@ -243,15 +245,16 @@ footer.site .links{display:flex;flex-wrap:wrap;gap:6px 18px;padding-top:6px}
 
   <section class="panel" id="plan" hidden>
     <h2 id="planTitle">Your free trial session is used</h2>
-    <p id="planText">Subscribe to keep seeking counsel whenever you need it. <span id="planSummary">$3.99/month or $44.99/year (save 6%).</span></p>
+    <p id="planText">Subscribe to keep seeking counsel whenever you need it. <span id="planSummary">Launch sale: $3.99/month (was $4.99) or $44.99/year (was $54).</span></p>
     <div class="plans">
       <div class="plan-option">
-        <div class="price"><span id="priceMonthly">$3.99</span> <small>per month</small></div>
+        <span class="save" id="saleMonthly">Launch sale</span>
+        <div class="price"><s class="was" id="wasMonthly">$4.99</s><span id="priceMonthly">$3.99</span> <small>per month</small></div>
         <button type="button" class="ghost" id="subscribeMonthly">Choose monthly</button>
       </div>
       <div class="plan-option best">
-        <span class="save" id="yearlySavings">Save 6%</span>
-        <div class="price"><span id="priceYearly">$44.99</span> <small>per year</small></div>
+        <span class="save" id="yearlySavings">Launch sale · Save 6%</span>
+        <div class="price"><s class="was" id="wasYearly">$54</s><span id="priceYearly">$44.99</span> <small>per year</small></div>
         <button type="button" class="primary" id="subscribeYearly">Choose yearly</button>
       </div>
     </div>
@@ -520,8 +523,14 @@ async function initAccount(){
     adsCfg = cfg.ads || null;
     $("priceMonthly").textContent = cfg.priceMonthly;
     $("priceYearly").textContent = cfg.priceYearly;
-    $("yearlySavings").textContent = cfg.yearlySavings;
-    $("planSummary").textContent = `${cfg.priceMonthly}/month or ${cfg.priceYearly}/year (${cfg.yearlySavings}).`;
+    const sale = cfg.saleLabel || "";
+    $("wasMonthly").textContent = cfg.wasMonthly || ""; $("wasMonthly").hidden = !(sale && cfg.wasMonthly);
+    $("wasYearly").textContent = cfg.wasYearly || ""; $("wasYearly").hidden = !(sale && cfg.wasYearly);
+    $("saleMonthly").textContent = sale; $("saleMonthly").hidden = !sale;
+    $("yearlySavings").textContent = sale ? `${sale} · ${cfg.yearlySavings}` : cfg.yearlySavings;
+    $("planSummary").textContent = sale && cfg.wasMonthly && cfg.wasYearly
+      ? `${sale}: ${cfg.priceMonthly}/month (was ${cfg.wasMonthly}) or ${cfg.priceYearly}/year (was ${cfg.wasYearly}).`
+      : `${cfg.priceMonthly}/month or ${cfg.priceYearly}/year (${cfg.yearlySavings}).`;
     sb = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
     session = (await sb.auth.getSession()).data.session;
     maybeCountSignup(session);

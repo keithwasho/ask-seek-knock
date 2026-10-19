@@ -10,6 +10,9 @@ MONTHLY_COST_CAP_USD = "3.00"     # hidden: most a subscriber may cost in Claude
 PRICE_MONTHLY_LABEL = "$3.99"     # display only; the real prices are set in Stripe
 PRICE_YEARLY_LABEL = "$44.99"
 YEARLY_SAVINGS_LABEL = "save 6%"
+SALE_LABEL = "Launch sale"        # set to "" to end the sale and hide the struck-through prices
+WAS_MONTHLY_LABEL = "$4.99"       # old price shown struck through during the sale
+WAS_YEARLY_LABEL = "$54"
 PORTAL_HEADLINE = "SeekandKnock.com partners with Stripe for simple billing"   # shown on Stripe's Manage subscription page
 
 # Google Ads conversion tracking. Paste each conversion's event name (e.g. ads_conversion_Sign_up_1) or label between the quotes.
