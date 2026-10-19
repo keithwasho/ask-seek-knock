@@ -27,6 +27,7 @@ fbq('track', 'PageView');
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231c2a4a'/%3E%3Cpath d='M28 12h8v14h12v8H36v18h-8V34H16v-8h12z' fill='%23c8913f'/%3E%3C/svg%3E">
 <title>Ask, Seek, and Knock</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://upload.wikimedia.org">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@400;600;700&display=swap">
 <style>
 /* Layout: same light brand world as the About page: white header, warm sunrise welcome band, cream ground,
@@ -122,6 +123,10 @@ ol.steps{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:8px
 ol.steps li::marker{color:var(--gilt-deep);font-family:var(--ui);font-weight:700}
 .prayer{font-style:italic;text-align:center;padding:22px 12px 4px;border-top:1px solid var(--rule);color:var(--navy);background:linear-gradient(180deg,var(--lapis-soft),transparent);border-radius:0 0 12px 12px}
 .prayer::before{content:"✠";display:block;color:var(--gilt);font-style:normal;margin-bottom:8px}
+.art{margin:18px auto 0;max-width:420px;text-align:center}
+.art img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--rule);background:var(--lapis-soft);box-shadow:0 8px 24px rgba(28,42,74,.10)}
+.art figcaption{font-family:var(--ui);font-size:.85rem;color:var(--muted);margin-top:8px}
+.art figcaption a{color:inherit}
 .saint-quote{margin:0;padding:4px 0 4px 18px;border-left:3px solid var(--gilt);font-size:1.3rem;line-height:1.5;font-style:italic;color:var(--navy)}
 .attrib{font-family:var(--ui);font-size:.88rem;color:var(--muted)}
 .attrib strong{color:var(--navy);font-weight:700}
@@ -309,7 +314,8 @@ const EXAMPLE = {
     "Pray by name for your boss each day this week. You do not have to feel warm to do it.",
     "Bring the resentment to Confession if it has turned into wishing harm."
   ],
-  prayer: "Lord Jesus, meek and humble of heart, you were overlooked, misjudged, and set aside. Take this anger and make it clean. Let my work be for you, and give me the grace to forgive. Amen."
+  prayer: "Lord Jesus, meek and humble of heart, you were overlooked, misjudged, and set aside. Take this anger and make it clean. Let my work be for you, and give me the grace to forgive. Amen.",
+  artwork: {title:"Christ Washing the Disciples' Feet", artist:"Tintoretto", year:"1547", src:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/El_Lavatorio_%28Tintoretto%29.jpg/500px-El_Lavatorio_%28Tintoretto%29.jpg", page:"https://commons.wikimedia.org/wiki/File:El_Lavatorio_%28Tintoretto%29.jpg"}
 };
 
 const $ = id => document.getElementById(id);
@@ -317,6 +323,22 @@ const out = $("out");
 
 function el(tag, cls, text){ const n=document.createElement(tag); if(cls) n.className=cls; if(text!=null) n.textContent=text; return n; }
 function list(arr){ return Array.isArray(arr) ? arr.filter(Boolean) : []; }
+
+// One sacred artwork after the prayer. It loads after the text, and hides itself if it cannot load.
+function artFigure(w){
+  const f=el("figure","art"), img=el("img");
+  img.alt=`${w.title} by ${w.artist}`; img.loading="lazy"; img.decoding="async";
+  img.referrerPolicy="no-referrer"; img.src=w.src;
+  let retried=false;
+  img.onerror=()=>{
+    const fallback=String(w.page||"").replace("/wiki/File:","/wiki/Special:FilePath/")+"?width=500";
+    if(!retried && w.page){ retried=true; img.src=fallback; } else f.remove();
+  };
+  const cap=el("figcaption"), link=el("a",null,`${w.title}, ${w.artist}${w.year ? ", "+w.year : ""}`);
+  link.href=w.page; link.target="_blank"; link.rel="noopener";
+  cap.append(link); f.append(img, cap);
+  return f;
+}
 
 function render(a, isExample){
   out.replaceChildren();
@@ -357,6 +379,7 @@ function render(a, isExample){
   if(steps.length){ const s=sec("This week"); const ol=el("ol","steps"); steps.forEach(t=>ol.append(el("li",null,String(t)))); s.append(ol); }
   if(a.closing){ const s=sec("In summary"); s.append(el("p","closing",String(a.closing))); }
   if(a.prayer) out.append(el("p","prayer",String(a.prayer)));
+  if(a.artwork && /^https:\/\/upload\.wikimedia\.org\//.test(a.artwork.src)) out.append(artFigure(a.artwork));
   out.hidden=false;
 }
 
