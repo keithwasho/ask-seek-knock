@@ -6,9 +6,9 @@ export function onRequestGet({ env }) {
   return json({
     supabaseUrl: env.SUPABASE_URL,
     supabaseAnonKey: env.SUPABASE_ANON_KEY,
-    priceMonthly: env.PRICE_MONTHLY_LABEL || "$4.99",
-    priceYearly: env.PRICE_YEARLY_LABEL || "$54",
-    yearlySavings: env.YEARLY_SAVINGS_LABEL || "save 10%",
+    priceMonthly: env.PRICE_MONTHLY_LABEL || "$3.99",
+    priceYearly: env.PRICE_YEARLY_LABEL || "$44.99",
+    yearlySavings: env.YEARLY_SAVINGS_LABEL || "save 6%",
     ads: {
       id: env.GOOGLE_ADS_ID || "",
       signup: env.GOOGLE_ADS_SIGNUP_LABEL || "",

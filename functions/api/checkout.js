@@ -2,7 +2,7 @@ import {
   json, services, getUser, isSubscribed, getOrCreateCustomer, siteUrl, testDetail, stripeSetupProblem, portalConfiguration,
 } from "../../lib/server.js";
 
-// Starts Stripe Checkout for the monthly ($4.99) or yearly ($54) plan,
+// Starts Stripe Checkout for the monthly ($3.99) or yearly ($44.99) plan,
 // or sends existing subscribers to manage their plan.
 export async function onRequestPost({ request, env }) {
   const s = services(env);

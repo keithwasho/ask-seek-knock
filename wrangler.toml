@@ -6,14 +6,14 @@ compatibility_flags = ["nodejs_compat"]
 
 [vars]
 FREE_TRIAL_LIMIT = "1"            # free sessions per new user, ever
-MONTHLY_COST_CAP_USD = "4.50"     # hidden: most a subscriber may cost in Claude usage per 30-day window before "Please try again later"
-PRICE_MONTHLY_LABEL = "$4.99"     # display only; the real prices are set in Stripe
-PRICE_YEARLY_LABEL = "$54"
-YEARLY_SAVINGS_LABEL = "save 10%"
+MONTHLY_COST_CAP_USD = "3.00"     # hidden: most a subscriber may cost in Claude usage per 30-day window before "Please try again later"
+PRICE_MONTHLY_LABEL = "$3.99"     # display only; the real prices are set in Stripe
+PRICE_YEARLY_LABEL = "$44.99"
+YEARLY_SAVINGS_LABEL = "save 6%"
 PORTAL_HEADLINE = "SeekandKnock.com partners with Stripe for simple billing"   # shown on Stripe's Manage subscription page
 
 # Google Ads conversion tracking. Paste each conversion's event name (e.g. ads_conversion_Sign_up_1) or label between the quotes.
 GOOGLE_ADS_ID = "AW-11059685572"
 GOOGLE_ADS_SIGNUP_LABEL = "YQp0COm20psdEMTR1Zkp"      # conversion: "Free sign-up"
-GOOGLE_ADS_SUBSCRIBE_LABEL = "zXonCOy20psdEMTR1Zkp"   # conversion: "Subscription" (sends $4.99 or $54 as the value)
+GOOGLE_ADS_SUBSCRIBE_LABEL = "zXonCOy20psdEMTR1Zkp"   # conversion: "Subscription" (sends $3.99 or $44.99 as the value)
 GOOGLE_ADS_CONTACT_LABEL = "xPIgCO-20psdEMTR1Zkp"     # conversion: "Contact form" (optional)

@@ -4,8 +4,8 @@ A one-page website. Visitors write what they are going through and get an answer
 
 **Pricing built in**
 - Every new visitor gets **1 free trial session** after signing in with their email.
-- After that, subscribers pay **$4.99/month or $54/year (save 10%)** with no session limit.
-- **Hidden cost cap:** the real Claude cost of every successful answer is recorded. Failed or incomplete answers are not recorded and count toward nothing. A subscriber can start a session only if what they have cost in the current 30-day window, plus the most one answer could possibly cost (about $0.86), stays within `MONTHLY_COST_CAP_USD` ($4.50). Otherwise they see only "Please try again later." until the next window starts. The cap is never shown to users.
+- After that, subscribers pay **$3.99/month or $44.99/year (save 6%)** with no session limit.
+- **Hidden cost cap:** the real Claude cost of every successful answer is recorded. Failed or incomplete answers are not recorded and count toward nothing. A subscriber can start a session only if what they have cost in the current 30-day window, plus the most one answer could possibly cost (about $0.86), stays within `MONTHLY_COST_CAP_USD` ($3.00). Otherwise they see only "Please try again later." until the next window starts. The cap is never shown to users.
   - Monthly plans: the window is the billing month.
   - Yearly plans: 30-day blocks counted from the start of the billing year.
 
@@ -34,8 +34,8 @@ Add these under **Settings → Variables and Secrets**, each as type **Secret**,
 | `SUPABASE_ANON_KEY` | Supabase anon public key |
 | `SUPABASE_SERVICE_ROLE_KEY` | Supabase service_role key |
 | `STRIPE_SECRET_KEY` | Stripe secret key (`sk_test_…` while testing, `sk_live_…` at launch) |
-| `STRIPE_PRICE_ID_MONTHLY` | Stripe price ID for $4.99/month (`price_…`) |
-| `STRIPE_PRICE_ID_YEARLY` | Stripe price ID for $54/year (`price_…`) |
+| `STRIPE_PRICE_ID_MONTHLY` | Stripe price ID for $3.99/month (`price_…`) |
+| `STRIPE_PRICE_ID_YEARLY` | Stripe price ID for $44.99/year (`price_…`) |
 | `SITE_URL` | your site address, e.g. `https://ask-seek-knock.pages.dev` |
 | `RESEND_API_KEY` | Resend API key (`re_…`) for Contact us email alerts |
 | `CONTACT_NOTIFY_EMAIL` | your private inbox for Contact us alerts (never shown on the site) |
@@ -43,7 +43,7 @@ Add these under **Settings → Variables and Secrets**, each as type **Secret**,
 
 After adding or changing secrets, go to **Deployments** and **Retry deployment** on the latest one so they take effect.
 
-In Stripe, create one product with two prices: **$4.99 recurring monthly** and **$54 recurring yearly**. To let subscribers switch between plans, add both prices under **Settings → Billing → Customer portal → Products**.
+In Stripe, create one product with two prices: **$3.99 recurring monthly** and **$44.99 recurring yearly**. To let subscribers switch between plans, add both prices under **Settings → Billing → Customer portal → Products**.
 
 To change the free trial count, cost cap, or price labels, edit `wrangler.toml` on GitHub; Cloudflare redeploys automatically.
 

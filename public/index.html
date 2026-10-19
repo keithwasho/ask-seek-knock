@@ -243,15 +243,15 @@ footer.site .links{display:flex;flex-wrap:wrap;gap:6px 18px;padding-top:6px}
 
   <section class="panel" id="plan" hidden>
     <h2 id="planTitle">Your free trial session is used</h2>
-    <p id="planText">Subscribe to keep seeking counsel whenever you need it. <span id="planSummary">$4.99/month or $54/year (save 10%).</span></p>
+    <p id="planText">Subscribe to keep seeking counsel whenever you need it. <span id="planSummary">$3.99/month or $44.99/year (save 6%).</span></p>
     <div class="plans">
       <div class="plan-option">
-        <div class="price"><span id="priceMonthly">$4.99</span> <small>per month</small></div>
+        <div class="price"><span id="priceMonthly">$3.99</span> <small>per month</small></div>
         <button type="button" class="ghost" id="subscribeMonthly">Choose monthly</button>
       </div>
       <div class="plan-option best">
-        <span class="save" id="yearlySavings">Save 10%</span>
-        <div class="price"><span id="priceYearly">$54</span> <small>per year</small></div>
+        <span class="save" id="yearlySavings">Save 6%</span>
+        <div class="price"><span id="priceYearly">$44.99</span> <small>per year</small></div>
         <button type="button" class="primary" id="subscribeYearly">Choose yearly</button>
       </div>
     </div>
@@ -473,7 +473,7 @@ function showPlans(){
 
 async function startCheckout(plan){
   if(!session) return openSignin();
-  fbTrack("InitiateCheckout", { value: plan === "yearly" ? 54 : 4.99, currency: "USD" });
+  fbTrack("InitiateCheckout", { value: plan === "yearly" ? 44.99 : 3.99, currency: "USD" });
   const buttons = [$("subscribeMonthly"), $("subscribeYearly")];
   buttons.forEach(b=>b.disabled = true);
   const r = await api("/api/checkout", { plan });
@@ -534,9 +534,9 @@ async function initAccount(){
   if(returnedFromCheckout && me && me.subscribed){
     const id = (session?.user?.id || "") + "-" + (me.renewsAt || "");
     if(firstTime("ads-sub-" + id)){
-      const value = me.plan === "yearly" ? 54 : 4.99;
+      const value = me.plan === "yearly" ? 44.99 : 3.99;
       adsConversion("subscribe", { value: value, currency: "USD", transaction_id: id });
-      fbTrack("Subscribe", { value: value, currency: "USD", predicted_ltv: me.plan === "yearly" ? 54 : 59.88 }, "sub-" + id);
+      fbTrack("Subscribe", { value: value, currency: "USD", predicted_ltv: me.plan === "yearly" ? 44.99 : 47.88 }, "sub-" + id);
     }
   }
 }
