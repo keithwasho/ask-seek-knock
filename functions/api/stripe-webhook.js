@@ -59,7 +59,7 @@ async function handleEvent(s, event) {
 
   const item = sub.items?.data?.[0] || {};
   const yearly = item.price?.recurring?.interval === "year";
-  const plan = yearly ? "Yearly, $54/year" : "Monthly, $4.99/month";
+  const plan = yearly ? "Yearly, $44.99/year" : "Monthly, $3.99/month";
   const periodEnd = sub.current_period_end ?? item.current_period_end;
   const accessUntil = sub.cancel_at || periodEnd;
   const reason = [sub.cancellation_details?.feedback, sub.cancellation_details?.comment].filter(Boolean).join(" · ");
