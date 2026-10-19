@@ -163,6 +163,11 @@ ol.steps li::marker{color:var(--gilt-deep);font-family:var(--ui);font-weight:700
 .about-btn:hover svg,.about-btn:hover .arrow{color:#fff}
 .about-btn:focus-visible{outline:3px solid var(--gilt);outline-offset:3px}
 .about-cta small{font-family:var(--ui);font-size:.88rem;color:var(--muted)}
+.mission{max-width:600px;margin:12px auto 0;padding:0 8px;text-align:center}
+.mission .flourish{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gilt);font-size:.95rem;margin-bottom:14px}
+.mission .flourish::before,.mission .flourish::after{content:"";width:56px;height:1px;background:linear-gradient(90deg,transparent,var(--gilt))}
+.mission .flourish::after{transform:scaleX(-1)}
+.mission p{margin:0;font-family:var(--body);font-style:italic;font-size:1.12rem;line-height:1.7;color:var(--muted);text-wrap:pretty}
 
 /* Footer band (matches About) */
 footer.site{background:var(--page);border-top:1px solid var(--rule);font-family:var(--ui);font-size:.85rem;color:var(--muted);line-height:1.55}
@@ -275,6 +280,11 @@ footer.site .links{display:flex;flex-wrap:wrap;gap:6px 18px;padding-top:6px}
     <a class="about-btn" href="/about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v18M6 9h12"/></svg>About Seek &amp; Knock <span class="arrow" aria-hidden="true">→</span></a>
     <small>Who we are, what guides us, and why we built this</small>
   </div>
+
+  <aside class="mission" aria-label="About our sources">
+    <div class="flourish" aria-hidden="true">✠</div>
+    <p>Seek and Knock uses the latest in approved AI technology to draw on the Bible, Church encyclicals, the Catechism, and the writings of the saints, bringing these rich sources together in one accessible place. Whether you’re seeking encouragement, exploring your faith, or navigating life’s challenges, start with a question and discover a new way to grow in your faith and walk with God.</p>
+  </aside>
 </div>
 
 <footer class="site">
