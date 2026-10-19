@@ -287,7 +287,10 @@ footer.site .links{display:flex;flex-wrap:wrap;gap:6px 18px;padding-top:6px}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"></script>
 <script>
-const EXAMPLE = {
+// Example answers shown under the prompt. One is picked by the visitor's date, so each day shows a different one.
+// To add another, copy an entry and keep the same fields; artwork comes from lib/sacred-art.js.
+const EXAMPLES = [
+{
   question: "I was passed over for a promotion and I am angry at my boss. I keep replaying it and I can't let it go.",
   crisis: false,
   summary: "Jesus would not pretend the hurt is small, but he would not let it rule you. He would name the anger honestly, bring it to the Father, refuse to repay injury with injury, and keep doing good work as an offering rather than as a bid for recognition.",
@@ -316,7 +319,702 @@ const EXAMPLE = {
   ],
   prayer: "Lord Jesus, meek and humble of heart, you were overlooked, misjudged, and set aside. Take this anger and make it clean. Let my work be for you, and give me the grace to forgive. Amen.",
   artwork: {title:"Christ Washing the Disciples' Feet", artist:"Tintoretto", year:"1547", src:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/El_Lavatorio_%28Tintoretto%29.jpg/500px-El_Lavatorio_%28Tintoretto%29.jpg", page:"https://commons.wikimedia.org/wiki/File:El_Lavatorio_%28Tintoretto%29.jpg"}
-};
+},
+{
+  "question": "My mother died three months ago. Everyone says it gets easier, but it hasn't. Some days I can barely get out of bed.",
+  "crisis": false,
+  "summary": "Jesus would not rush your grief or tell you to be over it. He would weep with you, stay close, and remind you that death does not have the last word. He would also gently help you take the next small step of living.",
+  "gospel_scene": "When Jesus came to Bethany after Lazarus died (John 11:17-44), Martha and Mary each met him with the same words: if you had been here, my brother would not have died. Jesus did not correct their grief. He was deeply troubled, and he wept at the tomb, even though he knew he was about to raise Lazarus. He told Martha, I am the resurrection and the life.",
+  "scripture": [
+    {
+      "ref": "John 11:35",
+      "exact": false,
+      "text": "And Jesus wept.",
+      "why": "God himself grieved at the grave of a friend. Your tears are not a lack of faith."
+    },
+    {
+      "ref": "Matthew 5:4",
+      "exact": false,
+      "text": "Blessed are those who mourn, for they will be comforted.",
+      "why": "Mourning is not shut out of the Kingdom; it is named in its first promises."
+    },
+    {
+      "ref": "Revelation 21:4",
+      "exact": false,
+      "text": "He will wipe every tear from their eyes, and there will be no more death or mourning, crying or pain.",
+      "why": "The end of the story God is writing."
+    }
+  ],
+  "catechism": [
+    {
+      "ref": "CCC 1681",
+      "summary": "For a Christian, death is a passage: by Christ's death and Resurrection it becomes the doorway into the life of God."
+    },
+    {
+      "ref": "CCC 1032",
+      "summary": "From the beginning the Church has honored the dead and offered prayers for them, above all the Eucharist, so that they may reach the vision of God."
+    },
+    {
+      "ref": "CCC 958",
+      "summary": "The communion of saints means our prayer for the dead can help them, and their prayer for us can become effective."
+    }
+  ],
+  "church": [
+    {
+      "ref": "Spe Salvi 48 (Pope Benedict XVI, 2007)",
+      "summary": "Love reaches into the afterlife: we can still give something to those we have lost through our prayer, and that bond is not broken by death."
+    }
+  ],
+  "saint": {
+    "name": "St. Augustine",
+    "source": "Confessions, Book IX, ch. 11-12",
+    "exact": false,
+    "quote": "Lay this body anywhere; do not let care for it trouble you. I ask only this: that you remember me at the altar of the Lord, wherever you may be.",
+    "why": "His mother Monica's last words to him, and he wrote honestly about the tears he wept for her afterward."
+  },
+  "closing": "Grief is the price of love, and Jesus himself paid it at a friend's grave. Scripture promises comfort to those who mourn, the Church teaches that your love can still reach your mother through prayer, and St. Augustine shows that a faithful heart can still break. Let yourself grieve, and keep your mother close at the altar.",
+  "steps": [
+    "Have a Mass offered for your mother at your parish, and attend it if you can.",
+    "Each night this week, say one Hail Mary for her and one for yourself.",
+    "Tell one trusted person how hard the mornings are. Ask about a parish grief group.",
+    "If you cannot eat, sleep, or work for weeks on end, talk to your doctor. Grief can need care too."
+  ],
+  "prayer": "Eternal rest grant unto her, O Lord, and let perpetual light shine upon her. Lord Jesus, you wept for your friend. Stay with me in this sorrow, and hold my mother safe until we meet again. Amen.",
+  "artwork": {
+    "title": "The Lamentation",
+    "artist": "Giotto",
+    "year": "c. 1305",
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Giotto_-_Scrovegni_-_-36-_-_Lamentation_%28The_Mourning_of_Christ%29_adj.jpg/500px-Giotto_-_Scrovegni_-_-36-_-_Lamentation_%28The_Mourning_of_Christ%29_adj.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Giotto_-_Scrovegni_-_-36-_-_Lamentation_%28The_Mourning_of_Christ%29_adj.jpg"
+  }
+},
+{
+  "question": "I just lost my job and we have two kids. I lie awake at night doing the math and I'm terrified we won't make it.",
+  "crisis": false,
+  "summary": "Jesus would not call your fear foolish. He would get into the boat with you, quiet the panic, and ask you to trust the Father one day at a time, while you do the practical work in front of you without carrying tomorrow tonight.",
+  "gospel_scene": "When a storm swamped the disciples' boat (Mark 4:35-41), they woke Jesus and cried, Teacher, do you not care that we are perishing? He rebuked the wind and said to the sea, Quiet, be still, and there was a great calm. Then he asked them, Why are you terrified? Do you not yet have faith? He was in the boat with them the whole time.",
+  "scripture": [
+    {
+      "ref": "Matthew 6:31-34",
+      "exact": false,
+      "text": "Do not worry about what you will eat or wear. Your heavenly Father knows you need them. Seek first the Kingdom, and do not worry about tomorrow; tomorrow will take care of itself.",
+      "why": "Jesus' answer to fear about providing for a family."
+    },
+    {
+      "ref": "Philippians 4:6-7",
+      "exact": false,
+      "text": "Have no anxiety at all, but in everything make your requests known to God, and the peace of God that surpasses all understanding will guard your hearts.",
+      "why": "Bring the numbers to God, not just to the calculator."
+    },
+    {
+      "ref": "1 Peter 5:7",
+      "exact": false,
+      "text": "Cast all your worries upon him because he cares for you.",
+      "why": "Your fear is something God wants handed over."
+    }
+  ],
+  "catechism": [
+    {
+      "ref": "CCC 305",
+      "summary": "Jesus asks for childlike trust in the Father's providence, which cares for even the smallest needs of his children."
+    },
+    {
+      "ref": "CCC 2830",
+      "summary": "Asking for our daily bread is an act of filial trust; it does not excuse us from work, but frees us from anxious worry."
+    },
+    {
+      "ref": "CCC 2436",
+      "summary": "Every worker deserves just treatment, and society has a duty to help those without work find it again."
+    }
+  ],
+  "church": [
+    {
+      "ref": "Laborem Exercens 18 (St. John Paul II, 1981)",
+      "summary": "Unemployment is a real evil, and society has an obligation to support the unemployed and their families, not to leave them alone."
+    }
+  ],
+  "saint": {
+    "name": "St. Teresa of Ávila",
+    "source": "Her bookmark prayer",
+    "exact": false,
+    "quote": "Let nothing disturb you, let nothing frighten you. All things pass; God does not change. Patience obtains all things. Whoever has God lacks nothing. God alone suffices.",
+    "why": "Written by a woman who knew poverty, illness, and opposition, and kept praying through them."
+  },
+  "closing": "Your fear is real, and so is God's care. Scripture tells you to seek the Kingdom first and leave tomorrow to tomorrow, the Church teaches that trust and hard work go together and that you should not face this alone, and St. Teresa reminds you that God does not change when circumstances do. Do today's work, then hand the night to him.",
+  "steps": [
+    "Before bed, write down tomorrow's three tasks, then pray an Our Father and set the list aside.",
+    "Tell your parish office or St. Vincent de Paul Society what happened. Accepting help is not a failure.",
+    "Spend one focused block each day on the job search, and stop when it ends.",
+    "Tell your kids, at their level, that things are hard and that God and their parents are taking care of them."
+  ],
+  "prayer": "Lord Jesus, you calmed the storm with a word. You know what my family needs before I ask. Quiet my fear, guide my search, and give us this day our daily bread. Jesus, I trust in you. Amen.",
+  "artwork": {
+    "title": "Christ in the Storm on the Sea of Galilee",
+    "artist": "Rembrandt",
+    "year": "1633",
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Rembrandt_Christ_in_the_Storm_on_the_Lake_of_Galilee.jpg/500px-Rembrandt_Christ_in_the_Storm_on_the_Lake_of_Galilee.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Rembrandt_Christ_in_the_Storm_on_the_Lake_of_Galilee.jpg"
+  }
+},
+{
+  "question": "My adult son hasn't spoken to me in two years. I said things I regret during a fight, and now he won't answer my calls.",
+  "crisis": false,
+  "summary": "Jesus would help you own your part without drowning in it. He would have you ask forgiveness humbly, keep the door open without forcing it, and keep watching the road for your son the way the father in the parable did, praying for him every day.",
+  "gospel_scene": "In the parable of the lost son (Luke 15:11-32), the father did not chase his son into the far country, but he never stopped watching. While the son was still a long way off, the father saw him, was filled with compassion, ran to him, and embraced him before he could finish his speech.",
+  "scripture": [
+    {
+      "ref": "Luke 15:20",
+      "exact": false,
+      "text": "While he was still a long way off, his father caught sight of him, and was filled with compassion. He ran to his son, embraced him and kissed him.",
+      "why": "The father's love was ready long before the son came home."
+    },
+    {
+      "ref": "Matthew 5:23-24",
+      "exact": false,
+      "text": "If you remember that your brother has something against you, leave your gift at the altar; go first and be reconciled.",
+      "why": "Jesus asks us to take the first step, even when it is hard."
+    },
+    {
+      "ref": "Romans 12:18",
+      "exact": false,
+      "text": "If possible, as far as it depends on you, live at peace with all.",
+      "why": "You can only do your part. The rest belongs to your son and to God."
+    }
+  ],
+  "catechism": [
+    {
+      "ref": "CCC 1439",
+      "summary": "The parable of the prodigal son shows the whole path of conversion and the Father's mercy that runs to meet us."
+    },
+    {
+      "ref": "CCC 2223",
+      "summary": "Parents should create a home where tenderness, forgiveness, and respect are lived, and show their children how to acknowledge their own failings."
+    },
+    {
+      "ref": "CCC 2840",
+      "summary": "God's mercy cannot fully reach a heart that refuses to forgive, and our asking and giving forgiveness go together."
+    }
+  ],
+  "church": [
+    {
+      "ref": "Dives in Misericordia 5-6 (St. John Paul II, 1980)",
+      "summary": "The father in the parable shows mercy that restores dignity rather than humiliating the one who returns."
+    }
+  ],
+  "saint": {
+    "name": "St. John of the Cross",
+    "source": "Letter to Madre María de la Encarnación, 1591",
+    "exact": false,
+    "quote": "Where there is no love, put love, and you will draw out love.",
+    "why": "A saint who was imprisoned by his own brothers and answered with love rather than bitterness."
+  },
+  "closing": "The distance is painful, but it is not the end of the story. Scripture shows a father who never stopped watching the road, the Church teaches that parents show children how to say I was wrong, and St. John of the Cross tells you to put love where it is missing. Ask forgiveness once and sincerely, then keep praying and keep the door open.",
+  "steps": [
+    "Write your son a short letter that apologizes for what you said, without explaining or defending it.",
+    "Send it once. Do not pressure him to reply.",
+    "Bring the fight to Confession, so you can carry peace rather than guilt.",
+    "Pray for your son by name each day, and remember his birthday and holidays with a simple note."
+  ],
+  "prayer": "Father of mercies, you ran to meet your wandering son. Forgive the harsh words I spoke. Soften my son's heart and mine, and bring us home to each other in your time. Amen.",
+  "artwork": {
+    "title": "The Return of the Prodigal Son",
+    "artist": "Rembrandt",
+    "year": "c. 1668",
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Rembrandt_Harmensz_van_Rijn_-_Return_of_the_Prodigal_Son_-_Google_Art_Project.jpg/500px-Rembrandt_Harmensz_van_Rijn_-_Return_of_the_Prodigal_Son_-_Google_Art_Project.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Rembrandt_Harmensz_van_Rijn_-_Return_of_the_Prodigal_Son_-_Google_Art_Project.jpg"
+  }
+},
+{
+  "question": "I've been Catholic my whole life, but lately I'm not sure I believe any of it. I feel like a fraud going to Mass.",
+  "crisis": false,
+  "summary": "Jesus would not throw you out for your questions. He would meet you where you are, invite you to bring your doubt to him honestly, and ask you to keep showing up, because faith often grows by being practiced in the dark.",
+  "gospel_scene": "Thomas refused to believe the others had seen the risen Lord (John 20:24-29). A week later Jesus came back, stood among them, and invited Thomas to touch his wounds. He did not shame him. Thomas answered with the clearest confession of faith in the Gospels: My Lord and my God.",
+  "scripture": [
+    {
+      "ref": "Mark 9:24",
+      "exact": false,
+      "text": "I do believe; help my unbelief!",
+      "why": "A desperate father's prayer, and Jesus answered it."
+    },
+    {
+      "ref": "John 20:29",
+      "exact": false,
+      "text": "Blessed are those who have not seen and have believed.",
+      "why": "Jesus speaks this blessing over people like you, who believe without seeing."
+    },
+    {
+      "ref": "Matthew 7:7",
+      "exact": false,
+      "text": "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.",
+      "why": "Seeking is part of faith, not the opposite of it."
+    }
+  ],
+  "catechism": [
+    {
+      "ref": "CCC 162",
+      "summary": "Faith is a free gift that can be weakened or lost, so we must nourish it with the word of God, ask the Lord to increase it, and live it in love."
+    },
+    {
+      "ref": "CCC 2088",
+      "summary": "Involuntary doubt, a hesitation to believe or anxiety over difficulties, is different from deliberately refusing to believe."
+    },
+    {
+      "ref": "CCC 158",
+      "summary": "Faith seeks understanding; it is natural for a believer to want to know more deeply the One in whom he has put his faith."
+    }
+  ],
+  "church": [
+    {
+      "ref": "Lumen Fidei 4 (Pope Francis, 2013)",
+      "summary": "Faith is a light that does not dispel every shadow at once, but is enough to show the next step on the road."
+    },
+    {
+      "ref": "Fides et Ratio 1 (St. John Paul II, 1998)",
+      "summary": "Faith and reason are like two wings on which the human spirit rises to the truth; asking hard questions is part of the journey."
+    }
+  ],
+  "saint": {
+    "name": "St. Thérèse of Lisieux",
+    "source": "Story of a Soul, Manuscript C",
+    "exact": false,
+    "quote": "I have made more acts of faith in this past year than in all the rest of my life.",
+    "why": "In her last year she lived through a dark trial of faith, and kept choosing to believe."
+  },
+  "closing": "Going to Mass while you doubt does not make you a fraud; it makes you a seeker. Scripture shows Jesus inviting Thomas closer, the Church teaches that struggling to believe is not the same as rejecting God, and St. Thérèse shows that faith can be strongest when it feels weakest. Keep showing up, and bring your questions to him.",
+  "steps": [
+    "Each day, pray the father's words: Lord, I believe; help my unbelief.",
+    "Write down your real questions, then talk them through with a priest you trust.",
+    "Read one Gospel slowly, a chapter a day, asking who Jesus is.",
+    "Keep going to Mass. You do not have to feel anything for it to count."
+  ],
+  "prayer": "Lord Jesus, you showed your wounds to Thomas. Show yourself to me in the way I need. I do believe; help my unbelief. Amen.",
+  "artwork": {
+    "title": "The Incredulity of Saint Thomas",
+    "artist": "Caravaggio",
+    "year": "c. 1602",
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/The_Incredulity_of_Saint_Thomas-Caravaggio_%281601-2%29.jpg/500px-The_Incredulity_of_Saint_Thomas-Caravaggio_%281601-2%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:The_Incredulity_of_Saint_Thomas-Caravaggio_%281601-2%29.jpg"
+  }
+},
+{
+  "question": "I live alone and most days I don't talk to anyone. I feel invisible, like no one would notice if I disappeared.",
+  "crisis": false,
+  "summary": "Jesus would tell you plainly that you are seen and loved, by name. He would also not leave you alone in your room. He would draw you toward people, toward the Church, and toward small acts of love that open a way out of isolation.",
+  "gospel_scene": "Zacchaeus was so short and so disliked that he had to climb a tree just to see Jesus pass by (Luke 19:1-10). Jesus stopped beneath that tree, looked up, called him by name, and said, Today I must stay at your house. In a crowd that ignored him, Zacchaeus was the one Jesus chose to see.",
+  "scripture": [
+    {
+      "ref": "Isaiah 49:15-16",
+      "exact": false,
+      "text": "Can a mother forget her infant? Even if she forgets, I will never forget you. See, I have engraved you on the palms of my hands.",
+      "why": "God's own words to someone who feels forgotten."
+    },
+    {
+      "ref": "Matthew 10:29-31",
+      "exact": false,
+      "text": "Not one sparrow falls to the ground without your Father knowing. Even the hairs of your head are counted. So do not be afraid; you are worth more than many sparrows.",
+      "why": "Nothing about you escapes God's notice."
+    },
+    {
+      "ref": "Psalm 68:7",
+      "exact": false,
+      "text": "God gives a home to the lonely.",
+      "why": "God promises not only to see the lonely but to bring them into a family."
+    }
+  ],
+  "catechism": [
+    {
+      "ref": "CCC 478",
+      "summary": "Jesus knew and loved each of us during his life and Passion, and gave himself for each one; his Sacred Heart is the sign of that love."
+    },
+    {
+      "ref": "CCC 27",
+      "summary": "The desire for God is written in the human heart, because we were created by God and for God, and only in him find the happiness we seek."
+    },
+    {
+      "ref": "CCC 1878",
+      "summary": "Every person is called to communion with others; we are made for relationship, not isolation."
+    }
+  ],
+  "church": [
+    {
+      "ref": "Dilexit Nos (Pope Francis, 2024)",
+      "summary": "The Heart of Christ shows that we are loved personally, and that love sends us out to love others in turn."
+    },
+    {
+      "ref": "Deus Caritas Est 1 (Pope Benedict XVI, 2005)",
+      "summary": "Being Christian begins not with an idea but with an encounter with a Person, which gives life a new horizon."
+    }
+  ],
+  "saint": {
+    "name": "St. Augustine",
+    "source": "Confessions, Book I, ch. 1",
+    "exact": false,
+    "quote": "You have made us for yourself, O Lord, and our heart is restless until it rests in you.",
+    "why": "A saint who searched for love in many places before finding where it was waiting."
+  },
+  "closing": "You are not invisible. Scripture says God has engraved you on his hands, the Church teaches that Jesus knew and loved you by name in his Passion, and St. Augustine reminds you that your restless heart is made for God. Let him love you, and let him lead you toward people who will notice you too.",
+  "steps": [
+    "Spend fifteen minutes in a church or adoration chapel this week, just sitting with Jesus.",
+    "After Sunday Mass, stay for coffee or say hello to one person by name.",
+    "Call or text one person from your past, even with a simple how are you.",
+    "Ask your parish about a ministry where you could serve, such as visiting the homebound."
+  ],
+  "prayer": "Sacred Heart of Jesus, you see me when no one else does. Fill my loneliness with your love, and lead me to the people you want me to love. Sacred Heart of Jesus, I trust in you. Amen.",
+  "artwork": {
+    "title": "The Sacred Heart of Jesus",
+    "artist": "Pompeo Batoni",
+    "year": "1767",
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Pompeo_Batoni_Sacro_Cuore_di_Ges%C3%B9.jpg/500px-Pompeo_Batoni_Sacro_Cuore_di_Ges%C3%B9.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Pompeo_Batoni_Sacro_Cuore_di_Ges%C3%B9.jpg"
+  }
+},
+{
+  "question": "My teenage daughter rolls her eyes at everything I say and we fight constantly. I don't know how to reach her anymore.",
+  "crisis": false,
+  "summary": "Jesus would ask you to stay steady and loving even when she pushes you away. He would have you listen more than you lecture, keep the few rules that matter, and trust that your patient love is shaping her more than either of you can see right now.",
+  "gospel_scene": "When the twelve-year-old Jesus stayed behind in the Temple (Luke 2:41-52), Mary and Joseph searched for him for three days. Mary told him honestly, Your father and I have been looking for you with great anxiety. They did not understand his answer, but Mary kept all these things in her heart, and Jesus went home with them and grew in wisdom.",
+  "scripture": [
+    {
+      "ref": "Colossians 3:21",
+      "exact": false,
+      "text": "Parents, do not provoke your children, so they may not lose heart.",
+      "why": "Firmness without harshness keeps the door open."
+    },
+    {
+      "ref": "James 1:19",
+      "exact": false,
+      "text": "Be quick to listen, slow to speak, slow to anger.",
+      "why": "Teenagers often open up when they feel heard first."
+    },
+    {
+      "ref": "Luke 2:51",
+      "exact": false,
+      "text": "His mother kept all these things in her heart.",
+      "why": "Even Mary did not always understand her son, and she kept loving and pondering."
+    }
+  ],
+  "catechism": [
+    {
+      "ref": "CCC 2223",
+      "summary": "Parents are the first educators of their children, and do this by creating a home where tenderness, forgiveness, respect, and fidelity are lived."
+    },
+    {
+      "ref": "CCC 2228",
+      "summary": "Parents' respect and affection for their children show in the care they take to meet their needs and to guide them toward freedom."
+    },
+    {
+      "ref": "CCC 2204",
+      "summary": "The Christian family is a domestic church, a place where faith, hope, and love are learned together."
+    }
+  ],
+  "church": [
+    {
+      "ref": "Amoris Laetitia 260-262 (Pope Francis, 2016)",
+      "summary": "Parents should not try to control every moment, but help children grow in freedom, maturity, and responsibility with patience."
+    }
+  ],
+  "saint": {
+    "name": "St. John Bosco",
+    "source": "Letter from Rome, 1884",
+    "exact": false,
+    "quote": "It is not enough to love the young; they must know that they are loved.",
+    "why": "A priest who spent his life with difficult teenagers and won them with patience and warmth."
+  },
+  "closing": "These years are hard, but your love matters more than it seems. Scripture warns against provoking our children and shows Mary pondering what she did not understand, the Church calls the family a school of tenderness and forgiveness, and St. John Bosco reminds you that she needs to feel loved, not just be loved. Listen first, stay steady, and keep praying for her.",
+  "steps": [
+    "Once this week, do something she enjoys with her, with no agenda and no correcting.",
+    "When she talks, listen to the end before you respond.",
+    "Pick the two or three rules that truly matter, and let the smaller battles go.",
+    "Pray for her each night by name, and ask Mary to help you understand her."
+  ],
+  "prayer": "Holy Family of Nazareth, you knew worry and misunderstanding too. Give me patience with my daughter, wisdom in what I say, and a heart that keeps loving her. Amen.",
+  "artwork": {
+    "title": "The Holy Family with a Little Bird",
+    "artist": "Bartolomé Esteban Murillo",
+    "year": "c. 1650",
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Sagrada_Familia_del_pajarito_%28Murillo%29.jpg/500px-Sagrada_Familia_del_pajarito_%28Murillo%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sagrada_Familia_del_pajarito_%28Murillo%29.jpg"
+  }
+},
+{
+  "question": "My father has dementia and I'm trying to decide whether to move him into a care home. I feel guilty either way.",
+  "crisis": false,
+  "summary": "Jesus would not ask you to carry this alone or to pretend it is easy. He would have you pray honestly, seek good counsel, and choose what truly serves your father's safety and dignity. Honoring your father is about love and care, not about doing everything with your own hands.",
+  "gospel_scene": "In the garden of Gethsemane (Matthew 26:36-46), Jesus told his friends that his soul was sorrowful even to death. He fell to the ground and prayed, My Father, if it is possible, let this cup pass from me; yet not as I will, but as you will. He asked his friends to stay awake with him. Even the Son of God did not face a hard hour alone.",
+  "scripture": [
+    {
+      "ref": "Exodus 20:12",
+      "exact": false,
+      "text": "Honor your father and your mother.",
+      "why": "Honor means seeing that he is cared for well, not that you must do it all yourself."
+    },
+    {
+      "ref": "Sirach 3:12-13",
+      "exact": false,
+      "text": "Take care of your father when he is old; do not grieve him as long as he lives. Even if his mind fails, be considerate of him.",
+      "why": "Scripture speaks directly to caring for a parent whose mind is failing."
+    },
+    {
+      "ref": "Matthew 11:28",
+      "exact": false,
+      "text": "Come to me, all you who labor and are burdened, and I will give you rest.",
+      "why": "Caregivers need rest too, and Jesus offers it."
+    }
+  ],
+  "catechism": [
+    {
+      "ref": "CCC 2218",
+      "summary": "The fourth commandment reminds grown children of their duty to give their parents material and moral support in old age, illness, loneliness, or distress."
+    },
+    {
+      "ref": "CCC 2208-2209",
+      "summary": "The family should care for its elderly and sick, and where it cannot, other families and institutions should help."
+    },
+    {
+      "ref": "CCC 2824-2825",
+      "summary": "In praying thy will be done, we ask to unite our will with the Son's, as he did in his agony."
+    }
+  ],
+  "church": [
+    {
+      "ref": "Amoris Laetitia 191-192 (Pope Francis, 2016)",
+      "summary": "The elderly must not be abandoned; families honor them by keeping them close in love, even when their care requires help."
+    }
+  ],
+  "saint": {
+    "name": "St. Teresa of Calcutta",
+    "source": "Commonly attributed counsel",
+    "exact": false,
+    "quote": "It is not how much we do, but how much love we put into the doing.",
+    "why": "She spent her life caring for the sick and dying, and knew love is measured by faithfulness, not by doing everything alone."
+  },
+  "closing": "There is no guilt in seeking the care your father needs. Scripture asks you to honor him and be gentle even as his mind fails, the Church teaches that families may rely on others when they cannot do it all, and St. Teresa reminds you that love is measured by how you care, not by how much you carry. Pray, decide, and then stay close to him.",
+  "steps": [
+    "Talk with his doctor about what level of care he needs to be safe.",
+    "Visit two care homes and ask about their daily life, staffing, and access to the sacraments.",
+    "Bring the decision to prayer, and if you can, talk it over with a priest.",
+    "Whatever you choose, plan regular visits, and ask the parish to bring him Communion."
+  ],
+  "prayer": "Lord Jesus, in the garden you surrendered to the Father's will. Help me choose what is best for my father, free me from false guilt, and let him always feel loved. Amen.",
+  "artwork": {
+    "title": "The Agony in the Garden",
+    "artist": "Giovanni Bellini",
+    "year": "c. 1465",
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Bellini%2CGiovanni_-_Agony_in_the_Garden_-_National_Gallery.jpg/500px-Bellini%2CGiovanni_-_Agony_in_the_Garden_-_National_Gallery.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Bellini%2CGiovanni_-_Agony_in_the_Garden_-_National_Gallery.jpg"
+  }
+},
+{
+  "question": "I keep confessing the same sin over and over. I'm ashamed to go back to Confession again because I feel like I'm not really trying.",
+  "crisis": false,
+  "summary": "Jesus would welcome you back every time, with no sigh and no limit. He would tell you that returning is itself a sign that you are trying, and he would help you fight the sin with patience, practical steps, and grace rather than with shame.",
+  "gospel_scene": "When Peter asked how many times he must forgive his brother, as many as seven times (Matthew 18:21-22), Jesus answered, Not seven times but seventy-seven times. If he asks that of us, his own mercy is not smaller. The woman who wept at his feet in the Pharisee's house (Luke 7:36-50) heard him say, Your sins are forgiven; go in peace.",
+  "scripture": [
+    {
+      "ref": "1 John 1:9",
+      "exact": false,
+      "text": "If we acknowledge our sins, he is faithful and just and will forgive our sins and cleanse us from every wrongdoing.",
+      "why": "God's faithfulness does not run out on the seventh confession."
+    },
+    {
+      "ref": "Proverbs 24:16",
+      "exact": false,
+      "text": "The just fall seven times and rise again.",
+      "why": "Holiness is not never falling; it is always getting up."
+    },
+    {
+      "ref": "Lamentations 3:22-23",
+      "exact": false,
+      "text": "The Lord's mercies are not exhausted; they are renewed every morning.",
+      "why": "Each day is a fresh start."
+    }
+  ],
+  "catechism": [
+    {
+      "ref": "CCC 1458",
+      "summary": "The Church strongly recommends regular confession, even of everyday faults, because it helps us fight evil tendencies and grow in the life of the Spirit."
+    },
+    {
+      "ref": "CCC 1465",
+      "summary": "In Confession the priest acts as the Good Shepherd seeking the lost sheep and the Good Samaritan binding up wounds."
+    },
+    {
+      "ref": "CCC 1846",
+      "summary": "The Gospel reveals God's mercy to sinners; Jesus came to call sinners, not the righteous."
+    }
+  ],
+  "church": [
+    {
+      "ref": "Misericordiae Vultus 17 (Pope Francis, 2015)",
+      "summary": "The sacrament of Reconciliation lets us touch the greatness of God's mercy with our own hands; confessors are to welcome like the father in the parable."
+    }
+  ],
+  "saint": {
+    "name": "St. Faustina Kowalska",
+    "source": "Diary, 1448",
+    "exact": false,
+    "quote": "Tell souls where they are to look for solace: in the Tribunal of Mercy. There the greatest miracles take place, and they are repeated without ceasing.",
+    "why": "Words she recorded as Jesus' own about Confession."
+  },
+  "closing": "Coming back again is not a failure; it is faith. Scripture says the just fall seven times and rise again, the Church encourages frequent confession precisely for repeated sins, and St. Faustina reminds you that mercy's miracles repeat without ceasing. Go back, and let grace do its slow work.",
+  "steps": [
+    "Go to Confession this week. Tell the priest this is a recurring struggle and ask for advice.",
+    "Notice when and where the sin usually happens, and change one thing about that situation.",
+    "Each night, briefly thank God for the day and name where you fell and where you did well.",
+    "When you fall, say an act of contrition right away instead of waiting in shame."
+  ],
+  "prayer": "Merciful Jesus, I come back to you again. I am sorry for my sins, and I trust your mercy more than my weakness. Give me the grace to rise each time I fall. Amen.",
+  "artwork": {
+    "title": "The Magdalen with the Smoking Flame",
+    "artist": "Georges de La Tour",
+    "year": "c. 1640",
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Georges_de_La_Tour_-_The_Magdalen_with_the_Smoking_Flame_-_Google_Art_Project.jpg/500px-Georges_de_La_Tour_-_The_Magdalen_with_the_Smoking_Flame_-_Google_Art_Project.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Georges_de_La_Tour_-_The_Magdalen_with_the_Smoking_Flame_-_Google_Art_Project.jpg"
+  }
+},
+{
+  "question": "My wife and I have been arguing a lot lately about little things. We still love each other, but it feels like we're drifting apart.",
+  "crisis": false,
+  "summary": "Jesus would remind you both that your marriage is a sacrament, and that he is present in it. He would have you turn toward each other with small acts of kindness, apologize quickly, and pray together, so that the grace of the sacrament can renew what the daily grind has worn down.",
+  "gospel_scene": "At the wedding in Cana (John 2:1-11), the wine ran out in the middle of the celebration. Mary noticed before anyone else and told Jesus, They have no wine. She told the servants, Do whatever he tells you. Jesus turned ordinary water into the best wine, saved until last. It was the first of his signs, and he gave it to a married couple.",
+  "scripture": [
+    {
+      "ref": "1 Corinthians 13:4-7",
+      "exact": false,
+      "text": "Love is patient, love is kind. It is not quick-tempered and does not brood over injury. It bears all things, hopes all things, endures all things.",
+      "why": "A checklist for the small daily moments where marriages are won or lost."
+    },
+    {
+      "ref": "Ephesians 4:32",
+      "exact": false,
+      "text": "Be kind to one another, compassionate, forgiving one another as God has forgiven you in Christ.",
+      "why": "Forgiveness keeps little hurts from becoming walls."
+    },
+    {
+      "ref": "Ecclesiastes 4:12",
+      "exact": false,
+      "text": "A three-ply cord is not easily broken.",
+      "why": "A marriage with God at its center is stronger than two people alone."
+    }
+  ],
+  "catechism": [
+    {
+      "ref": "CCC 1642",
+      "summary": "Christ dwells with married couples and gives them strength to take up their crosses, rise after they fall, forgive one another, and bear one another's burdens."
+    },
+    {
+      "ref": "CCC 1613",
+      "summary": "Jesus' first sign at Cana confirms the goodness of marriage and shows that it will be a sign of his presence."
+    },
+    {
+      "ref": "CCC 1606-1608",
+      "summary": "Every marriage experiences discord because of sin, and God's grace is given to heal and restore it."
+    }
+  ],
+  "church": [
+    {
+      "ref": "Amoris Laetitia 104 (Pope Francis, 2016)",
+      "summary": "Never let the day end without making peace; a small gesture is enough to restore harmony."
+    },
+    {
+      "ref": "Amoris Laetitia 133 (Pope Francis, 2016)",
+      "summary": "Three words keep love alive in a family: please, thank you, and sorry."
+    }
+  ],
+  "saint": {
+    "name": "St. John Chrysostom",
+    "source": "Homily 20 on Ephesians",
+    "exact": false,
+    "quote": "I have taken you in my arms, and I love you more than my own life.",
+    "why": "His advice for what a husband should say to his wife, from a Doctor of the Church who wrote beautifully on marriage."
+  },
+  "closing": "Drifting is normal, but it is not your destiny. Scripture describes a love that is patient and does not brood over injury, the Church teaches that Christ lives in your marriage and gives you strength to forgive, and St. John Chrysostom shows the tenderness spouses can speak to each other. Turn toward each other, and invite Jesus to the table.",
+  "steps": [
+    "Pray together for two minutes each night, even if it is only an Our Father.",
+    "Do not go to bed angry. Say sorry first, even for small things.",
+    "Plan one evening this week just for the two of you, with phones put away.",
+    "Each day, thank your wife for one specific thing she did."
+  ],
+  "prayer": "Lord Jesus, you blessed the wedding at Cana. Bless our marriage. Where our love has run dry, fill it again, and make us patient, kind, and quick to forgive. Mary, pray for us. Amen.",
+  "artwork": {
+    "title": "The Marriage at Cana",
+    "artist": "Giotto",
+    "year": "c. 1305",
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Giotto_-_Scrovegni_-_-24-_-_Marriage_at_Cana.jpg/500px-Giotto_-_Scrovegni_-_-24-_-_Marriage_at_Cana.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Giotto_-_Scrovegni_-_-24-_-_Marriage_at_Cana.jpg"
+  }
+},
+{
+  "question": "I have a chronic illness and I'm in pain most days. I'm tired of praying for healing that never comes.",
+  "crisis": false,
+  "summary": "Jesus would not tell you the pain is nothing, or that you lack faith. He would walk beside you carrying his own cross, keep listening to your prayer, and show you that suffering joined to his is never wasted. He would also want you to receive care and rest.",
+  "gospel_scene": "On the road to Calvary (Luke 23:26), Jesus was so exhausted that the soldiers forced Simon of Cyrene to carry his cross behind him. The Son of God accepted help with his burden. He knows the weight of carrying something every day, and he does not ask you to carry yours alone.",
+  "scripture": [
+    {
+      "ref": "2 Corinthians 12:8-9",
+      "exact": false,
+      "text": "Three times I begged the Lord to take it from me, but he said to me, My grace is sufficient for you, for power is made perfect in weakness.",
+      "why": "St. Paul prayed for healing too, and found grace in place of an answer he wanted."
+    },
+    {
+      "ref": "Colossians 1:24",
+      "exact": false,
+      "text": "Now I rejoice in my sufferings for your sake, and in my flesh I fill up what is lacking in the afflictions of Christ for his body, the Church.",
+      "why": "Your suffering can be offered, and it can help others."
+    },
+    {
+      "ref": "Psalm 34:19",
+      "exact": false,
+      "text": "The Lord is close to the brokenhearted and saves those whose spirit is crushed.",
+      "why": "God is near in the pain, not only after it."
+    }
+  ],
+  "catechism": [
+    {
+      "ref": "CCC 1521",
+      "summary": "By his Passion, Christ gave suffering a new meaning; united to his, it can become a share in his saving work."
+    },
+    {
+      "ref": "CCC 1508",
+      "summary": "The Lord does not always heal every illness; St. Paul learned that God's grace is enough, and suffering can mean, I fill up what is lacking in Christ's afflictions."
+    },
+    {
+      "ref": "CCC 1514-1515",
+      "summary": "Anointing of the Sick is not only for those near death; anyone seriously ill may receive it, and may receive it again."
+    }
+  ],
+  "church": [
+    {
+      "ref": "Salvifici Doloris 26 (St. John Paul II, 1984)",
+      "summary": "Suffering opened to Christ becomes a source of strength and peace, and the sick share in a special way in the work of redemption."
+    }
+  ],
+  "saint": {
+    "name": "St. Rose of Lima",
+    "source": "From her writings",
+    "exact": false,
+    "quote": "Apart from the cross there is no other ladder by which we may get to heaven.",
+    "why": "A saint who lived with constant pain and illness and found Christ in it."
+  },
+  "closing": "Your weariness is honest prayer, and God hears it. Scripture shows St. Paul praying for healing and finding grace, the Church teaches that your suffering united to Christ's is never wasted, and St. Rose of Lima shows a cross can become a ladder. Keep praying, receive the care you need, and let Jesus carry it with you.",
+  "steps": [
+    "Ask your priest for the Anointing of the Sick. You may receive it more than once.",
+    "Each morning, offer the day's pain to Jesus for one person who needs prayer.",
+    "Keep up your medical care, and tell your doctor honestly how you are coping.",
+    "On hard days, let your prayer be short: Jesus, I give you this."
+  ],
+  "prayer": "Lord Jesus, you carried your cross and accepted help along the way. I offer you my pain today. If it is your will, heal me; if not, give me grace to carry it with you. Amen.",
+  "artwork": {
+    "title": "Christ Carrying the Cross",
+    "artist": "El Greco",
+    "year": "c. 1600",
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Cristo_abrazado_a_la_cruz_%28El_Greco%2C_Museo_del_Prado%29.jpg/500px-Cristo_abrazado_a_la_cruz_%28El_Greco%2C_Museo_del_Prado%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Cristo_abrazado_a_la_cruz_%28El_Greco%2C_Museo_del_Prado%29.jpg"
+  }
+}
+];
+// Same example all day; the next one tomorrow.
+const EXAMPLE = EXAMPLES[Math.floor((Date.now() - new Date().getTimezoneOffset()*60000) / 86400000) % EXAMPLES.length];
 
 const $ = id => document.getElementById(id);
 const out = $("out");
