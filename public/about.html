@@ -99,6 +99,15 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
 .approach figure img{width:100%;height:auto;border-radius:14px;box-shadow:0 12px 28px rgba(28,42,74,.14)}
 .approach figcaption{font-size:.85rem;color:var(--muted);margin-top:10px;font-style:italic}
 
+/* Privacy promise: a soft gold-edged card between Approach and Story, a shield icon above a centred heading */
+.privacy{max-width:885px;margin-inline:auto;background:var(--white);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:14px;padding:34px 26px;margin-bottom:40px;text-align:center;box-shadow:0 10px 30px rgba(28,42,74,.07)}
+.privacy .icon{width:42px;height:42px;margin:0 auto 12px}
+.privacy .icon svg{width:23px;height:23px}
+.privacy h2{font-size:clamp(1.45rem,2.6vw,1.9rem);margin:8px auto 0;max-width:34rem}
+.privacy h2 span{display:block;font-size:.62em;font-style:italic;font-weight:500;color:var(--gold-deep);margin-top:8px;line-height:1.3}
+.privacy .bar{width:40px;height:3px;background:var(--gold);border-radius:2px;margin:16px auto}
+.privacy p.body{max-width:40rem;margin:0 auto;color:var(--ink);font-size:.95rem;line-height:1.65}
+
 /* Story: the founding family's photo on the right, its edges dissolving softly into the warm band behind the text */
 .story{position:relative;background:linear-gradient(100deg,#fdf1dc 0%,#f9e2bb 45%,#f3cd94 100%);border-radius:18px;overflow:hidden;min-height:440px}
 .story .scene{position:absolute;inset:0 0 0 auto;width:58%;height:100%;object-fit:cover;object-position:center 22%;
@@ -151,6 +160,8 @@ footer a{color:var(--navy);font-weight:600}
     -webkit-mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 55%,transparent 100%);
             mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 55%,transparent 100%)}
   .story .text{padding:30px 22px 8px}
+  .privacy{padding:28px 18px;margin-bottom:28px}
+  .privacy p.body{text-align:left}
   .btn{width:100%}
   .top .btn{width:auto;padding-inline:16px}
 }
@@ -241,6 +252,14 @@ footer a{color:var(--navy);font-weight:600}
         <p>Seek &amp; Knock is a resource for reflection. It helps support your aim for God’s teaching and how it can apply to your life while also encouraging your own Scripture, prayer, sacraments, or counsel of a trusted priest or spiritual director.</p>
         <p>Discover how Scripture, Church teaching, and the wisdom of the saints can speak to your everyday questions. Seek and Knock uses advanced intelligence compute technology (AIC) to research, comprehend, and draw on the Bible, Church encyclicals, the Catechism, and the writings of the saints, bringing these rich sources together in one accessible place. Whether you’re seeking encouragement, exploring your faith, or navigating life’s challenges, start with a question and discover a new way to grow in your faith and walk with God.</p>
       </div>
+    </section>
+
+    <section class="privacy" aria-labelledby="privacy-title">
+      <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M16 3 5 7v8c0 7 4.6 11.8 11 14 6.4-2.2 11-7 11-14V7Z"/><path d="M16 10v10M12 14h8"/></svg></div>
+      <p class="eyebrow">Our privacy promise</p>
+      <h2 id="privacy-title">A Safe Place to Seek. <span>Your Privacy Is Sacred. Your Trust Is Our Promise.</span></h2>
+      <div class="bar" aria-hidden="true"></div>
+      <p class="body">At Seek &amp; Knock, what you bring here is sacred, and we treat it that way. No one at Seek &amp; Knock reads your prompts, reviews your questions, or looks at what you share. We do not advertise on SeekandKnock.com and our service is Ad free so we never share or sell your information with advertisers. Your conversations are encrypted and handled only by the secure technology that guides each response toward Scripture, Church teaching, the encyclicals, and the wisdom of the saints. Whether you come with a heavy heart, a hard question, or a quiet prayer, you can seek, ask, and knock here in confidence, knowing your words are kept private and treated with reverence. Your privacy matters. Your trust matters. Seek &amp; Knock is a place to seek truth, find encouragement, and grow closer to God with confidence and peace of mind.</p>
     </section>
 
     <section class="story" aria-labelledby="story-title">
