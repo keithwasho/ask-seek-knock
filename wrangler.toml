@@ -24,4 +24,4 @@ GOOGLE_ADS_ASK_LABEL = ""                             # conversion: "Asked a que
 
 # Google Analytics 4. Paste the Measurement ID (starts with G-) from Analytics > Admin > Data streams.
 # Empty = no Google Analytics. Analytics then counts visits plus "ask_question" and "answer_received" events (never the question text).
-GA4_MEASUREMENT_ID = ""
+GA4_MEASUREMENT_ID = "G-0EWG99LTS4"
