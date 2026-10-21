@@ -1234,6 +1234,21 @@ function adsConversion(kind, extra){
   }catch(e){}
 }
 function fbTrack(name, params, eventID){ try{ if(typeof fbq === "function") fbq("track", name, params || {}, eventID ? { eventID: eventID } : undefined); }catch(e){} }
+// Counts that someone asked or got an answer, for Google Analytics, Google Ads and Meta.
+// Never send the question, the answer, or anything typed: only the event name and whether the visitor was signed in.
+function trackAsk(step){
+  try{
+    const signedIn = session ? "yes" : "no";
+    if(step === "ask"){
+      if(typeof gtag === "function") gtag("event", "ask_question", { signed_in: signedIn });
+      if(typeof fbq === "function") fbq("trackCustom", "AskQuestion");
+      adsConversion("ask");
+    } else if(step === "answer"){
+      if(typeof gtag === "function") gtag("event", "answer_received");
+      if(typeof fbq === "function") fbq("trackCustom", "AnswerReceived");
+    }
+  }catch(e){}
+}
 function firstTime(key){ try{ if(localStorage.getItem(key)) return false; localStorage.setItem(key, "1"); }catch(e){} return true; }
 // Counts a sign-up only for accounts created in the last 30 minutes, once per account on this device.
 function maybeCountSignup(s){
@@ -1251,6 +1266,7 @@ async function initAccount(){
   try{
     const cfg = await fetch("/api/config").then(r=>r.json());
     adsCfg = cfg.ads || null;
+    if(cfg.ga4 && typeof gtag === "function") gtag("config", cfg.ga4);
     $("priceMonthly").textContent = cfg.priceMonthly;
     $("priceYearly").textContent = cfg.priceYearly;
     const sale = cfg.saleLabel || "";
@@ -1287,6 +1303,7 @@ $("ask").addEventListener("submit", async (e)=>{
   const q = $("q").value.trim();
   $("err").hidden = true; showNotice("");
   if(!q){ showError("Write a few words about what you are going through first."); $("q").focus(); return; }
+  trackAsk("ask");
   if(!session){ openSignin(); return; }
   if(me && me.remaining <= 0 && !me.subscribed){ $("plan").hidden = false; $("plan").scrollIntoView({ block:"nearest" }); return; }
 
@@ -1301,6 +1318,7 @@ $("ask").addEventListener("submit", async (e)=>{
     const a = r.data;
     a.question = q.length>280 ? q.slice(0,277)+"…" : q;
     render(a,false);
+    trackAsk("answer");
     try{ localStorage.removeItem("wwjd-draft"); }catch(err){}
     out.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto":"smooth", block:"start"});
     refreshAccount();

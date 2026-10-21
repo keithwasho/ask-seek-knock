@@ -20,3 +20,8 @@ GOOGLE_ADS_ID = "AW-11059685572"
 GOOGLE_ADS_SIGNUP_LABEL = "YQp0COm20psdEMTR1Zkp"      # conversion: "Free sign-up"
 GOOGLE_ADS_SUBSCRIBE_LABEL = "zXonCOy20psdEMTR1Zkp"   # conversion: "Subscription" (sends $3.99 or $44.99 as the value)
 GOOGLE_ADS_CONTACT_LABEL = "xPIgCO-20psdEMTR1Zkp"     # conversion: "Contact form" (optional)
+GOOGLE_ADS_ASK_LABEL = ""                             # conversion: "Asked a question" (optional; leave empty to skip)
+
+# Google Analytics 4. Paste the Measurement ID (starts with G-) from Analytics > Admin > Data streams.
+# Empty = no Google Analytics. Analytics then counts visits plus "ask_question" and "answer_received" events (never the question text).
+GA4_MEASUREMENT_ID = "G-0EWG99LTS4"

@@ -9,6 +9,8 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'AW-11059685572');
+  // Google Analytics: the GA4 ID is set in wrangler.toml (GA4_MEASUREMENT_ID); nothing is sent until it is.
+  fetch('/api/config').then(function(r){return r.json();}).then(function(c){ if(c.ga4) gtag('config', c.ga4); }).catch(function(){});
 </script>
 <!-- Meta Pixel Code -->
 <script>
@@ -48,8 +50,8 @@ fbq('track', 'PageView');
     <li><strong>Stripe</strong> processes payments.</li>
     <li><strong>Cloudflare</strong> hosts the website.</li>
     <li><strong>Resend</strong> delivers sign-in emails.</li>
-    <li><strong>Google</strong> measures, using cookies, whether visitors arrived from our Google ads and went on to sign up or subscribe, so we know which ads help people find us. It does not receive your questions or answers. You can manage ad personalization at adssettings.google.com.</li>
-    <li><strong>Meta (Facebook and Instagram)</strong> measures, using its Pixel and cookies, whether visitors arrived from our Facebook or Instagram ads and went on to sign up or subscribe. It does not receive your questions or answers. You can manage this in your Facebook ad preferences.</li>
+    <li><strong>Google</strong> (Google Analytics and Google Ads) counts, using cookies, visits and pages viewed, whether visitors arrived from our Google ads, and whether they asked a question, signed up, or subscribed, so we know how people find and use the site. It is told only that a question was asked, never what it said, and it does not receive your answers. You can manage ad personalization at adssettings.google.com.</li>
+    <li><strong>Meta (Facebook and Instagram)</strong> measures, using its Pixel and cookies, whether visitors arrived from our Facebook or Instagram ads and went on to ask a question, sign up, or subscribe. It is told only that a question was asked, never what it said, and it does not receive your answers. You can manage this in your Facebook ad preferences.</li>
   </ul>
   <p>We do not sell your information or use it for advertising.</p>
 
