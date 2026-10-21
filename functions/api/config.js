@@ -1,6 +1,6 @@
 import { json } from "../../lib/server.js";
 
-// Public settings the page needs to start sign-in, show prices, and report Google Ads conversions.
+// Public settings the page needs to start sign-in, show prices, and report Google Ads conversions and Google Analytics visits.
 // The Supabase anon key and Google Ads conversion labels are meant to be public.
 export function onRequestGet({ env }) {
   return json({
@@ -13,11 +13,13 @@ export function onRequestGet({ env }) {
     saleLabel: env.SALE_LABEL ?? "Launch sale",
     wasMonthly: env.WAS_MONTHLY_LABEL ?? "$4.99",
     wasYearly: env.WAS_YEARLY_LABEL ?? "$54",
+    ga4: env.GA4_MEASUREMENT_ID || "",
     ads: {
       id: env.GOOGLE_ADS_ID || "",
       signup: env.GOOGLE_ADS_SIGNUP_LABEL || "",
       subscribe: env.GOOGLE_ADS_SUBSCRIBE_LABEL || "",
       contact: env.GOOGLE_ADS_CONTACT_LABEL || "",
+      ask: env.GOOGLE_ADS_ASK_LABEL || "",
     },
   });
 }

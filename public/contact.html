@@ -9,6 +9,8 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'AW-11059685572');
+  // Google Analytics: the GA4 ID is set in wrangler.toml (GA4_MEASUREMENT_ID); nothing is sent until it is.
+  fetch('/api/config').then(function(r){return r.json();}).then(function(c){ if(c.ga4) gtag('config', c.ga4); }).catch(function(){});
 </script>
 <!-- Meta Pixel Code -->
 <script>
