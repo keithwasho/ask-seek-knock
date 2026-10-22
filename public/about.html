@@ -168,6 +168,14 @@ footer a{color:var(--navy);font-weight:600}
   .top .btn{width:auto;padding-inline:16px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Facebook link: round icon in the header, labelled link in the footer */
+.fb{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;flex:none;border-radius:50%;border:1.5px solid var(--line);color:var(--navy);background:transparent;transition:background .2s,color .2s,border-color .2s}
+.fb svg{width:22px;height:22px;display:block}
+.fb:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+.fb:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.fb-link{display:inline-flex;align-items:center;gap:7px}
+.fb-link svg{width:18px;height:18px;flex:none;display:block;padding:2px;border-radius:50%;background:var(--navy);color:#fff}
+@media (max-width:760px){.nav{gap:14px}}
 </style>
 </head>
 <body>
@@ -183,6 +191,7 @@ footer a{color:var(--navy);font-weight:600}
       <a class="link" href="/">Home</a>
       <a class="link" href="/about" aria-current="page">About</a>
       <a class="link" href="/contact">Contact</a>
+      <a class="fb" href="https://www.facebook.com/profile.php?id=61595430177988" target="_blank" rel="noopener" aria-label="Seek &amp; Knock on Facebook (opens in a new tab)" title="Follow us on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.4 21v-7.6h2.6l.4-3.1h-3V8.4c0-.9.3-1.5 1.5-1.5h1.6V4.1c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H7.7v3.1h2.6V21h3.1z"/></svg></a>
       <a class="btn" href="/">Get Started <span aria-hidden="true">→</span></a>
     </nav>
   </div>
@@ -303,6 +312,7 @@ footer a{color:var(--navy);font-weight:600}
       <a href="/contact">Contact</a>
       <a href="/terms">Terms &amp; refunds</a>
       <a href="/privacy">Privacy</a>
+      <a class="fb-link" href="https://www.facebook.com/profile.php?id=61595430177988" target="_blank" rel="noopener" aria-label="Follow Seek &amp; Knock on Facebook (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.4 21v-7.6h2.6l.4-3.1h-3V8.4c0-.9.3-1.5 1.5-1.5h1.6V4.1c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H7.7v3.1h2.6V21h3.1z"/></svg>Follow us on Facebook</a>
     </nav>
   </div>
 </footer>
