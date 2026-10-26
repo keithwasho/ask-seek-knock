@@ -102,5 +102,5 @@ async function coasterOrder(s, session) {
     ["Paid", `${money(session.amount_total)} (shipping ${money(session.total_details?.amount_shipping)})`],
     ["Ordered", when(session.created * 1000)],
   ];
-  await sendOwnerAlert(s.env, `Coaster order: ${m.engrave_name} (${m.engrave_occasion})`, "New olive wood coaster order to engrave and ship", rows);
+  await sendOwnerAlert(s.env, `Coaster order: ${m.engrave_name} (${m.engrave_occasion})`, "New acacia wood coaster order to engrave and ship", rows);
 }
