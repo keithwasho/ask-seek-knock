@@ -1,10 +1,10 @@
 import Stripe from "stripe";
 import { services, sendOwnerAlert, when, describeSource } from "../../lib/server.js";
 
-// Stripe calls this address when a subscription changes. It emails the owner when a subscriber
-// cancels, resumes, or their subscription ends. Set up in Stripe: Developers -> Webhooks ->
-// endpoint https://seekandknock.com/api/stripe-webhook, events customer.subscription.updated and
-// customer.subscription.deleted. Put the endpoint's signing secret in Cloudflare as STRIPE_WEBHOOK_SECRET.
+// Stripe calls this address when a subscription changes or a coaster order is paid. It emails the owner when a
+// subscriber cancels, resumes, or their subscription ends, and sends each coaster order with its engraving and
+// shipping address. Set up in Stripe: Developers -> Webhooks -> endpoint https://seekandknock.com/api/stripe-webhook,
+// events customer.subscription.updated, customer.subscription.deleted and checkout.session.completed. Put the endpoint's signing secret in Cloudflare as STRIPE_WEBHOOK_SECRET.
 export async function onRequestPost({ request, env, waitUntil }) {
   const s = services(env);
   const secret = s.env.STRIPE_WEBHOOK_SECRET;
@@ -30,6 +30,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
 }
 
 async function handleEvent(s, event) {
+  if (event.type === "checkout.session.completed") return coasterOrder(s, event.data.object);
   const sub = event.data?.object;
   if (!sub || sub.object !== "subscription") return;
   const before = event.data.previous_attributes || {};
@@ -78,4 +79,28 @@ async function handleEvent(s, event) {
     if (reason) rows.push(["Reason given", reason]);
     await sendOwnerAlert(s.env, `Subscription ended: ${email}`, "A subscription has fully ended and will no longer renew", rows);
   }
+}
+
+/** Emails the owner everything needed to engrave and ship a paid coaster order. */
+async function coasterOrder(s, session) {
+  const m = session?.metadata || {};
+  if (m.product !== "coasters") return;
+  const items = await s.stripe.checkout.sessions.listLineItems(session.id, { limit: 5 });
+  const sets = items.data.reduce((n, i) => n + (i.quantity || 0), 0) || 1;
+  const ship = session.collected_information?.shipping_details || session.shipping_details || {};
+  const a = ship.address || {};
+  const address = [ship.name, a.line1, a.line2, [a.city, a.state, a.postal_code].filter(Boolean).join(" "), a.country].filter(Boolean).join(", ");
+  const buyer = session.customer_details || {};
+  const money = (c) => `$${((c || 0) / 100).toFixed(2)}`;
+  const rows = [
+    ["Engrave name", m.engrave_name],
+    ["Occasion", m.engrave_occasion],
+    ["Date", m.engrave_date],
+    ["Sets of 2", String(sets)],
+    ["Ship to", address || "See Stripe"],
+    ["Buyer", [buyer.name, buyer.email, buyer.phone].filter(Boolean).join(" · ") || "See Stripe"],
+    ["Paid", `${money(session.amount_total)} (shipping ${money(session.total_details?.amount_shipping)})`],
+    ["Ordered", when(session.created * 1000)],
+  ];
+  await sendOwnerAlert(s.env, `Coaster order: ${m.engrave_name} (${m.engrave_occasion})`, "New olive wood coaster order to engrave and ship", rows);
 }
