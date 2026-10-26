@@ -47,9 +47,9 @@ In Stripe, create one product with two prices: **$3.99 recurring monthly** and *
 
 To change the free trial count, cost cap, or price labels, edit `wrangler.toml` on GitHub; Cloudflare redeploys automatically.
 
-## Olive wood coasters shop
+## Acacia wood coasters shop
 
-`public/coasters.html` (seekandknock.com/coasters) sells a personalized set of two olive wood coasters. The buyer picks Baptism, Confirmation, or Sacrament of Marriage, types the name and date, and pays through Stripe Checkout (`/api/coaster-checkout`), which also collects their US shipping address.
+`public/coasters.html` (seekandknock.com/coasters) sells a personalized set of two Genuine Acacia Wood coasters. The buyer picks Baptism, Confirmation, or Sacrament of Marriage, types the name and date, and pays through Stripe Checkout (`/api/coaster-checkout`), which also collects their US shipping address.
 
 - Price and shipping are set in `wrangler.toml` (`COASTER_PRICE_USD`, `COASTER_SHIPPING_USD`). These are the real charges; no Stripe product is needed.
 - Every order shows in Stripe → Payments with the engraving in its description and metadata.

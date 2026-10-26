@@ -1,6 +1,6 @@
 import { json, services, siteUrl, testDetail } from "../../lib/server.js";
 
-// Starts a one-time Stripe Checkout for a personalized set of two olive wood coasters.
+// Starts a one-time Stripe Checkout for a personalized set of two acacia wood coasters.
 // No sign-in needed. The price and shipping come from wrangler.toml (COASTER_PRICE_USD, COASTER_SHIPPING_USD).
 // The engraving details are saved on the Stripe payment (metadata) and emailed to the owner by /api/stripe-webhook.
 const OCCASIONS = ["Baptism", "Confirmation", "Sacrament of Marriage"];
@@ -40,7 +40,7 @@ export async function onRequestPost({ request, env }) {
           currency: "usd",
           unit_amount: cents(s.env.COASTER_PRICE_USD, 3499),
           product_data: {
-            name: "Personalized Olive Wood Coasters (set of 2)",
+            name: "Personalized Genuine Acacia Wood Coasters (set of 2)",
             description: `Engraved: ${engraving}`,
           },
         },
@@ -57,7 +57,7 @@ export async function onRequestPost({ request, env }) {
       phone_number_collection: { enabled: true },
       allow_promotion_codes: true,
       metadata: details,
-      payment_intent_data: { description: `Olive wood coasters: ${engraving}`, metadata: details },
+      payment_intent_data: { description: `Acacia wood coasters: ${engraving}`, metadata: details },
       success_url: `${site}/coasters?ordered=1`,
       cancel_url: `${site}/coasters`,
     });

@@ -13,7 +13,7 @@ YEARLY_SAVINGS_LABEL = "save 6%"
 SALE_LABEL = "Launch sale"        # set to "" to end the sale and hide the struck-through prices
 WAS_MONTHLY_LABEL = "$4.99"       # old price shown struck through during the sale
 WAS_YEARLY_LABEL = "$54"
-# Personalized olive wood coasters (/coasters). These ARE the real one-time charges: Stripe uses these amounts, no Stripe product needed.
+# Personalized acacia wood coasters (/coasters). These ARE the real one-time charges: Stripe uses these amounts, no Stripe product needed.
 COASTER_PRICE_USD = "34.99"       # set of two engraved coasters
 COASTER_SHIPPING_USD = "6.99"     # flat US shipping per order
 PORTAL_HEADLINE = "SeekandKnock.com partners with Stripe for simple billing"   # shown on Stripe's Manage subscription page
