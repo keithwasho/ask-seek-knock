@@ -13,6 +13,8 @@ export function onRequestGet({ env }) {
     saleLabel: env.SALE_LABEL ?? "Launch sale",
     wasMonthly: env.WAS_MONTHLY_LABEL ?? "$4.99",
     wasYearly: env.WAS_YEARLY_LABEL ?? "$54",
+    coasterPrice: env.COASTER_PRICE_USD || "34.99",
+    coasterShipping: env.COASTER_SHIPPING_USD || "6.99",
     ga4: env.GA4_MEASUREMENT_ID || "",
     ads: {
       id: env.GOOGLE_ADS_ID || "",
