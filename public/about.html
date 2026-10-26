@@ -150,7 +150,6 @@ footer a{color:var(--navy);font-weight:600}
   .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:760px){
-  .nav a.link{display:none}
   .brand b{font-size:1.35rem}
   .brand small{display:none}
   .hero img{position:static;width:100%;height:220px;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 30%);mask-image:linear-gradient(180deg,transparent 0,#000 30%)}
@@ -177,6 +176,21 @@ footer a{color:var(--navy);font-weight:600}
 .fb-link{display:inline-flex;align-items:center;gap:7px}
 .fb-link svg{width:18px;height:18px;flex:none;display:block;padding:2px;border-radius:50%;background:var(--navy);color:#fff}
 @media (max-width:760px){.nav{gap:14px}}
+/* Phones: brand and Get Started on the first row, then the page tabs (and Facebook) spread across a second row. */
+@media (max-width:760px){
+  .top .wrap{column-gap:10px;row-gap:8px}
+  .top .wrap::after{content:"";order:2;flex-basis:100%;height:0}
+  .nav{display:contents}
+  .nav a.link{order:3;font-size:.92rem;white-space:nowrap;padding-block:4px}
+  .nav .fb{order:3;width:34px;height:34px}
+  .nav .fb svg{width:18px;height:18px}
+  .nav .btn{order:1;margin-left:auto;min-height:42px;padding:8px 16px;font-size:.95rem}
+}
+@media (max-width:380px){
+  .brand svg{width:38px;height:38px}
+  .brand b{font-size:1.2rem}
+  .nav a.link{font-size:.85rem}
+}
 </style>
 </head>
 <body>
@@ -190,8 +204,8 @@ footer a{color:var(--navy);font-weight:600}
     </a>
     <nav class="nav" aria-label="Main">
       <a class="link" href="/">Home</a>
-      <a class="link" href="/about" aria-current="page">About</a>
       <a class="link" href="/coasters">Personalized Faith Gifts</a>
+      <a class="link" href="/about" aria-current="page">About</a>
       <a class="link" href="/contact">Contact</a>
       <a class="fb" href="https://www.facebook.com/profile.php?id=61595430177988" target="_blank" rel="noopener" aria-label="Seek &amp; Knock on Facebook (opens in a new tab)" title="Follow us on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.4 21v-7.6h2.6l.4-3.1h-3V8.4c0-.9.3-1.5 1.5-1.5h1.6V4.1c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H7.7v3.1h2.6V21h3.1z"/></svg></a>
       <a class="btn" href="/">Get Started <span aria-hidden="true">→</span></a>
@@ -309,9 +323,9 @@ footer a{color:var(--navy);font-weight:600}
   <div class="wrap">
     <span>© 2026 Seek &amp; Knock. All rights reserved.</span>
     <nav aria-label="Footer">
-      <a href="/">Discover sacred wisdom</a>
-      <a href="/about" aria-current="page">About</a>
+      <a href="/">Home</a>
       <a href="/coasters">Personalized Faith Gifts</a>
+      <a href="/about" aria-current="page">About</a>
       <a href="/contact">Contact</a>
       <a href="/terms">Terms &amp; refunds</a>
       <a href="/privacy">Privacy</a>
