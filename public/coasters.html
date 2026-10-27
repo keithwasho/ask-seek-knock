@@ -155,6 +155,14 @@ input:focus{border-color:var(--gold);background:var(--white)}
 
 .verse{max-width:44rem;margin:44px auto 0;text-align:center;font-family:var(--serif);font-size:1.35rem;color:var(--navy);line-height:1.4}
 .verse small{display:block;font-family:var(--sans);font-size:.85rem;color:var(--muted);margin-top:6px}
+/* Featured verse between the intro and the shop: gold rules either side of a small cross, italic serif quote. */
+.feature-verse{max-width:40rem;margin:-6px auto 34px;text-align:center}
+.feature-verse .orn{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold);margin-bottom:12px}
+.feature-verse .orn::before,.feature-verse .orn::after{content:"";height:1px;width:min(120px,22vw);background:linear-gradient(90deg,transparent,var(--gold))}
+.feature-verse .orn::after{background:linear-gradient(90deg,var(--gold),transparent)}
+.feature-verse .orn svg{width:18px;height:18px}
+.feature-verse blockquote{margin:0;font-family:var(--serif);font-style:italic;font-size:clamp(1.45rem,3.4vw,1.9rem);line-height:1.3;color:var(--navy)}
+.feature-verse cite{display:block;margin-top:8px;font-style:normal;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--gold)}
 .note{max-width:44rem;margin:18px auto 0;text-align:center;font-size:.9rem;color:var(--muted)}
 .note a{color:var(--navy);font-weight:600}
 
@@ -218,6 +226,12 @@ input:focus{border-color:var(--gold);background:var(--white)}
     <h1>Personalized Acacia Wood Coasters</h1>
     <p>A set of two Genuine Acacia Wood coasters, engraved with a name and the date of a baptism, confirmation, or sacrament of marriage. A gift to remember a day of grace every morning coffee and every evening toast.</p>
   </div>
+
+  <figure class="feature-verse">
+    <div class="orn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M7 8h10"/></svg></div>
+    <blockquote>“You shall make an ark of acacia wood.”</blockquote>
+    <cite>Exodus 25:10</cite>
+  </figure>
 
   <div class="shop">
     <section class="preview" aria-label="Preview of your engraved coasters">
@@ -307,7 +321,7 @@ input:focus{border-color:var(--gold);background:var(--white)}
     </section>
   </div>
 
-  <p class="verse">“You shall make an ark of acacia wood.”<small>Exodus 25:10</small></p>
+  <p class="verse">“So I made an ark of acacia wood.”<small>Deuteronomy 10:3</small></p>
   <p class="note">Because each set is engraved just for you, please check the spelling and date before you order. Questions? <a href="/contact">Contact us</a>.</p>
 </main>
 
