@@ -15,7 +15,7 @@ WAS_MONTHLY_LABEL = "$4.99"       # old price shown struck through during the sa
 WAS_YEARLY_LABEL = "$54"
 # Personalized acacia wood coasters (/coasters). These ARE the real one-time charges: Stripe uses these amounts, no Stripe product needed.
 COASTER_PRICE_USD = "34.99"       # set of two engraved coasters
-COASTER_SHIPPING_USD = "6.99"     # flat US shipping per order
+COASTER_SHIPPING_USD = "0"        # flat US shipping per order. "0" = FREE shipping special offer (shown on /coasters); set e.g. "6.99" to charge again
 PORTAL_HEADLINE = "SeekandKnock.com partners with Stripe for simple billing"   # shown on Stripe's Manage subscription page
 
 # Google Ads conversion tracking. Paste each conversion's event name (e.g. ads_conversion_Sign_up_1) or label between the quotes.

@@ -1,13 +1,13 @@
 import { json, services, siteUrl, testDetail } from "../../lib/server.js";
 
 // Starts a one-time Stripe Checkout for a personalized set of two acacia wood coasters.
-// No sign-in needed. The price and shipping come from wrangler.toml (COASTER_PRICE_USD, COASTER_SHIPPING_USD).
+// No sign-in needed. The price and shipping come from wrangler.toml (COASTER_PRICE_USD, COASTER_SHIPPING_USD; "0" = free shipping).
 // The engraving details are saved on the Stripe payment (metadata) and emailed to the owner by /api/stripe-webhook.
 const OCCASIONS = ["Baptism", "Confirmation", "Sacrament of Marriage"];
 
-const cents = (v, fallback) => {
+const cents = (v, fallback, allowZero = false) => {
   const n = Math.round(Number(v) * 100);
-  return Number.isFinite(n) && n > 0 ? n : fallback;
+  return Number.isFinite(n) && (n > 0 || (allowZero && n === 0 && String(v).trim() !== "")) ? n : fallback;
 };
 const clean = (v, max) => String(v || "").replace(/[\u0000-\u001f<>]/g, "").replace(/\s+/g, " ").trim().slice(0, max);
 
@@ -29,6 +29,9 @@ export async function onRequestPost({ request, env }) {
     return json({ error: "Could not start checkout. Please try again.", detail: "STRIPE_SECRET_KEY is not set." }, 500);
   }
 
+  // "0" means free shipping (the current special offer).
+  const shippingCents = cents(s.env.COASTER_SHIPPING_USD, 0, true);
+
   try {
     const site = siteUrl(request, s.env);
     const session = await s.stripe.checkout.sessions.create({
@@ -49,8 +52,8 @@ export async function onRequestPost({ request, env }) {
       shipping_options: [{
         shipping_rate_data: {
           type: "fixed_amount",
-          display_name: "US shipping (USPS Ground Advantage)",
-          fixed_amount: { amount: cents(s.env.COASTER_SHIPPING_USD, 699), currency: "usd" },
+          display_name: shippingCents === 0 ? "Free US shipping (special offer)" : "US shipping (USPS Ground Advantage)",
+          fixed_amount: { amount: shippingCents, currency: "usd" },
           delivery_estimate: { minimum: { unit: "business_day", value: 7 }, maximum: { unit: "business_day", value: 14 } },
         },
       }],

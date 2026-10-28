@@ -20,7 +20,7 @@ fbq('track', 'PageView');
 </script>
 <!-- End Meta Pixel Code -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Personalized Genuine Acacia Wood coasters, a set of two engraved with a name and the date of a baptism, confirmation, or sacrament of marriage. A Catholic keepsake gift from Seek & Knock.">
+<meta name="description" content="Personalized Genuine Acacia Wood coasters, a set of two engraved with a name and the date of a baptism, confirmation, or sacrament of marriage, with free US shipping. A Catholic keepsake gift from Seek & Knock.">
 <meta name="theme-color" content="#1c2a4a">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231c2a4a'/%3E%3Cpath d='M28 12h8v14h12v8H36v18h-8V34H16v-8h12z' fill='%23c8913f'/%3E%3C/svg%3E">
 <link rel="canonical" href="https://seekandknock.com/coasters">
@@ -127,6 +127,10 @@ h1{font-family:var(--serif);font-weight:600;color:var(--navy);font-size:clamp(2.
 .price span{color:var(--muted)}
 .ship{font-size:.92rem;color:var(--muted);margin:6px 0 22px}
 .ship strong{color:var(--ink)}
+.offer{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 4px;padding:10px 14px;border:1.5px dashed var(--gold);border-radius:12px;background:var(--gold-soft)}
+.offer .tag{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#fff;background:var(--ok);border-radius:999px;padding:3px 10px}
+.offer b{color:var(--navy);font-size:1.05rem}
+.offer[hidden]{display:none}
 form{display:flex;flex-direction:column;gap:20px}
 fieldset{border:0;margin:0;padding:0;min-width:0}
 legend,label{font-weight:600;color:var(--navy);font-size:.95rem;padding:0}
@@ -289,7 +293,8 @@ input:focus{border-color:var(--gold);background:var(--white)}
     <section class="card" aria-labelledby="orderTitle">
       <h2 id="orderTitle" class="eyebrow" style="margin-bottom:10px">Set of two coasters</h2>
       <p class="price"><b id="priceLabel">$34.99</b><span>for two, engraved</span></p>
-      <p class="ship"><strong>+ <span id="shipLabel">$6.99</span> flat US shipping.</strong> Engraved and shipped within about 7 to 14 business days.</p>
+      <p class="offer" id="offer"><span class="tag">Special offer</span><b>FREE US shipping</b></p>
+      <p class="ship"><strong id="shipLine">Free US shipping included.</strong> Engraved and shipped within about 7 to 14 business days.</p>
 
       <form id="orderForm" novalidate>
         <fieldset>
@@ -313,7 +318,7 @@ input:focus{border-color:var(--gold);background:var(--white)}
           <input id="date" name="date" type="date" min="1900-01-01" max="2100-12-31" required>
           <span class="hint">Past or upcoming dates are both fine.</span>
         </div>
-        <p class="total"><span>Total with shipping</span><span id="totalLabel">$41.98</span></p>
+        <p class="total"><span>Total with free shipping</span><span id="totalLabel">$34.99</span></p>
         <p class="status" id="status" role="status" aria-live="polite"></p>
         <button class="btn" type="submit" id="buy">Order my coasters <span aria-hidden="true">→</span></button>
         <p class="secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Secure checkout by Stripe. You add your shipping address there.</p>
@@ -347,7 +352,7 @@ const buyBtn = document.getElementById("buy");
 const nameIn = document.getElementById("name");
 const dateIn = document.getElementById("date");
 const SYMBOL = { "Baptism": "#symBaptism", "Confirmation": "#symConfirmation", "Sacrament of Marriage": "#symMarriage" };
-let price = 34.99, shipping = 6.99;
+let price = 34.99, shipping = 0;
 
 const occasion = () => form.querySelector("input[name=occasion]:checked")?.value || "Baptism";
 const money = (n) => "$" + n.toFixed(2);
@@ -378,9 +383,14 @@ updatePreview();
 
 fetch("/api/config").then((r) => r.json()).then((c) => {
   price = Number(c.coasterPrice) || price;
-  shipping = Number(c.coasterShipping) || shipping;
+  const ship = Number(c.coasterShipping);
+  shipping = Number.isFinite(ship) && ship >= 0 ? ship : shipping;
   document.getElementById("priceLabel").textContent = money(price);
-  document.getElementById("shipLabel").textContent = money(shipping);
+  // Shipping "0" in wrangler.toml shows the free shipping special offer; any other amount shows it as a charge.
+  const free = shipping === 0;
+  document.getElementById("offer").hidden = !free;
+  document.getElementById("shipLine").textContent = free ? "Free US shipping included." : "+ " + money(shipping) + " flat US shipping.";
+  document.querySelector(".total span").textContent = free ? "Total with free shipping" : "Total with shipping";
   document.getElementById("totalLabel").textContent = money(price + shipping);
 }).catch(() => {});
 
