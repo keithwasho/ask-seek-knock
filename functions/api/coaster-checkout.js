@@ -25,7 +25,8 @@ export async function onRequestPost({ request, env }) {
   const engraving = `${name} · ${occasion} · ${shownDate}`;
   const details = { product: "coasters", engrave_name: name, engrave_occasion: occasion, engrave_date: shownDate, engrave_date_iso: date };
 
-  if (!String(s.env.STRIPE_SECRET_KEY || "").startsWith("sk_")) {
+  // Stripe secret keys start with sk_; restricted keys (rk_) also work, as on the subscription checkout.
+  if (!/^(sk|rk)_/.test(String(s.env.STRIPE_SECRET_KEY || ""))) {
     return json({ error: "Could not start checkout. Please try again.", detail: "STRIPE_SECRET_KEY is not set." }, 500);
   }
 
@@ -66,7 +67,9 @@ export async function onRequestPost({ request, env }) {
     });
     return json({ url: session.url });
   } catch (err) {
-    console.error(err);
-    return json({ error: "Could not start checkout. Please try again.", detail: testDetail(s.env, err) }, 500);
+    console.error("coaster checkout failed", err?.type, err?.code, err?.param, err?.message);
+    // Stripe's short error code (never the key or card details) so a screenshot of the page says what went wrong.
+    const code = [err?.code || err?.type, err?.param].filter(Boolean).join(" / ");
+    return json({ error: `Could not start checkout. Please try again.${code ? ` (Stripe: ${code})` : ""}`, detail: testDetail(s.env, err) }, 500);
   }
 }
