@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
+# Pages load their prices and settings from /api/config, so search engines may read it.
+Allow: /api/config
+# Everything else under /api/ is for the site's own forms and checkout, not for search results.
 Disallow: /api/
 
 Sitemap: https://seekandknock.com/sitemap.xml
