@@ -6,6 +6,8 @@ compatibility_flags = ["nodejs_compat"]
 
 [vars]
 FREE_TRIAL_LIMIT = "1"            # free sessions per new user, ever
+GUEST_FREE_ANSWERS = "1"          # free answers before signing in, per visitor (internet address). "0" = sign in first, like before
+GUEST_DAILY_LIMIT = "30"          # most free no-sign-in answers per day across all visitors (cost guard, about $0.10-$0.30 each)
 MONTHLY_COST_CAP_USD = "3.00"     # hidden: most a subscriber may cost in Claude usage per 30-day window before "Please try again later"
 PRICE_MONTHLY_LABEL = "$3.99"     # display only; the real prices are set in Stripe
 PRICE_YEARLY_LABEL = "$44.99"

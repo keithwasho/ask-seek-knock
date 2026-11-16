@@ -1,7 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import {
   json, services, getUser, getAllowance, claimSession, finishSession, releaseSession,
-  sessionCost, MODEL, MAX_TOKENS,
+  sessionCost, MODEL, MAX_TOKENS, claimGuestAnswer, finishGuestAnswer, releaseGuestAnswer,
 } from "../../lib/server.js";
 import { ART_IDS, ART_MENU, artwork } from "../../lib/sacred-art.js";
 
@@ -78,10 +78,30 @@ export async function onRequestPost({ request, env }) {
 
   const s = services(env);
   const user = await getUser(request, s);
-  if (!user) return json({ code: "signin", error: "Sign in to use your free trial session." }, 401);
+
+  // Visitors who are not signed in get one free answer; after that they are asked to sign in.
+  let guestId = null;
+  if (!user) {
+    const guest = await claimGuestAnswer(s, request);
+    if (!guest.id) {
+      return json({
+        code: "signin",
+        guest: guest.reason,
+        error: guest.reason === "used"
+          ? "You have had your free answer. Sign in with your email to keep seeking counsel."
+          : "Sign in to use your free trial session.",
+      }, 401);
+    }
+    guestId = guest.id;
+  }
 
   let sessionId = null;
   try {
+    if (guestId) return await answer(s, question, {
+      done: (cost) => finishGuestAnswer(s, guestId, cost),
+      fail: () => releaseGuestAnswer(s, guestId),
+      extra: { guest: true },
+    });
     const allowance = await getAllowance(s, user);
     if (allowance.remaining > 0) sessionId = await claimSession(s, user, allowance);
     if (!sessionId) {
@@ -90,38 +110,51 @@ export async function onRequestPost({ request, env }) {
         ? json({ error: "Please try again later." }, 429)
         : json({ code: "subscribe", error: "You have used your free trial session. Subscribe to keep seeking counsel." }, 402);
     }
-
-    const response = await s.anthropic.beta.messages.create({
-      model: MODEL,
-      max_tokens: MAX_TOKENS,
-      betas: ["server-side-fallback-2026-07-01"],
-      fallbacks: "default",
-      output_config: {
-        effort: "medium",
-        format: { type: "json_schema", schema: SCHEMA },
-      },
-      system: SYSTEM,
-      messages: [{ role: "user", content: `<shared>\n${question}\n</shared>` }],
+    const id = sessionId;
+    return await answer(s, question, {
+      done: (cost) => finishSession(s, id, cost),
+      fail: () => releaseSession(s, id),
     });
-
-    if (response.stop_reason === "refusal" || response.stop_reason === "max_tokens") {
-      await releaseSession(s, sessionId); // failed or incomplete answers count toward nothing
-      return response.stop_reason === "refusal"
-        ? json({ error: "This could not be answered as written. Try rephrasing what you shared." }, 422)
-        : json({ error: "The answer came back incomplete. Please try again." }, 502);
-    }
-
-    const text = response.content.filter((b) => b.type === "text").map((b) => b.text).join("");
-    const answer = JSON.parse(text);
-    answer.artwork = artwork(answer.art);
-    await finishSession(s, sessionId, sessionCost(response));
-    return json(answer);
   } catch (err) {
     if (sessionId) await releaseSession(s, sessionId).catch(() => {});
+    if (guestId) await releaseGuestAnswer(s, guestId).catch(() => {});
     if (err instanceof Anthropic.RateLimitError) {
       return json({ error: "Many people are asking right now. Please try again in a minute." }, 503);
     }
     console.error(err);
     return json({ error: "Something went wrong. Please try again." }, 500);
   }
+}
+
+/**
+ * Asks Claude and returns the answer as a response. done(cost) records a successful answer;
+ * fail() undoes the held session when the answer is refused or incomplete. Errors are thrown to the caller,
+ * which undoes the held session.
+ */
+async function answer(s, question, { done, fail, extra = {} }) {
+  const response = await s.anthropic.beta.messages.create({
+    model: MODEL,
+    max_tokens: MAX_TOKENS,
+    betas: ["server-side-fallback-2026-07-01"],
+    fallbacks: "default",
+    output_config: {
+      effort: "medium",
+      format: { type: "json_schema", schema: SCHEMA },
+    },
+    system: SYSTEM,
+    messages: [{ role: "user", content: `<shared>\n${question}\n</shared>` }],
+  });
+
+  if (response.stop_reason === "refusal" || response.stop_reason === "max_tokens") {
+    await fail(); // failed or incomplete answers count toward nothing
+    return response.stop_reason === "refusal"
+      ? json({ error: "This could not be answered as written. Try rephrasing what you shared." }, 422)
+      : json({ error: "The answer came back incomplete. Please try again." }, 502);
+  }
+
+  const text = response.content.filter((b) => b.type === "text").map((b) => b.text).join("");
+  const result = JSON.parse(text);
+  result.artwork = artwork(result.art);
+  await done(sessionCost(response));
+  return json({ ...result, ...extra });
 }

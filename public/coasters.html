@@ -377,6 +377,22 @@ function updatePreview() {
     g.querySelector(".pvDate").textContent = longDate(dateIn.value) || "Month Day, Year";
   });
 }
+/* Interest tracking for Google Analytics and Meta. Only event names and the occasion picked are sent, never the name or date typed. */
+const tracked = new Set();
+function track(event, params, metaName){
+  try{
+    if(typeof gtag === "function") gtag("event", event, params || {});
+    if(typeof fbq === "function") metaName ? fbq("track", metaName, params || {}) : fbq("trackCustom", event, params || {});
+  }catch(e){}
+}
+function trackOnce(key, event, params, metaName){ if(tracked.has(key)) return; tracked.add(key); track(event, params, metaName); }
+form.addEventListener("input", (e) => {
+  const field = e.target && e.target.name;
+  if(!field) return;
+  trackOnce("start", "coaster_personalize_start", { field }, "CustomizeProduct"); // first time they touch the form
+  trackOnce("field-" + field, "coaster_personalize_" + field, field === "occasion" ? { occasion: occasion() } : {});
+  if(nameIn.value.trim() && longDate(dateIn.value)) trackOnce("ready", "coaster_personalize_complete", { occasion: occasion() });
+});
 form.addEventListener("input", updatePreview);
 form.addEventListener("change", updatePreview);
 updatePreview();
@@ -397,6 +413,7 @@ fetch("/api/config").then((r) => r.json()).then((c) => {
 if (new URLSearchParams(location.search).get("ordered") === "1") {
   document.getElementById("thanks").hidden = false;
   if (typeof fbq === "function") fbq("track", "Purchase", { value: price + shipping, currency: "USD", content_name: "Acacia wood coasters" });
+  if (typeof gtag === "function") gtag("event", "purchase", { currency: "USD", value: price + shipping, items: [{ item_name: "Acacia wood coasters" }] });
   history.replaceState(null, "", "/coasters");
 }
 
@@ -404,7 +421,9 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   statusEl.textContent = ""; statusEl.className = "status";
   const data = { occasion: occasion(), name: nameIn.value.trim(), date: dateIn.value };
-  if (!data.name || !longDate(data.date)) {
+  const complete = !!(data.name && longDate(data.date));
+  track("coaster_order_click", { occasion: data.occasion, form_complete: complete ? "yes" : "no" });
+  if (!complete) {
     statusEl.textContent = "Please enter the name to engrave and the date of the occasion.";
     statusEl.className = "status error";
     (data.name ? dateIn : nameIn).focus();
@@ -419,6 +438,7 @@ form.addEventListener("submit", async (e) => {
     if (typeof gtag === "function") gtag("event", "begin_checkout", { currency: "USD", value: price + shipping, items: [{ item_name: "Acacia wood coasters", item_variant: data.occasion }] });
     location.href = out.url;
   } catch (err) {
+    track("coaster_checkout_error", { reason: err instanceof TypeError ? "network" : "server" });
     statusEl.textContent = err instanceof TypeError ? "Could not reach the server. Check your connection and try again." : err.message;
     statusEl.className = "status error";
     buyBtn.disabled = false;
