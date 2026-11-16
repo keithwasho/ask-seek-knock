@@ -1190,7 +1190,7 @@ function renderAccount(){
   const box = $("account"); box.replaceChildren();
   const btn = (label, fn)=>{ const b=el("button","linkish",label); b.type="button"; b.onclick=fn; return b; };
   if(!session){
-    box.append(el("span",null,"Your first session is free."), btn("Sign in", ()=>openSignin()));
+    box.append(el("span",null, guestUsed() ? "Sign in to keep seeking counsel." : "Your first answer is free, no sign-in needed."), btn("Sign in", ()=>openSignin()));
     return;
   }
   if(me){
@@ -1218,6 +1218,10 @@ async function refreshAccount(){
   $("plan").hidden = !(me && !me.subscribed && me.remaining <= 0);
   if(session) $("signin").hidden = true;
 }
+
+/* Visitors who are not signed in get one free answer (the server enforces it); this browser remembers it was used. */
+function guestUsed(){ try{ return !!localStorage.getItem("sk-guest-used"); }catch(e){ return false; } }
+function markGuestUsed(){ try{ localStorage.setItem("sk-guest-used", "1"); }catch(e){} }
 
 function openSignin(){
   $("signin").hidden = false; $("signinMsg").hidden = true;
@@ -1303,7 +1307,7 @@ function trackAsk(step){
       if(typeof fbq === "function") fbq("trackCustom", "AskQuestion");
       adsConversion("ask");
     } else if(step === "answer"){
-      if(typeof gtag === "function") gtag("event", "answer_received");
+      if(typeof gtag === "function") gtag("event", "answer_received", { signed_in: signedIn });
       if(typeof fbq === "function") fbq("trackCustom", "AnswerReceived");
     }
   }catch(e){}
@@ -1363,7 +1367,7 @@ $("ask").addEventListener("submit", async (e)=>{
   $("err").hidden = true; showNotice("");
   if(!q){ showError("Write a few words about what you are going through first."); $("q").focus(); return; }
   trackAsk("ask");
-  if(!session){ openSignin(); return; }
+  if(!session && guestUsed()){ showNotice("You have had your free answer. Sign in with your email to keep seeking counsel."); openSignin(); return; }
   if(me && me.remaining <= 0 && !me.subscribed){ $("plan").hidden = false; $("plan").scrollIntoView({ block:"nearest" }); return; }
 
   $("go").disabled = true; $("status").hidden = false;
@@ -1371,13 +1375,22 @@ $("ask").addEventListener("submit", async (e)=>{
   let i=0; const tick=setInterval(()=>{ i=(i+1)%msgs.length; $("statusText").textContent=msgs[i]; },6000);
   try{
     const r = await api("/api/ask", { question:q });
-    if(r.status === 401){ openSignin(); return; }
+    if(r.status === 401){
+      if(!session && r.data.guest === "used") markGuestUsed();
+      if(!session && r.data.guest === "used") showNotice(r.data.error);
+      openSignin(); return;
+    }
     if(r.status === 402){ await refreshAccount(); $("plan").hidden = false; $("plan").scrollIntoView({ block:"nearest" }); return; }
     if(!r.ok){ showError(r.data.error || "Something went wrong. Please try again."); return; }
     const a = r.data;
     a.question = q.length>280 ? q.slice(0,277)+"…" : q;
     render(a,false);
     trackAsk("answer");
+    if(a.guest){
+      markGuestUsed();
+      showNotice("This answer was free, no sign-in needed. To ask again, sign in with your email: your first signed-in session is free too.");
+      renderAccount();
+    }
     try{ localStorage.removeItem("wwjd-draft"); }catch(err){}
     out.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto":"smooth", block:"start"});
     refreshAccount();
