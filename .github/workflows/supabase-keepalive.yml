@@ -1,11 +1,11 @@
 # Keeps the free Supabase project from pausing for inactivity (it pauses after 7 days with no use).
-# Every day this calls seekandknock.com/api/keepalive, which runs one small database read.
+# Four times a day this calls seekandknock.com/api/keepalive, which reads from the database and sign-in system.
 # To run it by hand: GitHub -> Actions -> Supabase keep-alive -> Run workflow.
 name: Supabase keep-alive
 
 on:
   schedule:
-    - cron: "17 14 * * *"   # 14:17 UTC every day
+    - cron: "17 2,8,14,20 * * *"   # 02:17, 08:17, 14:17 and 20:17 UTC every day
   workflow_dispatch:
 
 jobs:
